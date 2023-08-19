@@ -32,8 +32,6 @@ app.use(express.static(path.join(__dirname,'public')))
 
 
 
-Session.sync({force:true})
-// Users.sync({alter:true})
 app.use(router)
 Sequelize.sync()
 .then(conn =>{
