@@ -7,6 +7,7 @@ const Session = require('./modal/sessions')
 const sequelize = require('sequelize')
 const Users = require('./modal/users');
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
+const cors = require('cors');
 app.use(flash())
 app.use(session({
     secret:'my secret',
@@ -28,6 +29,7 @@ app.use((req,res,next)=>{
 })
 const path = require('path')
 app.use(express.static(path.join(__dirname,'public')))
+
 app.use(
     cors({
         origin:"*",
