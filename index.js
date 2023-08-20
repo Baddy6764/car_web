@@ -15,6 +15,13 @@ app.use(
     })
 );
 
+app.use("/", (req, res) => {
+    res.send({
+        "name": "Abdulraman",
+        
+    })
+})
+
 connectDB()
 
 app.listen(5000, () => {
