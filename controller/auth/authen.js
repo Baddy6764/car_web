@@ -30,19 +30,19 @@ exports.register = asyncHandler(async (req, res) => {
     message: token,
   });
 
-  const hashPassword = await bcrypt.hash(password, 10);
+  // const hashPassword = await bcrypt.hash(password, 13);
   const user = await users.create({
     firstname: firstName,
     lastName: lastName,
     email: email,
-    password: hashPassword,
+    password: password,
   });
 
   res.send({
     success: true,
     message: "Verification link have been sent to your email",
     data: user,
-    token: token,
+    token: email,
   });
 });
 // exports.registerPage = (req,res) =>{
