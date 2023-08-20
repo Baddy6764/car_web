@@ -15,4 +15,4 @@ router.post('/register-page',authen.register);
 
 
 
-// module.exports=router;
+module.exports=router;
