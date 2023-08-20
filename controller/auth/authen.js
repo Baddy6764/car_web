@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendMail = require("../../utils/sendMail");
+const users = require("../../modal/users");
 
 exports.register = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -23,19 +24,25 @@ exports.register = asyncHandler(async (req, res) => {
     "112345"
   );
 
-  try {
-    sendMail({
-      email: email,
-      subject: "Gart account activation",
-      message: token,
-    });
-  } catch (error) {
-    res.status(400);
-    throw new Error(error.message);
-  }
+  sendMail({
+    email: email,
+    subject: "Gart account activation",
+    message: token,
+  });
+
+  const hashPassword = await bcrypt.hash(password, 10);
+  const user = await users.create({
+    firstname: firstName,
+    lastName: lastName,
+    email: email,
+    password: hashPassword,
+  });
+
   res.send({
     success: true,
-    data: "Verification link have been sent to your email",
+    message: "Verification link have been sent to your email",
+    data: user,
+    token: token,
   });
 });
 // exports.registerPage = (req,res) =>{
