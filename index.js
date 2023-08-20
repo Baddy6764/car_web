@@ -15,7 +15,6 @@ app.use(
     credentials: true,
   })
 );
-
 app.use(route);
 
 connectDB();

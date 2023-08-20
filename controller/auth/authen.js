@@ -33,6 +33,10 @@ exports.register = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error(error.message);
   }
+  res.send({
+    success: true,
+    data: "Verification link have been sent to your email",
+  });
 });
 // exports.registerPage = (req,res) =>{
 
