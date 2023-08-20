@@ -30,12 +30,12 @@ exports.register = asyncHandler(async (req, res) => {
     message: token,
   });
 
-  // const hashPassword = await bcrypt.hash(password, 13);
+  const hashPassword = await bcrypt.hash(password, 13);
   const user = await users.create({
     firstname: firstName,
     lastName: lastName,
     email: email,
-    password: password,
+    password: hashPassword,
   });
 
   res.send({

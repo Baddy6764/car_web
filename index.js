@@ -17,6 +17,7 @@ app.use(
 );
 app.use(route);
 
+app.use(express.json());
 connectDB();
 app.use(notFound);
 app.use(errorHandler);
