@@ -24,7 +24,13 @@ exports.register = asyncHandler(async (req, res) => {
     "112345", {expiresIn: "3m"}
   );
    const url= `https://racing-t8qw.onrender.com/activation/https://racing-t8qw.onrender.com/activation/${token}`;
-  const message = `<h4>Hello</h4> <h2>${firstName + lastName}</h2> <h4>click on the link below to verify your email</h4> <br /> <a href=${url} style="backgroundColor: blue; padding: 10px 15px; color: "#fff"">confirm</a>`
+  const message = `
+  <h4>Hello</h4>
+   <h2>${firstName + " " + lastName}</h2>
+    <h4>click on the link below to verify your email</h4>
+     <br />
+      <a href=${url} style=" background-color: "blue"; padding: 10px 15px; color: "#fff"; " >Confirm</a>
+  `
 
   sendMail({
     email: email,
