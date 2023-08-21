@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendMail = require("../../utils/sendMail");
 const users = require("../../modal/users");
+const { baseurl } = require("../../baseurl");
 
 exports.register = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -23,7 +24,7 @@ exports.register = asyncHandler(async (req, res) => {
     { email, lastName, firstName, password },
     "112345", {expiresIn: "3m"}
   );
-   const url= `https://racing-t8qw.onrender.com/activation/https://racing-t8qw.onrender.com/activation/${token}`;
+   const url= `${baseurl}/activation/${token}`;
   const message = `
   <h4>Hello</h4>
    <h2>${firstName + " " + lastName}</h2>
