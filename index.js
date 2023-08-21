@@ -14,9 +14,10 @@ app.use(
     credentials: true,
   })
 );
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(route);
-app.use(bodyParser.urlencoded({ extended: true }));
+
 connectDB();
 app.use(notFound);
 app.use(errorHandler);
