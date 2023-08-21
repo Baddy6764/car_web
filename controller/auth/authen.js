@@ -21,33 +21,49 @@ exports.register = asyncHandler(async (req, res) => {
 
   const token = await jwt.sign(
     { email, lastName, firstName, password },
-    "112345"
+    "112345", {expiresIn: "3m"}
   );
+   const url= `https://racing-t8qw.onrender.com/activation/${token.replaceAll(".", "---")}`
+  const message = `Hello ${firstName + lastName} <br /> click on the link below to verify your email <br /> <a href=${url} style="background-color: blue; padding: 10px 15px; color: "#fff'">Comfirm </a>`
 
   sendMail({
     email: email,
     subject: "Gart account activation",
     message: token,
   });
-
-  const hashPassword = await bcrypt.hash(password, 13);
-  const user = await users.create({
-    firstname: firstName,
-    lastname: lastName,
-    email: email,
-    password: hashPassword,
-  });
-
   res.send({
     success: true,
     message: "Verification link have been sent to your email",
-    data: user,
-    token: email,
   });
 });
-// exports.registerPage = (req,res) =>{
 
-// }
+
+
+exports.activation = asyncHandler(async(req,res) =>{
+      const {payload} = req.body;
+      const user = await jwt.verify(payload,"112345");
+      const validEmail = await Users.findOne({
+        email
+      });
+if(validEmail){
+  res.status(400)
+  throw new Error("Email already exist");
+};
+const enPassword = await bcrypt.hash(user.password, 10);
+const createUser = await Users.create({
+  ...user,
+  password:enPassword
+});
+if(!createUser){
+  res.status(400)
+  throw new Error("Internal server error")
+};
+res.status(201).json({
+  success:false,
+  message:user,
+  token: token
+})  
+})
 
 // exports.login = (req,res) =>{
 

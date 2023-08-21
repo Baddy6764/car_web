@@ -9,7 +9,7 @@ const authen = require('../controller/auth/authen');
 
 router.post('/register-page',authen.register);
 
-// router.get('/login-page',authen.loginPage);
+router.post('/login-page',authen.activation);
 
 // router.post('/login-page',authen.login);
 
