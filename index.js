@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-app.use(bodyParser.urlencoded({ extended: true }));
 const route = require("./routes/route");
 const path = require("path");
 const connectDB = require("./db/connect");
@@ -18,6 +17,7 @@ app.use(
 app.use(route);
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 connectDB();
 app.use(notFound);
 app.use(errorHandler);
