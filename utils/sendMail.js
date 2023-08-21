@@ -14,7 +14,7 @@ const sendMail = async (options) => {
     from: "onifadejohnson2022@gmail.com",
     to: options.email,
     subject: options.subject,
-    text: options.message,
+    html: options.message,
   };
   await transporter.sendMail(mailOptions);
 };
