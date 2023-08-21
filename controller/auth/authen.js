@@ -23,8 +23,8 @@ exports.register = asyncHandler(async (req, res) => {
     { email, lastName, firstName, password },
     "112345", {expiresIn: "3m"}
   );
-   const url= `https://racing-t8qw.onrender.com/activation/https://racing-t8qw.onrender.com/activation/${token.replaceAll(".", "---")}`;
-  const message = `Hello ${firstName + lastName} <br /> click on the link below to verify your email <br /> <a href=${url} style="background-color: blue; padding: 10px 15px; color: "#fff'">Comfirm </a>`
+  //  const url= `https://racing-t8qw.onrender.com/activation/https://racing-t8qw.onrender.com/activation/${token.replaceAll(".", "---")}`;
+  const message = `Hello ${firstName + lastName} <br /> click on the link below to verify your email <br /> <a href="" style="background-color: blue; padding: 10px 15px; color: "#fff'">${token} </a>`
 
   sendMail({
     email: email,
