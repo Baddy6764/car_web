@@ -19,11 +19,11 @@ exports.register = asyncHandler(async (req, res) => {
     throw new Error({ success: false, message: "password not matched!" });
   }
 
-  const token = await jwt.sign(
+  let token = await jwt.sign(
     { email, lastName, firstName, password },
     "112345", {expiresIn: "3m"}
   );
-   const url= `https://racing-t8qw.onrender.com/activation/${token.replaceAll(".", "---")}`
+   const url= `https://racing-t8qw.onrender.com/activation/https://racing-t8qw.onrender.com/activation/${token.replaceAll(".", "---")}`;
   const message = `Hello ${firstName + lastName} <br /> click on the link below to verify your email <br /> <a href=${url} style="background-color: blue; padding: 10px 15px; color: "#fff'">Comfirm </a>`
 
   sendMail({
@@ -33,7 +33,7 @@ exports.register = asyncHandler(async (req, res) => {
   });
   res.send({
     success: true,
-    message: "Verification link have been sent to your email",
+    message: message,
   });
 });
 
