@@ -29,7 +29,7 @@ exports.register = asyncHandler(async (req, res) => {
    <h2>${firstName + " " + lastName}</h2>
     <h4>click on the link below to verify your email</h4>
      <br />
-      <a href=${url} style=" background-color: "blue"; padding: 10px 15px; color: "#fff"; " >Confirm</a>
+      <a href=${url} style=" background-color: "blue"; padding: "10px 15px"; color: "#fff"; " >Confirm</a>
   `
 
   sendMail({
