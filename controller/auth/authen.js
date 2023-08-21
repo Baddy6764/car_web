@@ -33,7 +33,7 @@ exports.register = asyncHandler(async (req, res) => {
   const hashPassword = await bcrypt.hash(password, 13);
   const user = await users.create({
     firstname: firstName,
-    lastName: lastName,
+    lastname: lastName,
     email: email,
     password: hashPassword,
   });
