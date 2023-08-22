@@ -72,9 +72,37 @@ res.status(201).json({
 })  
 })
 
-// exports.login = (req,res) =>{
+exports.login = asyncHandler(async (req,res) =>{
+  const {email, password,lastName} = req.body;
+  const user = await Users.findOne({
+    email:email,
+  });
+  if(!user){
+    res.status(400);
+    throw new Error("Invalid email or password");
+  };
+  const isPassword = await bcrypt.compare(password, user.password);
+  if(!isPassword){
+    res.status(400);
+    throw new Error("Invalid email or password");
+  }
+  const token = jwt.sign({user},"112345");
+  return res
+  .cookie("access",token,{
+    httpOnly:true,
+    secure:false,
+  })
+  .status(200)
+  .json({
+    message:"success",
+    data: {
+    token:token,
+    user:user,
+    },
+  });
+} )
 
-// }
+
 
 // exports.loginPage = (req,res) =>{
 
