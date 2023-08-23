@@ -58,7 +58,9 @@ if(validEmail){
 };
 const enPassword = await bcrypt.hash(user.password, 10);
 const createUser = await Users.create({
-  ...user,
+  firstname: user.firstName,
+  lastname: user.lastName,
+  email: user.email,
   password:enPassword
 });
 if(!createUser){
