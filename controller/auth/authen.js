@@ -73,7 +73,7 @@ res.status(201).json({
 })
 
 exports.login = asyncHandler(async (req,res) =>{
-  const {email, password,lastName} = req.body;
+  const {email, password} = req.body;
   const user = await Users.findOne({
     email:email,
   });

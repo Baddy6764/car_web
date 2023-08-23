@@ -1,1 +1,1 @@
-exports.baseurl = "https://racing-t8qw.onrender.com"
+exports.baseurl = "https://gart-racing.netlify.app"
