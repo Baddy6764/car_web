@@ -40,7 +40,7 @@ exports.register = asyncHandler(async (req, res) => {
   });
   res.send({
     success: true,
-    message: message,
+    message: "verification message have been send to your email"
   });
 });
 
@@ -50,7 +50,7 @@ exports.activation = asyncHandler(async(req,res) =>{
       const {payload} = req.body;
       const user = await jwt.verify(payload,"112345");
       const validEmail = await Users.findOne({
-        email
+        email: user.email
       });
 if(validEmail){
   res.status(400)
@@ -66,9 +66,8 @@ if(!createUser){
   throw new Error("Internal server error")
 };
 res.status(201).json({
-  success:false,
+  success:true,
   message:user,
-  token: token
 })  
 })
 
