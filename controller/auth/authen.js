@@ -13,12 +13,9 @@ exports.register = asyncHandler(async (req, res) => {
 
   if (isEmail) {
     res.status(400);
-    throw new Error({ success: false, message: "email already exist!" });
+    throw new Error("email already exist!");
   }
-  if (password != confirmPassword) {
-    res.status(400);
-    throw new Error({ success: false, message: "password not matched!" });
-  }
+  
 
   let token = await jwt.sign(
     { email, lastName, firstName, password },
