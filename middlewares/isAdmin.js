@@ -1,4 +1,4 @@
-const {auth, requiredScopes} = require('express-oauth2-jwt-bearer');
+// const {auth, requiredScopes} = require('express-oauth2-jwt-bearer');
 const jwt = require("jsonwebtoken");
 
 module.exports=(req,res,next)=>{
@@ -10,7 +10,7 @@ module.exports=(req,res,next)=>{
         if(err){
             return res.status(403).json({error:"Forbidden"})
         }
-        if(user.admin !== "Admin"){
+        if(user.role !== true){
             return res.status(403).json({error:"Admin access required"})
         }
         req.user=user;
