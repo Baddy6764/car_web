@@ -7,6 +7,7 @@ const path = require("path");
 const connectDB = require("./db/connect");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));
+const Users = require("./modal/users");
 
 app.use(
   cors({
