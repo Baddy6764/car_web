@@ -84,7 +84,7 @@ exports.login = asyncHandler(async (err, req, res) => {
     throw new Error("Invalid email or password");
   }
   const token = jwt.sign({ user }, "112345");
-  res
+  return res
     .cookie("access", token, {
       httpOnly: true,
       secure: false,
@@ -100,7 +100,7 @@ exports.login = asyncHandler(async (err, req, res) => {
   if (err) {
     console.log(err);
   }
-  return;
+
 });
 
 // exports.forgotPassword = (req,res)=>{
