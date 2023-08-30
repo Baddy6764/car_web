@@ -97,10 +97,6 @@ exports.login = asyncHandler(async (err, req, res) => {
         user: user,
       },
     });
-  if (err) {
-    console.log(err);
-  }
-
 });
 
 // exports.forgotPassword = (req,res)=>{
