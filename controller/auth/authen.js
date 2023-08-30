@@ -17,7 +17,7 @@ exports.register = asyncHandler(async (req, res) => {
   }
 
   let token = await jwt.sign(
-    { email, lastName, firstName, password, },
+    { email, lastName, firstName, password, role:false,},
     "112345",
     { expiresIn: "15m" }
   );
@@ -56,6 +56,7 @@ exports.activation = asyncHandler(async (req, res) => {
     firstname: user.firstName,
     lastname: user.lastName,
     email: user.email,
+    role:false,
     password: enPassword,
      });
   if (!createUser) {
