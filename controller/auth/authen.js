@@ -100,7 +100,39 @@ exports.login = asyncHandler(async (req, res) => {
     });
 });
 
-// exports.forgotPassword = (req,res)=>{
-//   const {Email} = req.body;
+exports.forgetPassword =  asyncHandler(async(req,res)=>{
+  const {email,firstName} = req.body;
+  const user = Users.findOne({
+    email:email,
+  })
+  if(!user){
+    res.status(400).json({error:"Invalid email"});
+  };
+  const token = await jwt.sign({email},"12345",{expiresIn:"10m"});
+  const url = `${baseurl}/retrive-password/${token}`
+  const message = `
+<h2>Hello ${firstName},</h2>
+<p>Click on the link below to reset your password; <a href="${url}">reset</a>password.</p>
+<h3>Please if you didn't request for this contact our support immediately.</h3>
+<p>Thank you.</p
+  `
+  sendMail({
+    email:email,
+    from:"usman@gmail.com",
+    subject:`Reset Password`,
+    message:message,
 
-//   }
+  })
+})
+
+exports.retrivePassword = asyncHandler(async (req,res)=>{
+
+})
+
+exports.update_cars = asyncHandler (async (req,res)=>{
+
+})
+
+exports.updatePassword = asyncHandler (async (req,res)=>{
+
+})

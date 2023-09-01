@@ -11,6 +11,12 @@ router.post("/activation", authen.activation);
 
 router.post("/login-page", authen.login);
 
+router.post('/forget-password',authen.forgetPassword);
+
+router.post('/retrive-password',authen.retrivePassword);
+
+router.post('/update-cars',authen.update_cars);
+
 
 
 
