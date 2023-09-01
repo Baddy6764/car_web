@@ -122,7 +122,11 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
     subject:`Reset Password`,
     message:message,
 
-  })
+  });
+  res.send({
+    success:true,
+    message:"reset password has been sent to your email"
+  });
 })
 
 exports.retrivePassword = asyncHandler(async (req,res)=>{
