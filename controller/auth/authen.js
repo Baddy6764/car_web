@@ -17,7 +17,7 @@ exports.register = asyncHandler(async (req, res) => {
   }
 
   let token = await jwt.sign(
-    { email, lastName, firstName, password, role:false,},
+    { email, lastName, firstName, password,},
     "112345",
     { expiresIn: "15m" }
   );
