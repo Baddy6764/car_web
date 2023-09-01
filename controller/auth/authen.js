@@ -69,9 +69,9 @@ exports.activation = asyncHandler(async (req, res) => {
   });
 });
 
-exports.login = asyncHandler(async (err, req, res) => {
-  // const { email, password } = req.body;
-  res.send(req.body);
+exports.login = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  res.status(200).send(req.body);
   // const user = await Users.findOne({
   //   email: email,
   // });
