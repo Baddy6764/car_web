@@ -71,33 +71,33 @@ exports.activation = asyncHandler(async (req, res) => {
 
 exports.login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  res.status(200).send(req.body);
-  // const user = await Users.findOne({
-  //   email: email,
-  // });
-  // if (!user) {
-  //   res.status(400);
-  //   throw new Error("Invalid email or password");
-  // }
-  // const isPassword = await bcrypt.compare(password, user.password);
-  // if (!isPassword) {
-  //   res.status(400);
-  //   throw new Error("Invalid email or password");
-  // }
-  // const token = jwt.sign({ user }, "112345");
-  // return res
-  //   .cookie("access", token, {
-  //     httpOnly: true,
-  //     secure: false,
-  //   })
-  //   .status(200)
-  //   .json({
-  //     message: "success",
-  //     data: {
-  //       token: token,
-  //       user: user,
-  //     },
-  //   });
+  // res.status(200).send(req.body);
+  const user = await Users.findOne({
+    email: email,
+  });
+  if (!user) {
+    res.status(400);
+    throw new Error("Invalid email or password");
+  }
+  const isPassword = await bcrypt.compare(password, user.password);
+  if (!isPassword) {
+    res.status(400);
+    throw new Error("Invalid email or password");
+  }
+  const token = jwt.sign({ user }, "112345");
+  return res
+    .cookie("access", token, {
+      httpOnly: true,
+      secure: false,
+    })
+    .status(200)
+    .json({
+      message: "success",
+      data: {
+        token: token,
+        user: user,
+      },
+    });
 });
 
 // exports.forgotPassword = (req,res)=>{
