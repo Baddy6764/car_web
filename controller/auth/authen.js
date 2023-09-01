@@ -111,10 +111,10 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
   const token = await jwt.sign({email},"12345",{expiresIn:"10m"});
   const url = `${baseurl}/retrive-password/${token}`
   const message = `
-<h2>Hello ${firstName},</h2>
-<p>Click on the link below to reset your password; <a href="${url}">reset</a>password.</p>
+<h2 style="color:green;">Hello,</h2>
+<p>Click on the link below to reset your password; <a style="color:brown;" href="${url}">reset</a> password.</p>
 <h3>Please if you didn't request for this contact our support immediately.</h3>
-<p>Thank you.</p
+<p>Thank you.</p>
   `
   sendMail({
     email:email,
