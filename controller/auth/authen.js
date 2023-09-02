@@ -145,7 +145,7 @@ const user = await Users.findOne({
 })
 if(!user){
   res.status(400)
-  throw new Error("Email id not valid");
+  throw new Error("Email is not valid");
 }
 
 if(newPassword !== confirmPassword){
