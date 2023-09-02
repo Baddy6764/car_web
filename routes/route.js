@@ -15,7 +15,10 @@ router.post('/forget-password',authen.forgetPassword);
 
 router.post('/retrive-password',authen.retrivePassword);
 
-router.post('/update-cars',authen.update_cars);
+router.post('/update-cars',authen.updateCars);
+
+router.post('/update-password',authen.updatePassword);
+
 
 
 

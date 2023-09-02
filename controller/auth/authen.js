@@ -159,10 +159,6 @@ res.status(201).json({
   userInfo:user,
   message: "password reset successfully"
 })
-
-
-
-
 // const saveUser = Users.updateOne({
 //   password:newPassword,
 // })
@@ -170,14 +166,13 @@ res.status(201).json({
 //   res.status(401)
 //   throw new Error("User not save")
 // }
-
-
 })
-
-exports.update_cars = asyncHandler (async (req,res)=>{
-
+exports.updateCars = asyncHandler (async (req,res)=>{
+  
 })
 
 exports.updatePassword = asyncHandler (async (req,res)=>{
 
 })
+
+
