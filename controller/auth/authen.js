@@ -130,6 +130,47 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
 })
 
 exports.retrivePassword = asyncHandler(async (req,res)=>{
+const {token, newPassword, confirmPassword} = req.body;
+const decoded = await jwt.verify(token,"12345",(err));
+if(err){
+  res.status(400)
+  throw new Error("Invalid Token");
+}
+const user = await Users.findOne({
+  email:decoded.email
+})
+if(!user){
+  res.status(400)
+  throw new Error("Email id not valid");
+}
+
+if(newPassword !== confirmPassword){
+  res.status(400)
+  throw new Error("Password do not match")
+}
+const hashedPassword = await bcrypt.hash(newPassword, 13);
+
+user.password = hashedPassword
+
+await user.save()
+
+res.status(201).json({
+  success: true,
+  userInfo:user,
+  message: "password reset successfully"
+})
+
+
+
+
+// const saveUser = Users.updateOne({
+//   password:newPassword,
+// })
+// if(!saveUser){
+//   res.status(401)
+//   throw new Error("User not save")
+// }
+
 
 })
 
