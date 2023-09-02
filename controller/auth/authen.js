@@ -176,7 +176,24 @@ exports.updateCars = asyncHandler (async (req,res)=>{
 })
 
 exports.updatePassword = asyncHandler (async (req,res)=>{
-
+const {oldPassword, newPassword, conNewPassword,email} = req.body;
+if(oldPassword === newPassword){
+  res.status(401).json({error:"Password must not match the new password"});
+}
+if(newPassword !== conNewPassword){
+  res.status(401).json({error:"password not match"})
+}
+const user = await Users.findOne({
+  email:email
+})
+if(user){
+const hashednewPassword = await bcrypt.hash(newPassword,13);
+user.password = hashednewPassword;
+await user.save()
+}
+if(!user){
+  res.status(401).json({error:"Invalid credentials"})
+}
 })
 
 
