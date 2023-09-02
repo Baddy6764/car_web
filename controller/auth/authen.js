@@ -131,11 +131,11 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
 
 exports.retrivePassword = asyncHandler(async (req,res)=>{
 const {token, newPassword, confirmPassword} = req.body;
-const decoded = await jwt.verify(token,"12345",(err));
-if(err){
-  res.status(400)
-  throw new Error("Invalid Token");
-}
+const decoded = await jwt.verify(token,"12345",);
+// if(err){
+//   res.status(400)
+//   throw new Error("Invalid Token");
+// }
 const user = await Users.findOne({
   email:decoded.email
 })
@@ -168,7 +168,7 @@ res.status(201).json({
 // }
 })
 exports.updateCars = asyncHandler (async (req,res)=>{
-  
+
 })
 
 exports.updatePassword = asyncHandler (async (req,res)=>{
