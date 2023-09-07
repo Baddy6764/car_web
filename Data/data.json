@@ -2,7 +2,7 @@
  "Audi":
  {"Series":
  {
-"100 Series":{"Engine":{"5 Cylinder (1989-1991)":{"Drivetrain":["FWD","Quattro"]},"V6 (1992-1991)":{"Drivetrain":["FWD","Quattro"]}},
+"100 Series":{"Engine":{"5 Cylinder (1989-1991)":{"Drivetrain":["FWD","Quattro"]},"V6 (1992-1991)":{"Drivetrain":["FWD","Quattro"]}}},
  "A8":{"Chasis":{"D2 A8 (1997-2002)":{"Engine":{"3.7L":["FWD"],"4.2L":["Quattro"]}},"D3 A8 (2003-2010)":{"Engine":["4.2L","W12"]},"D4 A8+ (2011+)":{"Engine":{"3.0 TDI":["Quattro"],"3.0T":["Quattro"],"4.0 T":"","4.2L":"","W12":["Quattro"]}},"D5 A8 (2019+)":{"Engine":{"3.0 T":["Quattro"],"4.0 T":["Quattro"]}}}},
  "RS3":{"Chasis":{"8V (2018+)":["2.5T","Quattro","Sedan"],"8Y (2022+)":["2.5T","Quattro"]}},
  "S8":{"Chasis":["D2 S8 (2001-2003)","D3 S8 (2006-2009)",{"D4 S8 (2012+)":["4.0 T","Quattro","Sedan"],"D5 S8 (2020+)":["4.0 T","Quattro"]}]},
@@ -41,7 +41,7 @@
  "A7":{"Chasis":[{"C7 (2011+)":{"Engine":[{"3.0 TDI":["Quattro"]},"3.0T"]}},{"C8 (2019+)":{"Engine":[{"2.0T e-tron":["Quattro"]},{"3.0T":["Quattro","Sportback"]}]}}]},
  "RS Q8":["4M (2020+)","4.0T","Quattro"],
  "S7":{"Chasis":[{"C7 (2021+)":["4.0T","Quattro","Sedan"]},{"C8 (2020+)":["2.9T","Quattro"]}]}
- }}
+ }
 }},{
   "Volkswagen":{"Model":{
 ".R Models":{"Generation":["Golf IV R32 (2004)","Golf V R32 (2008)","Golf VI R (2012-2012)","Golf VII R (2015+)",{"Golf VII R Faceliff (2018)":["2.0T Gen3","4Motion"]},{"Golf VIII R (2022+)":["2.0T","4Motion"]}]},
