@@ -19,6 +19,8 @@ router.post('/update-cars',authen.updateCars);
 
 router.post('/update-password',authen.updatePassword);
 
+router.post("/cars/data",adminController.datajson);
+
 
 
 
