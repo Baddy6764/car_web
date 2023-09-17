@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
-    unique: true,
+    // unique: true,
   },
   role:{
     type:String,
@@ -22,6 +22,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // googleId:{
+  //   type: String,
+  //   required: true,
+  // },
+  // displayName:{
+  //   type: String,
+  //   required: true,
+  // }
   //     gender:{
   //         type:sequelize.STRING,
   //         allowNull:true

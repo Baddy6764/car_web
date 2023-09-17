@@ -5,6 +5,10 @@ const asyncHandler = require("express-async-handler");
 const sendMail = require("../../utils/sendMail");
 const users = require("../../modal/users");
 const { baseurl } = require("../../baseurl");
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+const localStratey = require('passport-local').Strategy
+const passport = require("passport");
+require("dotenv").config()
 
 exports.register = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -171,30 +175,167 @@ res.status(201).json({
 //   throw new Error("User not save")
 // }
 })
-exports.updateCars = asyncHandler (async (req,res)=>{
 
-})
 
 exports.updatePassword = asyncHandler (async (req,res)=>{
-const {oldPassword, newPassword, conNewPassword,email} = req.body;
+const {oldPassword, newPassword, conNewPassword,} = req.body;
+const tokenUser = await req.header.token;
+const decoded = await jwt.verify(tokenUser,"12345");
+if(!decoded){
+  res.status(400).json({error:"Invalid token user"});
+}
+const userOne =  await Users.findOne({email:decoded.email}).select("+password");
+if(!userOne){
+  res.status(400).json({error:"User not found || Invalid Email"});
+}
 if(oldPassword === newPassword){
   res.status(401).json({error:"Password must not match the new password"});
 }
 if(newPassword !== conNewPassword){
   res.status(401).json({error:"password not match"})
 }
-const user = await Users.findOne({
-  email:email
+const hashnewPass = await bcrypt.hash(newPassword,13)
+userOne.password = hashnewPass
+await userOne.save()
+res.status(401).json({
+  success:true,
+  message:"password updated successfully",
+  // userInfor:userOne
 })
-if(user){
-const hashednewPassword = await bcrypt.hash(newPassword,13);
-user.password = hashednewPassword;
-await user.save()
-}
-if(!user){
-  res.status(401).json({error:"Invalid credentials"})
-}
 })
 
+// passport.use(new localStratey(
+//   function(email,password,done){
+//  Users.findOne({email:email},(err,user)=>{
+//   if(err){
+//       return done(err);
+//   }
+//   if(!user || !user.verifyPassword(password)){
+//       return done(null,false,{message:"Invalid credentials"});
+//   }
+//   return done(null,user);
+//  })
+//   }
+// ))
+
+// const user = Users.findOne({email:email})
+//  if(!user){
+  
+//  }
 
 
+passport.use(new GoogleStrategy({
+    clientID:     process.env.GOOGLE_CLIENT_ID,
+    clientSecret:process.env. GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:5000/auth/google",
+    passReqToCallback   : true
+  },
+   async (request, accessToken, refreshToken, profile, done)=>{
+  try{
+    const Email = await profile.emails[0].value;
+    const FirstName = profile.name['givenName'];
+    const lastName = profile.name['familyName'];
+    const existingUser = await Users.findOne({email:Email})
+
+
+ if(existingUser){
+  return done(null,existingUser)
+ }
+ 
+// console.log(`firstName:${FirstName} lastName:${lastName}`);
+
+
+ const newUsers = await Users.create({
+    firstname:FirstName,
+    lastname:lastName || false,
+    email:Email,
+    password:false,
+ })
+
+
+if(newUsers){
+  console.log("user created");
+}
+  done(null, newUsers);
+  } catch(err){
+    console.log(err)
+  }
+  }
+));
+
+
+passport.serializeUser(async(user,done)=>{
+   try{
+    const users = await user
+    console.log("serializeUser",users);
+    done(null,users);
+   } catch(err){
+    console.log(err)
+    done(err);
+   }
+})
+
+passport.deserializeUser((id,done)=>{
+    const userId = Users.findById({id:id});
+    if(!userId){
+      return done(null,"not found")
+    }
+ return   done(null, userId);
+})
+
+// exports.RegisterEJs = (req,res)=>{
+//   res.send('<a href="http://localhost:5000/auth/google" >Authentication with google</a>')
+// }
+
+// exports.googleCallback = (req,res)=>{
+// const user = req.user
+// if(!user){
+//   console.log("user not found")
+//   return res.redirect("/failed");
+// }
+//   res.redirect('/protected')
+
+// console.log("users");
+// }
+
+// exports.failed = (req,res)=>{
+ 
+// }
+
+// exports.protected = (req,res)=>{
+//    res.send('Good job!!! This route has been authenticated');
+// }
+
+exports.googleAuth = async(req,res)=>{
+try{
+  const user = await req.user
+  if(!user){
+     return res
+     .status(400)
+     .json({error:"User not found"});
+  }
+  const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
+  return res
+  .cookie("access",token,{
+     httpOnly:true,
+     secure:false
+  })
+  .status(200)
+  .json({
+     message:"success",
+     data:{
+        token:token,
+        user:user
+     }
+  })
+    // if(!user){
+    //    console.log("user not found")
+    //    return res.redirect("/failed");
+    // }
+    //    res.redirect('/protected')
+    
+    // console.log("users");
+}catch(err){
+  console.log(err);
+}
+}

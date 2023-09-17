@@ -4,6 +4,12 @@ const adminController = require("../controller/admin");
 const authen = require("../controller/auth/authen");
 // const isAuth = require('../middlewares/isAuth');
 // const isAdmin = require('../middlewares/isAdmin');
+const passport = require("passport");
+const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+const jwt = require("jsonwebtoken");
+const dataJson = require("../Data/data.json");
+const Users = require("../modal/users");
+const axios = require("axios")
 
 router.post("/register-page", authen.register);
 
@@ -15,11 +21,27 @@ router.post('/forget-password',authen.forgetPassword);
 
 router.post('/retrive-password',authen.retrivePassword);
 
-router.post('/update-cars',authen.updateCars);
+router.post('/update-cars',adminController.updateCars);
 
 router.post('/update-password',authen.updatePassword);
 
 router.post("/cars/data",adminController.datajson);
+
+// router.get("/",authen.RegisterEJs)
+
+// router.get("/google/callback",passport.authenticate('google',{successRedirect:"protected",failureRedirect:"failed"}),authen.googleCallback)
+
+// router.get("/failed",authen.failed)
+
+// router.get('/protected',authen.protected);
+
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+
+router.post('/register/cars',adminController.registerCars)
+
+
+
+
 
 
 
