@@ -35,9 +35,9 @@ router.post("/cars/data",adminController.datajson);
 
 // router.get('/protected',authen.protected);
 
-router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.post('/register/cars',adminController.registerCars)
+router.post('/register/car',adminController.Registercars);
 
 
 

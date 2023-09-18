@@ -21,8 +21,8 @@ res.status(200).json({data:dataJson})
 
 
 
-exports.registerCars = (req,res)=>{
-
+exports.Registercars = (req,res)=>{
+    
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{
