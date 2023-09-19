@@ -6,7 +6,7 @@ const sendMail = require("../../utils/sendMail");
 const users = require("../../modal/users");
 const { baseurl } = require("../../baseurl");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-const localStratey = require('passport-local').Strategy
+// const localStratey = require('passport-local').Strategy
 const passport = require("passport");
 require("dotenv").config()
 

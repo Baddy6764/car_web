@@ -30,6 +30,9 @@ app.use(passport.initialize());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(route);
+app.get("/", (req,res) => {
+  res.send({greetings: "hello world"})
+})
 connectDB();
 app.use(notFound);
 app.use(errorHandler);
