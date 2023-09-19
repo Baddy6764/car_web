@@ -10,6 +10,7 @@ const localStratey = require('passport-local').Strategy
 const passport = require("passport");
 require("dotenv").config()
 
+////Register Route
 exports.register = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
@@ -45,6 +46,7 @@ exports.register = asyncHandler(async (req, res) => {
   });
 });
 
+/////Activate Register Route
 exports.activation = asyncHandler(async (req, res) => {
   const { payload } = req.body;
   const user = await jwt.verify(payload, "112345");
@@ -73,6 +75,7 @@ exports.activation = asyncHandler(async (req, res) => {
   });
 });
 
+/////Login Route
 exports.login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   // res.status(200).send(req.body);
@@ -104,6 +107,7 @@ exports.login = asyncHandler(async (req, res) => {
     });
 });
 
+/////Forgot Password Route
 exports.forgetPassword =  asyncHandler(async(req,res)=>{
   const {email,firstName} = req.body;
   const user = Users.findOne({
@@ -133,6 +137,8 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
   });
 })
 
+
+//////Retrieve Password Route
 exports.retrivePassword = asyncHandler(async (req,res)=>{
 const {token, newPassword, confirmPassword} = req.body;
 const decoded = await jwt.verify(token,"12345");
@@ -176,7 +182,7 @@ res.status(201).json({
 // }
 })
 
-
+//////Update Password Route
 exports.updatePassword = asyncHandler (async (req,res)=>{
 const {oldPassword, newPassword, conNewPassword,} = req.body;
 const tokenUser = await req.header.token;
@@ -204,6 +210,8 @@ res.status(401).json({
 })
 })
 
+
+///// Local Password Login
 // passport.use(new localStratey(
 //   function(email,password,done){
 //  Users.findOne({email:email},(err,user)=>{
@@ -224,6 +232,7 @@ res.status(401).json({
 //  }
 
 
+/////Google Authentication
 passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env. GOOGLE_CLIENT_SECRET,
@@ -264,6 +273,7 @@ if(newUsers){
 ));
 
 
+/////Serialize
 passport.serializeUser(async(user,done)=>{
    try{
     const users = await user
@@ -275,6 +285,7 @@ passport.serializeUser(async(user,done)=>{
    }
 })
 
+/////Deserialize
 passport.deserializeUser((id,done)=>{
     const userId = Users.findById({id:id});
     if(!userId){
@@ -306,6 +317,7 @@ passport.deserializeUser((id,done)=>{
 //    res.send('Good job!!! This route has been authenticated');
 // }
 
+/////Google Authentication Route
 exports.googleAuth = async(req,res)=>{
 try{
   const user = await req.user
