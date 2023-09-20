@@ -1,10 +1,10 @@
-// const Users = require("../modal/users");
-// const passport = require("passport");
+const Users = require("../modal/users");
+const passport = require("passport");
 // const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // const session = require('express-session');
 // const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 // const localStratey = require('passport-local').Strategy
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
 // const { default: mongoose } = require("mongoose");
@@ -28,3 +28,7 @@ exports.Registercars = (req,res)=>{
 exports.updateCars = asyncHandler (async (req,res)=>{
 
 })
+
+// exports.HomePage = (req,res)=>{
+//     res.send({name:"Uncle Johnson"});
+//   }

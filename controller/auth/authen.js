@@ -3,10 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendMail = require("../../utils/sendMail");
-const users = require("../../modal/users");
+// const users = require("../../modal/users");
 const { baseurl } = require("../../baseurl");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-// const localStratey = require('passport-local').Strategy
+const localStratey = require('passport-local').Strategy
 const passport = require("passport");
 require("dotenv").config()
 
@@ -232,7 +232,7 @@ res.status(401).json({
 //  }
 
 
-/////Google Authentication
+///Google Authentication
 passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env. GOOGLE_CLIENT_SECRET,
@@ -295,6 +295,7 @@ passport.deserializeUser((id,done)=>{
 })
 
 // exports.RegisterEJs = (req,res)=>{
+
 //   res.send('<a href="http://localhost:5000/auth/google" >Authentication with google</a>')
 // }
 
@@ -316,6 +317,7 @@ passport.deserializeUser((id,done)=>{
 // exports.protected = (req,res)=>{
 //    res.send('Good job!!! This route has been authenticated');
 // }
+
 
 /////Google Authentication Route
 exports.googleAuth = async(req,res)=>{
@@ -351,3 +353,4 @@ try{
   console.log(err);
 }
 }
+
