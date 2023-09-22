@@ -333,6 +333,7 @@ try{
      .status(400)
      .json({error:"User not found"});
   }
+ 
   const token = await jwt.sign({user},"12345")
   res
   .cookie("access",token,{
@@ -347,9 +348,10 @@ try{
         user:user
      }
   })
-  if(user){
-   return res.redirect("https://gart-racing.netlify.app");
-  }
+
+  return  res.redirect("https://gart-racing.netlify.app");
+
+
   // console.log(user);
     // if(!user){
     //    console.log("user not found")
