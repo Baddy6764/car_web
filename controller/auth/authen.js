@@ -333,7 +333,7 @@ try{
      .status(400)
      .json({error:"User not found"});
   }
-  const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
+  const token = await jwt.sign({user},"12345")
   return res
   .cookie("access",token,{
      httpOnly:true,
