@@ -329,11 +329,12 @@ exports.googleAuth = async(req,res)=>{
 try{
   const user = await req.user
   if(!user){
-     return res
+     res
      .status(400)
      .json({error:"User not found"});
   }
   const token = await jwt.sign({user},"12345")
+  console.log(user);
   return res
   .cookie("access",token,{
      httpOnly:true,
