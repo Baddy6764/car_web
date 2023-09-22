@@ -38,9 +38,9 @@ router.get("/",adminController.HomePage);
 
 
 
-router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.get('/register/car',adminController.Registercars);
+router.post('/register/car',adminController.Registercars);
 
 
 // router.post("/nyname",(req,res)=>{
