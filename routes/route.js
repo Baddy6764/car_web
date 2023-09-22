@@ -40,7 +40,7 @@ router.get("/",adminController.HomePage);
 
 router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.post('/register/car',adminController.Registercars);
+router.get('/register/car',adminController.Registercars);
 
 
 // router.post("/nyname",(req,res)=>{
