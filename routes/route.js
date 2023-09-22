@@ -27,18 +27,18 @@ router.post('/update-password',authen.updatePassword);
 
 router.post("/cars/data",adminController.datajson);
 
-// router.post("/",adminController.HomePage);
+router.get("/",adminController.HomePage);
 
 // router.get("/google/callback",passport.authenticate('google',{successRedirect:"protected",failureRedirect:"failed"}),authen.googleCallback)
 
-// router.get("/failed",authen.failed)
+router.get("/failed",authen.failed);
 
-// router.get('/protected',authen.protected);
-
-
+router.get('/protected',authen.protected);
 
 
-router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+
+
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 router.post('/register/car',adminController.Registercars);
 

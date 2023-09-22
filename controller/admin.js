@@ -26,9 +26,9 @@ exports.Registercars = (req,res)=>{
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{
-
+   
 })
 
-// exports.HomePage = (req,res)=>{
-//     res.send({name:"Uncle Johnson"});
-//   }
+exports.HomePage = (req,res)=>{
+    res.send({name:"Uncle Johnson"});
+  }

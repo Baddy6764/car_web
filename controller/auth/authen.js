@@ -6,7 +6,7 @@ const sendMail = require("../../utils/sendMail");
 // const users = require("../../modal/users");
 const { baseurl } = require("../../baseurl");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-const localStratey = require('passport-local').Strategy
+// const localStratey = require('passport-local').Strategy
 const passport = require("passport");
 require("dotenv").config()
 
@@ -230,22 +230,27 @@ res.status(401).json({
 //  if(!user){
   
 //  }
+ 
+const GOOGLE_CLIENT_SECRET = "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";
+const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.googleusercontent.com"
 
 
 ///Google Authentication
 passport.use(new GoogleStrategy({
-    clientID:     process.env.GOOGLE_CLIENT_ID,
-    clientSecret:process.env. GOOGLE_CLIENT_SECRET,
+    clientID:GOOGLE_CLIENT_ID,
+    clientSecret:GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:5000/auth/google",
     passReqToCallback   : true
   },
    async (request, accessToken, refreshToken, profile, done)=>{
   try{
     const Email = await profile.emails[0].value;
-    const FirstName = profile.name['givenName'];
-    const lastName = profile.name['familyName'];
+    const FirstName = await profile.name['givenName'];
+    const lastName = await profile.name['familyName'];
     const existingUser = await Users.findOne({email:Email})
 
+    console.log(profile);
+// console.log(`Existing User ${existingUser}`);
 
  if(existingUser){
   return done(null,existingUser)
@@ -260,7 +265,7 @@ passport.use(new GoogleStrategy({
     email:Email,
     password:false,
  })
-
+//  console.log(newUsers);
 
 if(newUsers){
   console.log("user created");
@@ -277,7 +282,7 @@ if(newUsers){
 passport.serializeUser(async(user,done)=>{
    try{
     const users = await user
-    console.log("serializeUser",users);
+    // console.log("serializeUser",users);
     done(null,users);
    } catch(err){
     console.log(err)
@@ -323,34 +328,42 @@ passport.deserializeUser((id,done)=>{
 exports.googleAuth = async(req,res)=>{
 try{
   const user = await req.user
-  if(!user){
-     return res
-     .status(400)
-     .json({error:"User not found"});
-  }
-  const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
-  return res
-  .cookie("access",token,{
-     httpOnly:true,
-     secure:false
-  })
-  .status(200)
-  .json({
-     message:"success",
-     data:{
-        token:token,
-        user:user
-     }
-  })
-    // if(!user){
-    //    console.log("user not found")
-    //    return res.redirect("/failed");
-    // }
-    //    res.redirect('/protected')
+  // if(!user){
+  //    return res
+  //    .status(400)
+  //    .json({error:"User not found"});
+  // }
+  // const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
+  // return res
+  // .cookie("access",token,{
+  //    httpOnly:true,
+  //    secure:false
+  // })
+  // .status(200)
+  // .json({
+  //    message:"success",
+  //    data:{
+  //       token:token,
+  //       user:user
+  //    }
+  // })
+  console.log(user);
+    if(!user){
+       console.log("user not found")
+       return res.redirect("/failed");
+    }
+       res.redirect('/protected')
     
-    // console.log("users");
+    console.log("users");
 }catch(err){
   console.log(err);
 }
 }
 
+exports.failed = async (req,res)=>{
+res.send("Failed Authentication");
+}
+
+exports.protected = async (req,res)=>{
+res.send("Protected route");
+}
