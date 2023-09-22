@@ -31,14 +31,14 @@ router.get("/",adminController.HomePage);
 
 // router.get("/google/callback",passport.authenticate('google',{successRedirect:"protected",failureRedirect:"failed"}),authen.googleCallback)
 
-router.get("/failed",authen.failed);
+// router.get("/failed",authen.failed);
 
-router.get('/protected',authen.protected);
-
-
+// router.get('/protected',authen.protected);
 
 
-router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+
+
+router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 router.post('/register/car',adminController.Registercars);
 

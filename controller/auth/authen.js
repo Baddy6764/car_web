@@ -328,42 +328,42 @@ passport.deserializeUser((id,done)=>{
 exports.googleAuth = async(req,res)=>{
 try{
   const user = await req.user
-  // if(!user){
-  //    return res
-  //    .status(400)
-  //    .json({error:"User not found"});
-  // }
-  // const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
-  // return res
-  // .cookie("access",token,{
-  //    httpOnly:true,
-  //    secure:false
-  // })
-  // .status(200)
-  // .json({
-  //    message:"success",
-  //    data:{
-  //       token:token,
-  //       user:user
-  //    }
-  // })
+  if(!user){
+     return res
+     .status(400)
+     .json({error:"User not found"});
+  }
+  const token = await jwt.sign({sub:user.id},"12345",{expiresIn:"30m"})
+  return res
+  .cookie("access",token,{
+     httpOnly:true,
+     secure:false
+  })
+  .status(200)
+  .json({
+     message:"success",
+     data:{
+        token:token,
+        user:user
+     }
+  })
   console.log(user);
-    if(!user){
-       console.log("user not found")
-       return res.redirect("/failed");
-    }
-       res.redirect('/protected')
+    // if(!user){
+    //    console.log("user not found")
+    //    return res.redirect("/failed");
+    // }
+    //    res.redirect('/protected')
     
-    console.log("users");
+    // console.log("users");
 }catch(err){
   console.log(err);
 }
 }
 
-exports.failed = async (req,res)=>{
-res.send("Failed Authentication");
-}
+// exports.failed = async (req,res)=>{
+// res.send("Failed Authentication");
+// }
 
-exports.protected = async (req,res)=>{
-res.send("Protected route");
-}
+// exports.protected = async (req,res)=>{
+// res.send("Protected route");
+// }
