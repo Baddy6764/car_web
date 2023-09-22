@@ -239,7 +239,7 @@ const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.goo
 passport.use(new GoogleStrategy({
     clientID:GOOGLE_CLIENT_ID,
     clientSecret:GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://gart-api.onrender.com/auth/google",
+    callbackURL: "https://gart-racing.netlify.app",
     passReqToCallback   : true
   },
    async (request, accessToken, refreshToken, profile, done)=>{
