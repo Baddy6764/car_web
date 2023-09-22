@@ -348,7 +348,7 @@ try{
      }
   })
   if(user){
-   return res.redirect("/gart-racing.netlify.app");
+   return res.redirect("https://gart-racing.netlify.app");
   }
   // console.log(user);
     // if(!user){
