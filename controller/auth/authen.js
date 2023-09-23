@@ -327,8 +327,9 @@ passport.deserializeUser((id,done)=>{
 /////Google Authentication Route
 exports.googleAuth = async(req,res)=>{
 try{
-  const user = await req.user
-  const redirect = await req.successRedirect
+  // const user = await req.user
+  const {user, successRedirect} = await req.body
+  // const redirect = await req.su
   console.log(redirect)
   if(!user){
      res
@@ -337,7 +338,7 @@ try{
   }
  
   if(user){
-    redirect = "https://gart-racing.netlify.app/dashboard"
+    successRedirect:"https://gart-racing.netlify.app/dashboard"
     }
   // const token = await jwt.sign({user},"12345")
   // res
