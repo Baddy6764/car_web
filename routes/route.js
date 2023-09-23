@@ -38,7 +38,7 @@ router.get("/google/callback",passport.authenticate('google',{successRedirect:"h
 
 
 
-router.get('/auth/google',passport.authenticate('google',{scope:['profile','email'],successRedirect:false}),authen.googleAuth);
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email'],}),authen.googleAuth);
 
 router.post('/register/car',adminController.Registercars);
 
