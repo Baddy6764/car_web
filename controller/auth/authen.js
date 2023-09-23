@@ -335,7 +335,7 @@ try{
   }
  
   const token = await jwt.sign({user},"12345")
-  res
+ return res
   .cookie("access",token,{
      httpOnly:true,
      secure:false
@@ -348,9 +348,6 @@ try{
         user:user
      }
   })
-  if(user){
-  return  res.redirect("https://gart-racing.netlify.app/dashboard");
-  }
 
 
   // console.log(user);
