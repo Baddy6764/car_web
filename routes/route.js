@@ -38,7 +38,7 @@ router.get("/google/callback",passport.authenticate('google',{successRedirect:"h
 
 
 
-router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email'],successRedirect:"https://gart-racing.netlify.app/dashboard",failureRedirect:"https://gart-racing.netlify.app"}),authen.googleAuth);
 
 router.post('/register/car',adminController.Registercars);
 
