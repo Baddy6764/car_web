@@ -327,8 +327,8 @@ passport.deserializeUser((id,done)=>{
 /////Google Authentication Route
 exports.googleAuth = async(req,res)=>{
 try{
-  // const user = await req.user
-  const {user, successRedirect,failureRedirect} = await req.body
+  const user = await req.user
+  // const {user, successRedirect,failureRedirect} = await req.body
   // const redirect = await req.su
   console.log(redirect)
   if(!user){
@@ -340,7 +340,7 @@ try{
   // if(user){
   //   successRedirect:"https://gart-racing.netlify.app/dashboard"
   //   }
-  const token = await jwt.sign({user},"12345")
+  const token = await jwt.sign({sub:user.id},"12345")
  return res
   .cookie("access",token,{
      httpOnly:true,
@@ -378,5 +378,5 @@ try{
 // }
 
 exports.googleCallback =  (req, res)=>{
-res.end()
+// res.end()
 }
