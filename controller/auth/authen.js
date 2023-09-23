@@ -239,7 +239,7 @@ const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.goo
 passport.use(new GoogleStrategy({
     clientID:GOOGLE_CLIENT_ID,
     clientSecret:GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://gart-api.onrender.com/google/callback",
+    callbackURL: "https://gart-racing.netlify.app/dashboard",
     passReqToCallback   : true
   },
    async (request, accessToken, refreshToken, profile, done)=>{
@@ -337,11 +337,9 @@ try{
      .json({error:"User not found"});
   }
 
-  // if(user){
-  //   successRedirect:"https://gart-racing.netlify.app/dashboard"
-  //   }
+ 
   const token = await jwt.sign({sub:user.id},"12345")
- return res
+  res
   .cookie("access",token,{
      httpOnly:true,
      secure:false
@@ -354,7 +352,9 @@ try{
         user:user
      }
   })
-
+//  if(user){
+return  res.redirect("https://gart-racing.netlify.app/dashboard");
+    // }
 
   // console.log(user);
     // if(!user){
