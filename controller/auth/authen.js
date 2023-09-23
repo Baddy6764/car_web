@@ -328,6 +328,8 @@ passport.deserializeUser((id,done)=>{
 exports.googleAuth = async(req,res)=>{
 try{
   const user = await req.user
+  const redirect = await req.successRedirect
+  console.log(redirect)
   if(!user){
      res
      .status(400)
@@ -335,7 +337,7 @@ try{
   }
  
   const token = await jwt.sign({user},"12345")
- return res
+  res
   .cookie("access",token,{
      httpOnly:true,
      secure:false
@@ -348,7 +350,9 @@ try{
         user:user
      }
   })
-
+ if(user){
+  successRedirect:""
+ }
 
   // console.log(user);
     // if(!user){
