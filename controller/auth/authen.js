@@ -335,7 +335,7 @@ try{
   }
  
   if(user){
- res.redirect("https://gart-racing.netlify.app/dashboard");
+ res.redirect("https://gart-api.onrender.com/google/callback");
 
   }
   // const token = await jwt.sign({user},"12345")
