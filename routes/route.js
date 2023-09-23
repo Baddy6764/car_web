@@ -27,9 +27,9 @@ router.post('/update-password',authen.updatePassword);
 
 router.post("/cars/data",adminController.datajson);
 
-router.get("/",adminController.HomePage);
+// router.get("/",adminController.HomePage);
 
-// router.get("/google/callback",passport.authenticate('google',{successRedirect:"protected",failureRedirect:"failed"}),authen.googleCallback)
+router.get("/google/callback",passport.authenticate('google',{successRedirect:"https://gart-racing.netlify.app/dashboard",failureRedirect:"https://gart-racing.netlify.app"}),authen.googleCallback)
 
 // router.get("/failed",authen.failed);
 
