@@ -334,25 +334,23 @@ try{
      .json({error:"User not found"});
   }
  
+  const token = await jwt.sign({user},"12345")
+  res
+  .cookie("access",token,{
+     httpOnly:true,
+     secure:false
+  })
+  .status(200)
+  .json({
+     message:"success",
+     data:{
+        token:token,
+        user:user
+     }
+  })
   if(user){
- res.redirect("https://gart-racing.netlify.app/dashboard");
-
+  return  res.redirect("https://gart-racing.netlify.app/dashboard");
   }
-  // const token = await jwt.sign({user},"12345")
-  // res
-  // .cookie("access",token,{
-  //    httpOnly:true,
-  //    secure:false
-  // })
-  // .status(200)
-  // .json({
-  //    message:"success",
-  //    data:{
-  //       token:token,
-  //       user:user
-  //    }
-  // })
-
 
 
   // console.log(user);
