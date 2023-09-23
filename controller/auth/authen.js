@@ -239,7 +239,7 @@ const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.goo
 passport.use(new GoogleStrategy({
     clientID:GOOGLE_CLIENT_ID,
     clientSecret:GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://gart-api.onrender.com/auth/google",
+    callbackURL: "https://gart-api.onrender.com/google/callback",
     passReqToCallback   : true
   },
    async (request, accessToken, refreshToken, profile, done)=>{
@@ -328,7 +328,7 @@ passport.deserializeUser((id,done)=>{
 exports.googleAuth = async(req,res)=>{
 try{
   // const user = await req.user
-  const {user, successRedirect} = await req.body
+  const {user, successRedirect,failureRedirect} = await req.body
   // const redirect = await req.su
   console.log(redirect)
   if(!user){
@@ -336,24 +336,24 @@ try{
      .status(400)
      .json({error:"User not found"});
   }
- 
-  if(user){
-    successRedirect:"https://gart-racing.netlify.app/dashboard"
-    }
-  // const token = await jwt.sign({user},"12345")
-  // res
-  // .cookie("access",token,{
-  //    httpOnly:true,
-  //    secure:false
-  // })
-  // .status(200)
-  // .json({
-  //    message:"success",
-  //    data:{
-  //       token:token,
-  //       user:user
-  //    }
-  // })
+
+  // if(user){
+  //   successRedirect:"https://gart-racing.netlify.app/dashboard"
+  //   }
+  const token = await jwt.sign({user},"12345")
+ return res
+  .cookie("access",token,{
+     httpOnly:true,
+     secure:false
+  })
+  .status(200)
+  .json({
+     message:"success",
+     data:{
+        token:token,
+        user:user
+     }
+  })
 
 
   // console.log(user);
@@ -378,5 +378,5 @@ try{
 // }
 
 exports.googleCallback =  (req, res)=>{
-
+res.end()
 }
