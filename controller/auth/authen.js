@@ -395,13 +395,13 @@ exports.googleCallback =  (req, res, next)=>{
 console.log("redirect")
     
   return res
-//    .status(200).send({
-//     success:true,
-//     data:{
-//        Token:token,
-//        User:user
-//     }
-//  })
+   .status(200).send({
+    success:true,
+    data:{
+       Token:token,
+       User:user
+    }
+ })
 
  .cookie("access",token,{
   httpOnly:true,
