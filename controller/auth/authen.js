@@ -379,42 +379,72 @@ try{
 // }
 
 exports.googleCallback =  (req, res, next)=>{
-  try{
-    const user =  req.user
-    console.log(`User: ${user}`)
-    if(!user){
-    return  res.status(400).json({error:"User not found"});
-   }
-    const token =  jwt.sign({user},"12345")
+//   try{
+//     const user =  req.user
+//     console.log(`User: ${user}`)
+//     if(!user){
+//     return  res.status(400).json({error:"User not found"});
+//    }
+//     const token =  jwt.sign({user},"12345")
 
-    if(!token){
-      return res.status(400).json({error:"Invalid Token"});
-       }  
+//     if(!token){
+//       return res.status(400).json({error:"Invalid Token"});
+//        }  
 
-  // res.redirect("https://gart-racing.netlify.app/dashboard")
-console.log("redirect")
     
-  return res
-   .status(200).send({
-    success:true,
-    data:{
-       Token:token,
-       User:user
-    }
- })
+//    res
+//    .status(200).send({
+//     success:true,
+//     data:{
+//        Token:token,
+//        User:user
+//     }
+//  })
 
- .cookie("access",token,{
-  httpOnly:true,
-  secure:false
-})
-  //  console.log(token)
+//  .cookie("access",token,{
+//   httpOnly:true,
+//   secure:false
+// })
 
-  
-    // console.log(token)
-    
-    
-    
-  }catch(err){
-    console.log(err);
+
+// return res.redirect("https://gart-racing.netlify.app/dashboard")
+//   }catch(err){
+//     console.log(err);
+//   }
+try {
+  const user = req.user;
+  console.log(`User: ${user}`);
+
+  if (!user) {
+    return res.status(400).json({ error: "User not found" });
   }
+
+  const token = jwt.sign({ user }, "12345");
+
+  if (!token) {
+    return res.status(400).json({ error: "Invalid Token" });
+  }
+
+  // Redirect to the dashboard
+  res.redirect("https://gart-racing.netlify.app/dashboard");
+
+  // Set the cookie
+  res.cookie("access", token, {
+    httpOnly: true,
+    secure: false,
+  });
+
+  // Send a JSON response
+  res.status(200).json({
+    success: true,
+    data: {
+      Token: token,
+      User: user,
+    },
+  });
+
+} catch (err) {
+  console.error(err);
+}
+
 }
