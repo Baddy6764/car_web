@@ -385,20 +385,20 @@ exports.googleCallback =  (req, res, next)=>{
     if(!user){
     return  res.status(400).json({error:"User not found"});
    }
-    const token =  jwt.sign({user},"12345");
+    const token =  jwt.sign({user},"12345")
 
     if(!token){
       return res.status(400).json({error:"Invalid Token"});
        }  
 
-  // res.redirect("https://gart-racing.netlify.app/dashboard");
+  res.redirect("https://gart-racing.netlify.app/dashboard")
 console.log("redirect")
     
   return res
-  //  .cookie("access",token,{
-  //     httpOnly:true,
-  //     secure:false
-  //  });
+   .cookie("access",token,{
+      httpOnly:true,
+      secure:false
+   })
    .status(200).send({
     success:true,
     data:{
