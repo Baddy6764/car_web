@@ -391,7 +391,7 @@ exports.googleCallback =  (req, res, next)=>{
       return res.status(400).json({error:"Invalid Token"});
        }  
 
-  res.redirect("https://gart-racing.netlify.app/dashboard")
+  // res.redirect("https://gart-racing.netlify.app/dashboard")
 console.log("redirect")
     
   return res
