@@ -435,14 +435,20 @@ try {
   });
 
   // Send a JSON response
-  res.status(200).json({
-    success: true,
-    data: {
-      Token: token,
-      User: user,
-    },
-  });
-
+  // res.status(200).json({
+  //   success: true,
+  //   data: {
+  //     Token: token,
+  //     User: user,
+  //   },
+  // });
+return  res.status(200).json({
+  success: true,
+  data: {
+    Token: token,
+    User: user,
+  },
+});
 } catch (err) {
   console.error(err);
 }
