@@ -1,4 +1,5 @@
 const Users = require("../modal/users");
+const carsDetails = require("../modal/carsDetails");
 const passport = require("passport");
 // const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // const session = require('express-session');
@@ -21,8 +22,23 @@ res.status(200).json({data:dataJson})
 
 
 
-exports.Registercars = (req,res)=>{
-    
+exports.Registercars = async (req,res)=>{
+ try{
+  const {make, model, generation,  engine,} = await req.body;
+ let video = await 'videos' + req.file.filename;
+ let image = await 'images' + req.file.filename;
+ 
+ carsDetails.create({
+  Make:make,
+  Model:model,
+  Generation:generation,
+  Engine:engine,
+  Images:image,
+  Videos:video,
+ })
+ }catch(err){
+  console.log(err);
+ }
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{

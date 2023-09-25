@@ -8,16 +8,44 @@ const connectDB = require("./db/connect");
 const admin = require("./controller/admin");
 const session = require('express-session');
 const passport = require('passport');
+const multer = require("multer");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));
 const Users = require("./modal/users");
-require("dotenv").config()
+require("dotenv").config();
 app.use(
   cors({
     origin: "*",
     credentials: true,
   })
 );
+
+let Store = multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null, 'public/images')
+  },
+   filename: (req, files, cb) =>{
+    cb(null, Date.now() + "-" + "pic" + files.originalname);
+   }
+})
+
+app.use(multer({storage : Store}).fields ([
+  {name: 'Image', maxCount:1},
+  {name:'Picture', maxCount:8}
+]));
+
+
+const multStorage = multer.diskStorage({
+  destination:(req, file, cb)=>{
+    cb(null, "public/videos")
+  },
+  filename:(req, file, cb)=>{
+    cb(null, Date.now() + file.originalname);
+  }
+})
+
+app.use(multer({storage:multStorage}).single('video'));
+
 app.use(
   session({
     secret:'my secret',

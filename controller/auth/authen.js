@@ -239,7 +239,7 @@ const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.goo
 passport.use(new GoogleStrategy({
     clientID:GOOGLE_CLIENT_ID,
     clientSecret:GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:5000/google/callback",
+    callbackURL: "https://gart-api.onrender.com/google/callback",
     passReqToCallback   : true
   },
    async (request, accessToken, refreshToken, profile, done)=>{
@@ -378,35 +378,40 @@ try{
 // res.send("Protected route");
 // }
 
-exports.googleCallback = async (req, res)=>{
+exports.googleCallback =  (req, res, next)=>{
   try{
-    const user = await req.user
-  
+    const user =  req.user
     console.log(`User: ${user}`)
     if(!user){
-       res
-       .status(400)
-       .json({error:"User not found"});
-    }
-     if(user){
-      res.redirect("https://gart-racing.netlify.app/dashboard");
-     }
-   
+    return  res.status(400).json({error:"User not found"});
+   }
     const token =  jwt.sign({user},"12345");
-    console.log(token?`Token:$${token}`:false);
-    return  res
-    .cookie("access",token,{
-       httpOnly:true,
-       secure:false
-    })
-    .status(200)
-    .json({
+
+    if(!token){
+      return res.status(400).json({error:"Invalid Token"});
+       }  
+
+  res.redirect("https://gart-racing.netlify.app/dashboard");
+console.log("redirect")
+    
+  //  res.cookie("access",token,{
+  //     httpOnly:true,
+  //     secure:false
+  //  });
+
+  //  console.log(token)
+
+   res.status(200).send({
        success:true,
        data:{
           Token:token,
           User:user
        }
-    })
+    });
+    console.log(token)
+    
+    
+    
   }catch(err){
     console.log(err);
   }
