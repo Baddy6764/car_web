@@ -426,7 +426,7 @@ try {
   }
 
   // Redirect to the dashboard
-  res.redirect("https://gart-racing.netlify.app/dashboard");
+  res.redirect("/dashboard");
 
   // Set the cookie
   res.cookie("access", token, {
@@ -435,20 +435,14 @@ try {
   });
 
   // Send a JSON response
-  // res.status(200).json({
-  //   success: true,
-  //   data: {
-  //     Token: token,
-  //     User: user,
-  //   },
-  // });
-return  res.status(200).json({
-  success: true,
-  data: {
-    Token: token,
-    User: user,
-  },
-});
+  res.status(200).json({
+    success: true,
+    data: {
+      Token: token,
+      User: user,
+    },
+  });
+
 } catch (err) {
   console.error(err);
 }

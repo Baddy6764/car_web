@@ -56,7 +56,9 @@ router.post('/register/car',adminController.Registercars);
 
 // router.get('/forgot-password',authen.forgotPassword);
 
-
+router.get("/dashboard",(req,res)=>{
+    res.redirect("https://gart-racing.netlify.app/dashboard")
+})
 
 
 
