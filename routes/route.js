@@ -29,7 +29,7 @@ router.post("/cars/data",adminController.datajson);
 
 // router.get("/",adminController.HomePage);
 
-router.get("/google/callback",passport.authenticate('google',{failureRedirect:"https://gart-racing.netlify.app"}),authen.googleCallback)
+router.post("/google/callback",passport.authenticate('google',{failureRedirect:"https://gart-racing.netlify.app"}),authen.googleCallback)
 
 // router.get("/failed",authen.failed);
 
@@ -38,7 +38,7 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 
 
 
-router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
+router.post('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 router.post('/register/car',adminController.Registercars);
 
@@ -56,9 +56,9 @@ router.post('/register/car',adminController.Registercars);
 
 // router.get('/forgot-password',authen.forgotPassword);
 
-router.get("/dashboard",(req,res)=>{
-    res.redirect("https://gart-racing.netlify.app/dashboard")
-})
+// router.get("/dashboard",(req,res)=>{
+//     res.redirect("https://gart-racing.netlify.app/dashboard")
+// })
 
 
 
