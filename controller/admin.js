@@ -22,9 +22,9 @@ res.status(200).json({data:dataJson})
 
 
 
-exports.Registercars = async (req,res)=>{
+exports.Registercars =  (req,res)=>{
  try{
-  const {make, model, generation,  engine,} = await req.body
+  const {make, model, generation,  engine,} = req.body
  let video =  'videos' + req.file.filename
  let image =  'images' + req.file.filename
  
