@@ -8,12 +8,14 @@ const multer = require("multer")
 
 
 /////Using Multer to store Images/Videos
-const Store = multer.diskStorage({
+let Store = multer.diskStorage({
+  ///Folder_destination  
   destination:(req,file,cb)=>{
     cb(null, '/public/images')
   },
+  ////Files_name
    filename: (req, files, cb) =>{
-    cb(null, Date.now() + "-pic-"  + files.originalname);
+    cb(null, Date.now() + "-"  + files.originalname);
    }
 })
 
