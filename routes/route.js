@@ -40,7 +40,7 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.post('/register/car',adminController.Registercars);
+router.post('/register/car',upload.array('files',8),upload.array('files',2),adminController.Registercars);
 
 
 // router.post("/nyname",(req,res)=>{

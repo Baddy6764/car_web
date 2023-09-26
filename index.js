@@ -30,8 +30,7 @@ let Store = multer.diskStorage({
 })
 
 app.use(multer({storage : Store}).fields ([
-  {name: 'Image', maxCount:1},
-  {name:'Picture', maxCount:8}
+  {name: 'images', maxCount:8},
 ]));
 
 
@@ -44,7 +43,9 @@ const multStorage = multer.diskStorage({
   }
 })
 
-app.use(multer({storage:multStorage}).single('video'));
+app.use(multer({storage:multStorage}).fields([
+  {name: 'videos', maxCount:2}
+]));
 
 app.use(
   session({

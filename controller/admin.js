@@ -25,8 +25,8 @@ res.status(200).json({data:dataJson})
 exports.Registercars = async (req,res)=>{
  try{
   const {make, model, generation,  engine,} = await req.body
- let video = await 'videos' + req.file.filename
- let image = await 'images' + req.file.filename
+ let video =  'videos' + req.file.filename
+ let image =  'images' + req.file.filename
  
  carsDetails.create({
   Make:make,
