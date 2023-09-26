@@ -20,30 +20,28 @@ app.use(
   })
 );
 
-let Store = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null, 'public/images')
-  },
-   filename: (req, files, cb) =>{
-    cb(null, Date.now() + "-" + "pic" + files.originalname);
-   }
-})
+// let Store = multer.diskStorage({
+//   destination:(req,file,cb)=>{
+//     cb(null, 'public/images')
+//   },
+//    filename: (req, files, cb) =>{
+//     cb(null, Date.now() + "-" + "pic" + files.originalname);
+//    }
+// })
 
-const multStorage = multer.diskStorage({
-  destination:(req, file, cb)=>{
-    cb(null, "public/videos")
-  },
-  filename:(req, file, cb)=>{
-    cb(null, Date.now() + file.originalname);
-  }
-})
+// const multStorage = multer.diskStorage({
+//   destination:(req, file, cb)=>{
+//     cb(null, "public/videos")
+//   },
+//   filename:(req, file, cb)=>{
+//     cb(null, Date.now() + file.originalname);
+//   }
+// })
 
-const uploadImage = multer({storage : Store}).fields ([{name: 'images', maxCount:8},])
 
-const uploadVideo = multer({storage:multStorage}).fields([{name: 'videos', maxCount:2}])
 
-app.use(uploadImage)
-app.use(uploadVideo)
+// app.use(uploadImage)
+// app.use(uploadVideo)
 
 app.use(
   session({
