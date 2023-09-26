@@ -12,25 +12,16 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 // const axios = require("axios")
 const multer = require("multer")
 
-let Store = multer.diskStorage({
-    destination:(req,file,cb)=>{
-      cb(null, 'public/images')
-    },
-     filename: (req, files, cb) =>{
-      cb(null, Date.now() + "-" + "pic" + files.originalname);
-     }
-  })
-  
-  const multStorage = multer.diskStorage({
-    destination:(req, file, cb)=>{
-      cb(null, "public/videos")
-    },
-    filename:(req, file, cb)=>{
-      cb(null, Date.now() + file.originalname);
-    }
-  })
-const uploadImage = multer({storage : Store}).fields ([{name: 'images', maxCount:8},])
-const uploadVideo = multer({storage:multStorage}).fields([{name: 'videos', maxCount:2}])
+const Store = multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null, 'public/images')
+  },
+   filename: (req, files, cb) =>{
+    cb(null, Date.now() + "-pic-"  + files.originalname);
+   }
+})
+
+const upload = multer({storage:Store})
 
 router.post("/register-page",authen.register);
 
@@ -61,9 +52,9 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.post('/register/car',uploadImage,uploadVideo,adminController.Registercars);
+router.post('/register/car',upload.fields([{name: 'images', maxCount:8},{name: 'videos', maxCount:2}]),adminController.Registercars);
 
-router.get('/register/car',adminController.Registercar);
+// router.get('/register/car',,adminController.Registercar);
 
 // router.post("/nyname",(req,res)=>{
 //     res.send({firstName:"Usman",lastName:"Abdulrahmon"})

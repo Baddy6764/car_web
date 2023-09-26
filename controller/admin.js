@@ -24,17 +24,16 @@ res.status(200).json({data:dataJson})
 
 exports.Registercars =  (req,res)=>{
  try{
-  const {make, model, generation,  engine,} = req.body
- let video =  'videos' + req.file.filename
- let image =  'images' + req.file.filename
+  const {make, model, generation,  engine,videos,images} = req.body
+ 
  
  carsDetails.create({
   Make:make,
   Model:model,
   Generation:generation,
   Engine:engine,
-  Images:image,
-  Videos:video,
+  // Images:image,
+  // Videos:video,
  })
  }catch(err){
   console.log(err);
@@ -45,12 +44,12 @@ exports.updateCars = asyncHandler (async (req,res)=>{
    
 })
 
-exports.Registercar = (req,res)=>{
-  // res.status(200).send(
-  //   "<h1>Upload A Image </h1><br><input type='file' placeholder='upload image' >",
-  //   // "<input type='file' placeholder='upload image' >"
-  //   );
-}
+// exports.Registercar = (req,res)=>{
+//   // res.status(200).send(
+//   //   "<h1>Upload A Image </h1><br><input type='file' placeholder='upload image' >",
+//   //   // "<input type='file' placeholder='upload image' >"
+//   //   );
+// }
 // exports.HomePage = (req,res)=>{
 //     res.send({name:"Uncle Johnson"});
 //   }
