@@ -1,17 +1,13 @@
-// const { check } = require("-validator");
 const router = require("express").Router()
 const adminController = require("../controller/admin");
 const authen = require("../controller/auth/authen");
-// const isAuth = require('../middlewares/isAuth');
-// const isAdmin = require('../middlewares/isAdmin');
 const passport = require("passport");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-// const jwt = require("jsonwebtoken");
-// const dataJson = require("../Data/data.json");
-// const Users = require("../modal/users");
-// const axios = require("axios")
 const multer = require("multer")
 
+
+
+/////Using Multer to store Images/Videos
 const Store = multer.diskStorage({
   destination:(req,file,cb)=>{
     cb(null, '/public/images')
@@ -21,57 +17,45 @@ const Store = multer.diskStorage({
    }
 })
 
+/////Multer Storage
 const upload = multer({storage:Store})
 
+////Register Route
 router.post("/register-page",authen.register);
 
+/////Register-Activation Route
 router.post("/activation", authen.activation);
 
+////Login Route
 router.post("/login-page", authen.login);
 
+////Forgot Password Route
 router.post('/forget-password',authen.forgetPassword);
 
+////Retrive Password Route
 router.post('/retrive-password',authen.retrivePassword);
 
+///Update Cars Route
 router.post('/update-cars',adminController.updateCars);
 
+////Update Password Route
 router.post('/update-password',authen.updatePassword);
 
+///car_data Route
 router.post("/cars/data",adminController.datajson);
 
-// router.get("/",adminController.HomePage);
 
+////Authentication wuith google
 router.get("/google/callback",passport.authenticate('google',{failureRedirect:"https://gart-racing.netlify.app"}),authen.googleCallback)
 
-// router.get("/failed",authen.failed);
 
-// router.get('/protected',authen.protected);
-
-
-
-
+/////////Auth_Google Route
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
+////Register Cars Route
 router.post('/register/car',upload.fields([{name: 'images', maxCount:8},{name: 'videos', maxCount:2}]),adminController.Registercars);
 
-// router.get('/register/car',,adminController.Registercar);
 
-// router.post("/nyname",(req,res)=>{
-//     res.send({firstName:"Usman",lastName:"Abdulrahmon"})
-// })
-
-// router.get("/thisigup",(req,res)=>{
-//     res.send("Sign up")
-// })
-// router.get("/this",isAdmin,(req,res)=>{
-//     res.send("ghdsvdsvsdvhdfvhfvhfdkhfd")
-// })
-
-// router.get('/forgot-password',authen.forgotPassword);
-
-// router.get("/dashboard",(req,res)=>{
-//     res.redirect("https://gart-racing.netlify.app/dashboard")
-// })
 
 
 
