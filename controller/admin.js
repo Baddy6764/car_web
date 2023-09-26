@@ -45,6 +45,12 @@ exports.updateCars = asyncHandler (async (req,res)=>{
    
 })
 
+exports.Registercar = (req,res)=>{
+  // res.status(200).send(
+  //   "<h1>Upload A Image </h1><br><input type='file' placeholder='upload image' >",
+  //   // "<input type='file' placeholder='upload image' >"
+  //   );
+}
 // exports.HomePage = (req,res)=>{
 //     res.send({name:"Uncle Johnson"});
 //   }

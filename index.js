@@ -29,11 +29,6 @@ let Store = multer.diskStorage({
    }
 })
 
-app.use(multer({storage : Store}).fields ([
-  {name: 'images', maxCount:8},
-]));
-
-
 const multStorage = multer.diskStorage({
   destination:(req, file, cb)=>{
     cb(null, "public/videos")
@@ -43,9 +38,12 @@ const multStorage = multer.diskStorage({
   }
 })
 
-app.use(multer({storage:multStorage}).fields([
-  {name: 'videos', maxCount:2}
-]));
+const uploadImage = multer({storage : Store}).fields ([{name: 'images', maxCount:8},])
+
+const uploadVideo = multer({storage:multStorage}).fields([{name: 'videos', maxCount:2}])
+
+app.use(uploadImage)
+app.use(uploadVideo)
 
 app.use(
   session({

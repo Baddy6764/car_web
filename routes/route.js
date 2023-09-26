@@ -10,8 +10,9 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 // const dataJson = require("../Data/data.json");
 // const Users = require("../modal/users");
 // const axios = require("axios")
-const multer = require("multer");
-const upload = multer({dest:'./public/images'});
+const multer = require("multer")
+const upload = multer({dest:'../public/images'})
+const uploads = multer({dest:'../public/videos'})
 
 router.post("/register-page",authen.register);
 
@@ -42,8 +43,9 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
-router.post('/register/car',upload.array('images',8),adminController.Registercars);
+router.post('/register/car',upload.array('images',8),uploads.array('videos',2),adminController.Registercars);
 
+router.get('/register/car',adminController.Registercar);
 
 // router.post("/nyname",(req,res)=>{
 //     res.send({firstName:"Usman",lastName:"Abdulrahmon"})
