@@ -18,7 +18,7 @@ const Store = multer.diskStorage({
 })
 
 /////Multer Storage
-const upload = multer({storage:Store})
+const cpUpload = multer({storage:Store}).fields([{name: 'images', maxCount:8},{name: 'videos', maxCount:2}])
 
 ////Register Route
 router.post("/register-page",authen.register);
@@ -53,7 +53,7 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 ////Register Cars Route
-router.post('/register/car',upload.fields([{name: 'images', maxCount:8},{name: 'videos', maxCount:2}]),adminController.Registercars);
+router.post('/register/car',cpUpload,adminController.Registercars);
 
 
 
