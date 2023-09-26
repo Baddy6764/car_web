@@ -23,21 +23,21 @@ res.status(200).json({data:dataJson})
 
 
 exports.Registercars =  (req,res)=>{
- try{
-  const {make, model, generation,  engine,videos,images} = req.body
+//  try{
+//   const {make, model, generation,  engine,videos,images} = req.body
  
  
- carsDetails.create({
-  Make:make,
-  Model:model,
-  Generation:generation,
-  Engine:engine,
-  // Images:image,
-  // Videos:video,
- })
- }catch(err){
-  console.log(err);
- }
+//  carsDetails.create({
+//   Make:make,
+//   Model:model,
+//   Generation:generation,
+//   Engine:engine,
+//   // Images:image,
+//   // Videos:video,
+//  })
+//  }catch(err){
+//   console.log(err);
+//  }
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{
