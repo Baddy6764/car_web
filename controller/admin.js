@@ -23,8 +23,9 @@ res.status(200).json({data:dataJson})
 
 exports.Registercars =  (req,res)=>{
 //   const {make, model, generation,  engine ,videos ,images} = req.body
-console.log(req.body);
-res.status(200).json(req.body)
+const bo = req.body.files
+console.log(req.files)
+res.status(200).json({bo})
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{

@@ -55,18 +55,18 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 ////Register Cars Route
-router.post('/register/car',adminController.Registercars);
+router.post('/upload/cars',upload.fields([{name:'images', maxCount:2},{name:'videos', maxCount:2}]),adminController.Registercars);
 
-// router.get('/uploads',(req,res)=>{
-//     res.send(
-//    `
-//    <form action="/upload/cars" enctype="multipart/form-data" method="post">
-//     <input type="file" name="images" multiple><br>
-//     <input type="file" name="videos" multiple><br>
-//     <button type="submit">Upload</button>
-// </form>
-//     `)
-// })
+router.get('/uploads',(req,res)=>{
+    res.send(
+   `
+   <form action="/upload/cars" enctype="multipart/form-data" method="post">
+    <input type="file" name="images" multiple><br>
+    <input type="file" name="videos" multiple><br>
+    <button type="submit">Upload</button>
+</form>
+    `)
+})
 
 
 
