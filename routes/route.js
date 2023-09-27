@@ -11,11 +11,11 @@ const multer = require("multer")
 let Store = multer.diskStorage({
   ///Folder_destination  
   destination:(req,file,cb)=>{
-    cb(null, '/public/images')
+    cb(null, '../public/images')
   },
   ////Files_name
    filename: (req, files, cb) =>{
-    cb(null, Date.now() + "-"  + files.originalname);
+    cb(null, Date.now() + "_"  + files.originalname);
    }
 })
 
@@ -55,9 +55,17 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 ////Register Cars Route
-router.post('/register/car',upload.fields([{name: 'images', maxCount:8},{name: 'videos', maxCount:2}]),adminController.Registercars);
+router.post('/register/car',upload.fields([{name:'videos', maxCount:2}]),adminController.Registercars);
 
-
+// router.get('/uploads',(req,res)=>{
+//     res.send(
+//    `
+//    <form action="/upload/cars" enctype="multipart/form-data" method="post">
+//     <input type="file" name="images"><br>
+//     <button type="submit">Upload</button>
+// </form>
+//     `)
+// })
 
 
 
