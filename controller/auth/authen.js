@@ -3,10 +3,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const sendMail = require("../../utils/sendMail");
-// const users = require("../../modal/users");
 const { baseurl } = require("../../baseurl");
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
-// const localStratey = require('passport-local').Strategy
 const passport = require("passport");
 require("dotenv").config()
 
@@ -46,6 +44,7 @@ exports.register = asyncHandler(async (req, res) => {
   });
 });
 
+
 /////Activate Register Route
 exports.activation = asyncHandler(async (req, res) => {
   const { payload } = req.body;
@@ -74,6 +73,7 @@ exports.activation = asyncHandler(async (req, res) => {
     message: user,
   });
 });
+
 
 /////Login Route
 exports.login = asyncHandler(async (req, res) => {
@@ -106,6 +106,7 @@ exports.login = asyncHandler(async (req, res) => {
       },
     });
 });
+
 
 /////Forgot Password Route
 exports.forgetPassword =  asyncHandler(async(req,res)=>{
@@ -142,10 +143,7 @@ exports.forgetPassword =  asyncHandler(async(req,res)=>{
 exports.retrivePassword = asyncHandler(async (req,res)=>{
 const {token, newPassword, confirmPassword} = req.body;
 const decoded = await jwt.verify(token,"12345");
-// if(err){
-//   res.status(400)
-//   throw new Error("Invalid Token");
-// }
+
 if(!decoded){
   res.status(400)
   throw new Error("Invalid Token");
@@ -173,13 +171,6 @@ res.status(201).json({
   userInfo:user,
   message: "password reset successfully"
 })
-// const saveUser = Users.updateOne({
-//   password:newPassword,
-// })
-// if(!saveUser){
-//   res.status(401)
-//   throw new Error("User not save")
-// }
 })
 
 //////Update Password Route
@@ -206,30 +197,11 @@ await userOne.save()
 res.status(401).json({
   success:true,
   message:"password updated successfully",
-  // userInfor:userOne
 })
 })
 
 
-///// Local Password Login
-// passport.use(new localStratey(
-//   function(email,password,done){
-//  Users.findOne({email:email},(err,user)=>{
-//   if(err){
-//       return done(err);
-//   }
-//   if(!user || !user.verifyPassword(password)){
-//       return done(null,false,{message:"Invalid credentials"});
-//   }
-//   return done(null,user);
-//  })
-//   }
-// ))
 
-// const user = Users.findOne({email:email})
-//  if(!user){
-  
-//  }
  
 const GOOGLE_CLIENT_SECRET = "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";
 const GOOGLE_CLIENT_ID = "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.googleusercontent.com"
@@ -248,15 +220,12 @@ passport.use(new GoogleStrategy({
     const FirstName = await profile.name['givenName'];
     const lastName = await profile.name['familyName'];
     const existingUser = await Users.findOne({email:Email})
-    // console.log(existingUser);
-    // console.log(profile);
-// console.log(`Existing User ${existingUser}`);
+  
 
  if(existingUser){
   return done(null,existingUser)
  }
  
-// console.log(`firstName:${FirstName} lastName:${lastName}`);
 
 
  const newUsers = await Users.create({
@@ -265,7 +234,6 @@ passport.use(new GoogleStrategy({
     email:Email,
     password:false,
  })
-//  console.log(newUsers);
 
 if(newUsers){
   console.log("user created");
@@ -299,48 +267,15 @@ passport.deserializeUser((id,done)=>{
  return   done(null, userId);
 })
 
-// exports.RegisterEJs = (req,res)=>{
 
-//   res.send('<a href="http://localhost:5000/auth/google" >Authentication with google</a>')
-// }
-
-// exports.googleCallback = (req,res)=>{
-// const user = req.user
-// if(!user){
-//   console.log("user not found")
-//   return res.redirect("/failed");
-// }
-//   res.redirect('/protected')
-
-// console.log("users");
-// }
-
-// exports.failed = (req,res)=>{
- 
-// }
-
-// exports.protected = (req,res)=>{
-//    res.send('Good job!!! This route has been authenticated');
-// }
 
 
 /////Google Authentication Route
 exports.googleAuth = async(req,res)=>{
-try{
-  
-}catch(err){
-  console.log(err);
-}
 }
 
-// exports.failed = async (req,res)=>{
-// res.send("Failed Authentication");
-// }
 
-// exports.protected = async (req,res)=>{
-// res.send("Protected route");
-// }
-
+////Google_callback
 exports.googleCallback =  (req, res, next)=>{
   try{
     const user =  req.user
@@ -353,9 +288,17 @@ exports.googleCallback =  (req, res, next)=>{
     if(!token){
       return res.status(400).json({error:"Invalid Token"});
        }  
+       res.redirect("https://gart-racing.netlify.app/dashboard")
 
-    
-   res
+  return res  
+.cookie("access",token,{
+  httpOnly:true,
+  secure:false
+})
+
+
+
+   
    .status(200).send({
     success:true,
     data:{
@@ -364,13 +307,7 @@ exports.googleCallback =  (req, res, next)=>{
     }
  })
 
- .cookie("access",token,{
-  httpOnly:true,
-  secure:false
-})
-
-
-return res.redirect("https://gart-racing.netlify.app/dashboard")
+// return res.redirect("https://gart-racing.netlify.app/dashboard")
   }catch(err){
     console.log(err);
   }
