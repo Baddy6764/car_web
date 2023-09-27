@@ -55,7 +55,7 @@ router.get("/google/callback",passport.authenticate('google',{failureRedirect:"h
 router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}),authen.googleAuth);
 
 ////Register Cars Route
-router.post('/register/car',upload.fields([{name:'images', maxCount:2},{name:'videos', maxCount:2}]),adminController.Registercars);
+router.post('/register/car',adminController.Registercars);
 
 // router.get('/uploads',(req,res)=>{
 //     res.send(
