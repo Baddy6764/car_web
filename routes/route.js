@@ -11,7 +11,7 @@ const multer = require("multer")
 let Store = multer.diskStorage({
   ///Folder_destination  
   destination:(req,file,cb)=>{
-    cb(null, '../public/images')
+    cb(null, 'public/images')
   },
   ////Files_name
    filename: (req, files, cb) =>{
@@ -61,8 +61,8 @@ router.post('/register/car',upload.fields([{name:'images', maxCount:2},{name:'vi
 //     res.send(
 //    `
 //    <form action="/upload/cars" enctype="multipart/form-data" method="post">
-//     <input type="file" name="images"><br>
-//     <input type="file" name="videos"><br>
+//     <input type="file" name="images" multiple><br>
+//     <input type="file" name="videos" multiple><br>
 //     <button type="submit">Upload</button>
 // </form>
 //     `)
