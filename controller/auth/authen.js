@@ -277,7 +277,7 @@ exports.googleAuth = async(req,res)=>{
 
 ////Google_callback
 exports.googleCallback =  (req, res, next)=>{
-  // try{
+  try{
     const user =  req.user
     console.log(`User: ${user}`)
     if(!user){
@@ -288,15 +288,12 @@ exports.googleCallback =  (req, res, next)=>{
     if(!token){
       return res.status(400).json({error:"Invalid Token"});
        }  
-       res.redirect("https://gart-racing.netlify.app/dashboard")
 
-  return res  
+   res  
 .cookie("access",token,{
   httpOnly:true,
   secure:false
 })
-
-
   .status(200).send({
     success:true,
     data:{
@@ -305,7 +302,10 @@ exports.googleCallback =  (req, res, next)=>{
     }
  })
 
-  // }catch(err){
-  //   console.log(err);
-  // }
+setTimeout(()=>{
+  res.redirect("https://gart-racing.netlify.app/dashboard")
+},2000) 
+  }catch(err){
+    console.log(err);
+  }
 }
