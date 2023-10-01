@@ -32,3 +32,15 @@ exports.updateCars = asyncHandler (async (req,res)=>{
    
 })
 
+exports.adminPanel = (req,res)=>{
+    
+}
+
+exports.approveCar = (req,res)=>{
+
+}
+
+exports.deleteCar = (req,res)=>{
+
+}
+

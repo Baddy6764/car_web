@@ -288,6 +288,9 @@ exports.googleCallback =  (req, res)=>{
     if(!token){
       return res.status(400).json({error:"Invalid Token"});
        }  
+     if(token){
+      res.redirect("https://gart-racing.netlify.app/dashboard")
+     }
    res  
 .cookie("access",token,{
   httpOnly:true,
@@ -300,10 +303,8 @@ exports.googleCallback =  (req, res)=>{
        User:user
     }
  });
-
- res.redirect("https://gart-racing.netlify.app/dashboard")
-
   }catch(err){
     console.log(err);
   }
 }
+

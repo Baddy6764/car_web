@@ -68,6 +68,10 @@ router.post('/register/car',upload.fields([{name:'images', maxCount:2},{name:'vi
 //     `)
 // })
 
+router.post('admin/panel',adminController.adminPanel);
 
+router.post('approve/car',adminController.approveCar);
+
+router.post('delete/car',adminController.deleteCar);
 
 module.exports = router;
