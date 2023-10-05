@@ -58,6 +58,9 @@ exports.Registercars =  async(req,res)=>{
         .status(400)
         .json({error:"user car not created"})
     }
+    return res
+    .status(200)
+    .json({error:"user car created successfully"});
     } catch (err){
         console.log(err);
     }
