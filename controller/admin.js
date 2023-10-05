@@ -21,9 +21,9 @@ res.status(200).json({data:dataJson})
 
 
 
-exports.Registercars =  async(req,res)=>{
+exports.Registercars =  (req,res)=>{
     try{
-        const {Images, video, engine, generation, make, model} = await req.body;
+        const {Images, video, engine, generation, make, model} =  req.body;
         res.status(200).json({data:Images});
 //         const tokenUser = await req.header.token;
 //        const decoded = jwt.verify(tokenUser,'12345');
