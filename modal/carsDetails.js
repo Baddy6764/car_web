@@ -20,12 +20,12 @@ const carSchema = new mongoose.Schema({
     require:false,
    },
 
-   Images:{
+   images:{
     type:String,
     require:false,
    },
    
-   Videos:{
+   Video:{
     type:String,
     require:false
    }

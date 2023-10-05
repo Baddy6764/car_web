@@ -21,11 +21,46 @@ res.status(200).json({data:dataJson})
 
 
 
-exports.Registercars =  (req,res)=>{
-//   const {make, model, generation,  engine ,videos ,images} = req.body
-const bo = req.body.files
-console.log(req.files)
-res.status(200).json({bo})
+exports.Registercars =  async(req,res)=>{
+    try{
+        const {Images, video, engine, generation, make, model} = await req.body;
+        const tokenUser = await req.header.token;
+       const decoded = jwt.verify(tokenUser,'12345');
+       if(Images){
+        res.status(400).json(req.Images);
+       }
+       if(!decoded){
+        return res
+        .status(401)
+        .json({error:"User not found"});
+       }
+       if(!Images || !video || !engine || !generation || !make || !model){
+        return res
+        .status(401)
+        .json({error:"Invalid request car Information"});
+       }
+    let Image = [];
+
+   Images.map(value =>{
+    return Image.push(value.file.filename);
+   })
+     
+   const createCars = carsDetails.create({
+    Make:make,
+    Model:model,
+    Generation:generation,
+    Engine:engine,
+    images:Image,
+    Video:video
+   })
+    if(!createCars){
+        return res
+        .status(400)
+        .json({error:"user car not created"})
+    }
+    } catch (err){
+        console.log(err);
+    }
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{
@@ -36,11 +71,15 @@ exports.adminPanel = (req,res)=>{
     
 }
 
-exports.approveCar = (req,res)=>{
+exports.approveCar = async(req,res)=>{
 
 }
 
 exports.deleteCar = (req,res)=>{
+
+}
+
+exports.rejectCar = (req,res)=>{
 
 }
 

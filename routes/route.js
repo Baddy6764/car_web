@@ -57,21 +57,16 @@ router.get('/auth/google',passport.authenticate('google',{scope:['profile','emai
 ////Register Cars Route
 router.post('/register/car',upload.fields([{name:'images', maxCount:2},{name:'videos', maxCount:2}]),adminController.Registercars);
 
-// router.get('/uploads',(req,res)=>{
-//     res.send(
-//    `
-//    <form action="/upload/cars" enctype="multipart/form-data" method="post">
-//     <input type="file" name="images" multiple><br>
-//     <input type="file" name="videos" multiple><br>
-//     <button type="submit">Upload</button>
-// </form>
-//     `)
-// })
-
+/////Adminroute
 router.post('admin/panel',adminController.adminPanel);
 
-router.post('approve/car',adminController.approveCar);
+//////approvecar route
+router.post('approve/cars',adminController.approveCar);
 
-router.post('delete/car',adminController.deleteCar);
+//////deletecar route
+router.post('delete/cars',adminController.deleteCar);
+
+//////rejectcar route
+router.post("/reject/cars",adminController.rejectCar);
 
 module.exports = router;
