@@ -22,9 +22,9 @@ res.status(200).json({data:dataJson})
 
 
 exports.Registercars =  (req,res)=>{
-    try{
+    // try{
         const {Images, video, engine, generation, make, model} =  req.body;
-        res.status(200).json({data:Images});
+        res.status(200).json({data:"user data"});
 //         const tokenUser = await req.header.token;
 //        const decoded = jwt.verify(tokenUser,'12345');
 //        if(Images){
@@ -62,9 +62,9 @@ exports.Registercars =  (req,res)=>{
 //     return res
 //     .status(200)
 //     .json({message:"user car created successfully",data:createCars});
-    } catch (err){
-        console.log(err);
-    }
+    // } catch (err){
+    //     console.log(err);
+    // }
 }
 
 exports.updateCars = asyncHandler (async (req,res)=>{
