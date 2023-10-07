@@ -1,87 +1,623 @@
-[{
- "Audi":
- {"Series":
- {
-"100 Series":{"Engine":{"5 Cylinder (1989-1991)":{"Drivetrain":["FWD","Quattro"]},"V6 (1992-1991)":{"Drivetrain":["FWD","Quattro"]}}},
- "A8":{"Chasis":{"D2 A8 (1997-2002)":{"Engine":{"3.7L":["FWD"],"4.2L":["Quattro"]}},"D3 A8 (2003-2010)":{"Engine":["4.2L","W12"]},"D4 A8+ (2011+)":{"Engine":{"3.0 TDI":["Quattro"],"3.0T":["Quattro"],"4.0 T":"","4.2L":"","W12":["Quattro"]}},"D5 A8 (2019+)":{"Engine":{"3.0 T":["Quattro"],"4.0 T":["Quattro"]}}}},
- "RS3":{"Chasis":{"8V (2018+)":["2.5T","Quattro","Sedan"],"8Y (2022+)":["2.5T","Quattro"]}},
- "S8":{"Chasis":["D2 S8 (2001-2003)","D3 S8 (2006-2009)",{"D4 S8 (2012+)":["4.0 T","Quattro","Sedan"],"D5 S8 (2020+)":["4.0 T","Quattro"]}]},
- "200 Series":{"Engine":["10v Turbo (1989-1990)","20v Turbo (1991)"]},
- "Allroad":{"Chasis":{"B8 (2012-2016)":["2.0 T","Quattro"],"B9 (2017+)":["2.0 T","Quattro"],"C5 (2001-2005)":{"Engine":{"2.7T":["Quattro"],"4.2":["Quattro"]}},"C8 (2020+)":["3.0T","Quattro"]}},
- "RS4":["B7 RS4"],
- "SQ5":{"Chasis":{"B8 (2014-2017)":["3.0T","Quattro","SUV"],"B9 (2018+)":["3.0T","Quattro",{"Body Type":["SUV","Sportback"]}]}},
- "5000 Series":["C3/C4 (1982-1991)",{"Engine":["Quattro","Quattro"]}],
- "Coupe Quattro":"Coupe Quattro",
- "RS5":{"Chasis":["B8 (2013+)",{"B9 (2018+)":["2.9T","Quattro","Coupe"]}]},
- "SQ7":["4M (2020+)","4.0T","Quattro"],
- "80 Series":{"Engine":["4 Cylinder",{"5 Cylinder":{"Drivetrain":["FWD","Quattro"]}}]},
- "Q3":{"Chasis":[{"8U (2015-2018)":["2.0T",{"Drivetrain":["FWD","Quattro"]}]},{"F3 (2019+)":["2.0T","Quattro"]}]},
- "RS6":{"Chasis":["C5 (2003-2004)",{"C8 (2018+)":["4.0T","Quattro","Avant"]}]},
- "SQ8":["4M (2020+)","4.0T","Quattro"],
- "90 Series":{"Engine":["10v",{"20v":{"Drivetrain":["FWD","Quattro"]}},{"V6":{"Drivetrain":["FWD","Quattro"]}}]},
- "Q4":{"Chasis":[{"e-tron (2022+)":{"Engine":{"Dual Electric Motors":"Quattro"}}},{"e-tron Sportback (2022+)":["Dual Electric Motors","Quattro"]}]},
- "RS7":{"Chasis":[{"C7":["4.0T","Quattro","Sportback"]},{"C8 (2021+)":["4.0T","Quattro","Sportback"]}]},
- "TT":{"Chasis":[{"MK I (1998-2007)":{"Engine":[{"180HP":{"Drivetrain":["FWD","Quattro"]}},"225HP","3.2L"]}},{"MK II (2000+)":{"Engine":[{"2.0T":["FWD","Quattro"]},"3.2L"]}},{"MK3 (2014+)":["2.0T","Quattro","Coupe"]}]},
- "A3":{"Chasis":[{"8P (2005-2013)":{"Engine":[{"2.0T":{"Drivetrain":["FWD","Quattro"]}},"TDI","V6 3.2L"]}},{"8V (2014)":[{"Engine":[{"1.4 e-tron":["FWD","Sportback"]},{"1.8T":["FWD"]},{"2.0T":{"Drivetrain":[{"FWD":"Sedan"},"Quattro"]}}]}]},{"8Y":["2.0T",{"Drivetrain":["FWD","Quattro"]}]}]},
- "Q5":{"Chasis":[{"B8 (2009-2017)":{"Engine":["2.0T","3.0 TDI","3.0T","3.2L"]}},   {"B9 2018":{"Engine":[{"2.0T":["Quattro",{"Body Type":["Sportback","SUV"]}]},{"2.0T e-tron":["Quattro","SUV"]}]}}]},
- "S3":{"Chasis":[{"8V":["2.0T","Quattro","Sedan"]},{"8Y (2022+)":["2.0T","Quattro"]}]},
- "TTRS":{"Chasis":[{"8J (2021-2013)":["2.5T","Quattro","Coupe"]},{"8S (2018+)":["2.5T","Quattro","Coupe"]}]},
- "A4":{"Chasis":[{"B5 (1996-2001)":{"Engine":[{"1.8T":{"Drivetrain":["FWD","Quattro"]}},{"V6 12v":["FWD","Quattro"]},{"V6 30v":{"Drivetrain":["FWD","Quattro"]}}]}},{"B6 (2002-2004)":{"Engine":[{"1.8T":{"Drivetrain":["FWD","Quattro"]}},{"V6 30V":{"Drivetrain":["FWD","Quattro"]}}]}}]},
- "Q7":{"Chasis":[{"4L (2005-2015)":{"Engine":[{"3.0T":["Quattro"]},"3.6L","TDI","V8"]}}]},
- "S4":{"Chasis":["B5 (2000-2002)","B6 (2004-2005)","B7 (2005-2009)",{"B9 2018+":["3.0T","Quattro","Sedan"]},"C4 (1992-1994)"]},
- "TTS":{"Chasis":[{"MK2 (2006-2013)":["2.0T","Quattro","Coupe"]},{"MKIII":["2.0T","Quattro","Coupe"]}]},
- "A5":{"Chasis":[{"B8/B8.5 (2008-2017)":{"Engine":["2.0T","V6 3.2L"]}},{"B9 (2018+)":["2.0T","Quattro",{"Body Type":["Cabriolet","Coupe","Sportback"]}]}]},
- "Q8":["4M (2019+)","3.0T","Quattro","SUV"],
- "S5":{"Chasis":[{"B8/B8.5 (2008-2016)":{"Engine":[{"3.0T":["Quattro",{"Body Type":["Cabriolet","Coupe"]}]},{"4.2L":"Quattro"}]}},{"B9 (2018+)":["3.0T","Quattro",{"Body Type":["Cabriolet","Coupe","Sportback"]}]}]},
- "V8 Quattro":"V8 Quattro",
- "A6":{"Chasis":[{"C4 (1995-1997)":{"Drivetrain":["FWD","Quattro"]}},{"C5 (1998-2004)":{"Engine":["2.7T","4.2L",{"V6 2.8L 30v (1998-2001)":{"Drivetrain":["FWD","Quattro"]}}]}},{"C6 (2005-2011)":{"Engine":["V8 4.2L",{"V6 3.2L":{"Drivetrain":["FWD","Quattro"]}},"V8 4.2L"]}}]},
- "R8":{"Chasis":[{"MK1 (2007-2015)":{"Engine":[{"V10 5.2FSI":["Quattro"]},{"V8 4.2FSI":["Quattro"]}]}},{"MK2 (2016+)":{"Engine":[{"V10 5.2L":["Quattro",{"Body Type":["Coupe","Spyder"]}]},{"V10 Plus":["Quattro","Coupe"]}]}}]},
- "S6":{"Chasis":["C4 (1995-1997)","C5 (2001-2003)","C6 (2006-2011)",{"C7 (2012+)":["4.0T","Quattro","Sedan"]},{"C8 (2020+)":["2.9T","Quattro"]}]},
- "e-tron":{"Chasis":[{"GT (2022+)":["Dual Electric Motors","Quattro"]},{"RS GT (2022+)":["Dual Electric Motors","Quattro"]},{"S Sportback (2022+)":["Three Electric Motors","Quattro"]},{"SUV (2019+)":["Dual Electric Motors","Quattro"]},{"Sportback(2021+)":["Dual Electric Motors","Quattro"]}]},
- "A7":{"Chasis":[{"C7 (2011+)":{"Engine":[{"3.0 TDI":["Quattro"]},"3.0T"]}},{"C8 (2019+)":{"Engine":[{"2.0T e-tron":["Quattro"]},{"3.0T":["Quattro","Sportback"]}]}}]},
- "RS Q8":["4M (2020+)","4.0T","Quattro"],
- "S7":{"Chasis":[{"C7 (2021+)":["4.0T","Quattro","Sedan"]},{"C8 (2020+)":["2.9T","Quattro"]}]}
- }
-}},{
-  "Volkswagen":{"Model":{
-".R Models":{"Generation":["Golf IV R32 (2004)","Golf V R32 (2008)","Golf VI R (2012-2012)","Golf VII R (2015+)",{"Golf VII R Faceliff (2018)":["2.0T Gen3","4Motion"]},{"Golf VIII R (2022+)":["2.0T","4Motion"]}]},
-"EOS":{"Engine":["3.2L","2.0T"]} ,  
-"Taos":["2GJ","1.5T",{"Drivetrain":["FWD","4Motion"]}],   
-"337/20th":"337/20th",    
-"Eurovan":{"Engine":["5 Cylinder","Diesel","VR6 12v (1996-2000)","VR6 24v (200+)"]},    
-"Tiguan":{"Generation":[{"Tiguan 1 (2009-2011)":{"Drivetrain":["4Motion","Quattro"]}},{"Tiguan 2 (2012+)":{"Drivetrain":["4Motion","Quattro"]}},{"Tiguan MQB (2018+)":["2.0T Gen3",{"Drivetrain":["4Motion","FWD"]}]}]},    
-"Alltrack":["1.8 Gen3","4Motion"],    
-"Golf/GTI/Rabbit":{"Generation":[{"MK I (1975-1984)":"8v"},{"MK I Pickup (1975-1984)":{"Engine":["8v","Diesel"]}}
-,{"MK I Rabbit (1975-1984)":{"Engine":["8v","Diesel"]}}
-,{"MK II (1985-1993)":{"Engine":["16v","8v","Diesel"]}}
-,{"MK III (1994-1998)":{"Engine":["VR6 12v","TDI","VR6 12v"]}}
-,{"MK IV (1999-2005)":{"Engine":["1.8T","2.0L","TDI","VR6 12v","VR6 24v (2002+)"]}},
-{"MK V GTI (2006-2009)":"MK V GTI (2006-2009)"},
-{"MK V Rabbit (2006-2009)":"MK V Rabbit (2006-2009)"},{"MK VI GTI (2010-2014)":"2.0T"},{"MK VI Golf (2010-2014)":{"Engine":["2.5L","TDI"]}},{"MK VII GTI (2015-2017)":"2.0T Gen3"},{"MK VII GTI Facelift":["2.0T Gen3","FWD"]},{"MK VII Golf (2015-2017)":{"Engine":["1.8T","TDI","e-Golf"]}},{"MK VII Golf Facelift (2018+)":{"Engine":[{"1.4T":"FWD"},{"1.8T Gen3":"FWD"}]}},{"MK VII Golf Sportwagen (15-17)":{"Engine":["1.8T","TDI"]}},{"MK VII Golf Sportwagen (2018+)":{"Engine":[{"1.4T":"FWD"},{"1.8T Gen3":{"Drivetrain":["4Motion","FWD"]}}]}},{"MK VIII GTI (2012+)":["2.0T Evo4","FWD"]}]},    
-"Touage":{"Generation":[{"Touareg 1 (2004-2007)":{"Engine":["TDI","V6","V8"]}},{"Touareg 2 (2008-2010)":{"Engine":["V10 TDI","V6","V6 TDI","V8"]}},{"Touareg 3 (2011+)":{"Engine":["Hybrid","V6","V6 TDI"]}}]},    
-"Arteon":["2019+",{"Engine":[{"2.0T Evo4 (2022+)":{"Drivetrain":["4Motion","FWD"]}},{"2.0T Gen3":{"Drivetrain":["4Motion","FWD"]}}]}],    
-"ID.4":["2021+",{"Engine":[{"Dual-Motor":["AWD"]},{"Single-Motor":["RWD"]}]}],    
-"Vanagon":{"Generation":[{"Aircooled (1980-1982)":{"Engine":["1.6D"]}},{"Watercooled (1983-1992)":{"Engine":["1.6D","1.91","2.1L"]}}]},    
-"Atlas":["2018+",{"Engine":[{"2.0T Gen3":{"Drivetrain":["4Motion","FWD"]}},{"3.6L V6":{"Drivetrain":["4Motion","FWD"]}}]}],    
-"Jetta":{"Generation":[{"MK I (1980-1981)":{"Engine":["8v","Diesel"]}},
-{"MK II (1985-1993)":{"Engine":["16v","8v","Diesel"]}},
-{"MK III (1994-1998)":{"Engine":["2.0L","TDI","VR6 12v"]}},
-{"MK IV (1999-2005)":{"Engine":["1.8T","2.0L","GLI 1.8T","TDI","VR6 12v","VR6 24v (2002+)"]}},
-{"MK V (2005-2010)":{"Engine":["2.0T","2.5L","TDI"]}},
-{"MK VI Sedan (2011-2014)":{"Engine":["1.4T Hybrid","1.8T Gen3","2.0L","2.0T GLI (2012-2013)","2.0T Gen3 GLI (2014+)","2.5L","TDI"]}},
-{"MK VI Sedan Facelift (2015+)":{"Engine":["1.4T","1.4T Hybrid","1.8T Gen3","2.0L","2.0T Gen3 GLI","TDI"]}},
-{"MK VI Sportwagen (2010-2014)":{"Engine":["2.0L","TDI"]}},
-{"MK VII (2019+)":{"Engine":[{"1.4T":"FWD"},{"2.0T Gen3 GLI":"FWD"}]}},
-{"MK VII Facelift (2022+)":{"Engine":[{"1.5T":"FWD"},{"2.0T Gen3 GLI":"FWD"}]}}]},    
-"Atlas Cross Sport":["3CM",{"Engine":[{"2.0T Gen3":{"Drivetrain":["4Motion","FWD"]}},{"3.6L VR6":{"Drivetrain":["4Motion","FWD"]}}]}],    
-"New Beetle (98-10)":["New Beetle (1998-2010)",{"Engine":["1.8T","2.0L","2.5L","TDI"]}],    
-"Beetle (12+)":{"Engine":["1.8T Gen3","2.0T","2.0T Gen3","2.5L","TDI"]} ,   
-"Passat":{"Generation":[{"B3 (1990-1994)":{"Engine":["16v","VR6"]}},{"B4 (1995-1997)":{"Engine":["2.0L","TDI","VR6"]}},{"B5 (1998-2005)":{"Engine":[{"1.8T":{"Drivetrain":["FWD","4Motion"]}}]}},{"B6 (2006-2010)":{"Engine":["2.0T",{"3.6L":{"Drivetrain":["4Motion","FWD"]}}]}},{"B7 (2012+)":{"Engine":[{"1.8T Gen3":"FWD"},{"2.0T Gen3":"FWD"},"2.5","TDI","V6"]}},{"B7.5  (2020+)":["2.0T Gen3","FWD"]}]},    
-"CC":{"Engine":[{"2.0T":"FWD"},{"3.6L":{"Drivetrain":["4Motion","FWD"]}}]},   
-"Phaeton":{"Engine":["V8","W12"]},    
-"Cabrio III":"Cabrio III" ,   
-"Routan":{"Engine":["3.6L (2012-2014)","3.8L (2009-2011)","4.0L (2009-2011)"]} ,   
-"Corrado":{"Engine":["G60","VR6"]},   
-"Scirocco":{"Generation":["MK I (1982-1981)",{"MK II (1982-1988)":{"Engine":["16v","8v"]}}]}   
-  }}  
-}]
+[
+  {
+    "Audi": {
+      "Series": {
+        "100 Series": {
+          "Engine": {
+            "5 Cylinder (1989-1991)": { "Drivetrain": ["FWD", "Quattro"] },
+            "V6 (1992-1991)": { "Drivetrain": ["FWD", "Quattro"] }
+          }
+        },
+        "A8": {
+          "Chasis": {
+            "D2 A8 (1997-2002)": {
+              "Engine": { "3.7L": ["FWD"], "4.2L": ["Quattro"] }
+            },
+            "D3 A8 (2003-2010)": { "Engine": ["4.2L", "W12"] },
+            "D4 A8+ (2011+)": {
+              "Engine": {
+                "3.0 TDI": ["Quattro"],
+                "3.0T": ["Quattro"],
+                "4.0 T": "",
+                "4.2L": "",
+                "W12": ["Quattro"]
+              }
+            },
+            "D5 A8 (2019+)": {
+              "Engine": { "3.0 T": ["Quattro"], "4.0 T": ["Quattro"] }
+            }
+          }
+        },
+        "RS3": {
+          "Chasis": {
+            "8V (2018+)": ["2.5T", "Quattro", "Sedan"],
+            "8Y (2022+)": ["2.5T", "Quattro"]
+          }
+        },
+        "S8": {
+          "Chasis": [
+            "D2 S8 (2001-2003)",
+            "D3 S8 (2006-2009)",
+            {
+              "D4 S8 (2012+)": ["4.0 T", "Quattro", "Sedan"],
+              "D5 S8 (2020+)": ["4.0 T", "Quattro"]
+            }
+          ]
+        },
+        "200 Series": {
+          "Engine": ["10v Turbo (1989-1990)", "20v Turbo (1991)"]
+        },
+        "Allroad": {
+          "Chasis": {
+            "B8 (2012-2016)": ["2.0 T", "Quattro"],
+            "B9 (2017+)": ["2.0 T", "Quattro"],
+            "C5 (2001-2005)": {
+              "Engine": { "2.7T": ["Quattro"], "4.2": ["Quattro"] }
+            },
+            "C8 (2020+)": ["3.0T", "Quattro"]
+          }
+        },
+        "RS4": ["B7 RS4"],
+        "SQ5": {
+          "Chasis": {
+            "B8 (2014-2017)": ["3.0T", "Quattro", "SUV"],
+            "B9 (2018+)": [
+              "3.0T",
+              "Quattro",
+              { "Body Type": ["SUV", "Sportback"] }
+            ]
+          }
+        },
+        "5000 Series": [
+          "C3/C4 (1982-1991)",
+          { "Engine": ["Quattro", "Quattro"] }
+        ],
+        "Coupe Quattro": "Coupe Quattro",
+        "RS5": {
+          "Chasis": [
+            "B8 (2013+)",
+            { "B9 (2018+)": ["2.9T", "Quattro", "Coupe"] }
+          ]
+        },
+        "SQ7": ["4M (2020+)", "4.0T", "Quattro"],
+        "80 Series": {
+          "Engine": [
+            "4 Cylinder",
+            { "5 Cylinder": { "Drivetrain": ["FWD", "Quattro"] } }
+          ]
+        },
+        "Q3": {
+          "Chasis": [
+            {
+              "8U (2015-2018)": ["2.0T", { "Drivetrain": ["FWD", "Quattro"] }]
+            },
+            { "F3 (2019+)": ["2.0T", "Quattro"] }
+          ]
+        },
+        "RS6": {
+          "Chasis": [
+            "C5 (2003-2004)",
+            { "C8 (2018+)": ["4.0T", "Quattro", "Avant"] }
+          ]
+        },
+        "SQ8": ["4M (2020+)", "4.0T", "Quattro"],
+        "90 Series": {
+          "Engine": [
+            "10v",
+            { "20v": { "Drivetrain": ["FWD", "Quattro"] } },
+            { "V6": { "Drivetrain": ["FWD", "Quattro"] } }
+          ]
+        },
+        "Q4": {
+          "Chasis": [
+            {
+              "e-tron (2022+)": {
+                "Engine": { "Dual Electric Motors": "Quattro" }
+              }
+            },
+            { "e-tron Sportback (2022+)": ["Dual Electric Motors", "Quattro"] }
+          ]
+        },
+        "RS7": {
+          "Chasis": [
+            { "C7": ["4.0T", "Quattro", "Sportback"] },
+            { "C8 (2021+)": ["4.0T", "Quattro", "Sportback"] }
+          ]
+        },
+        "TT": {
+          "Chasis": [
+            {
+              "MK I (1998-2007)": {
+                "Engine": [
+                  { "180HP": { "Drivetrain": ["FWD", "Quattro"] } },
+                  "225HP",
+                  "3.2L"
+                ]
+              }
+            },
+            {
+              "MK II (2000+)": {
+                "Engine": [{ "2.0T": ["FWD", "Quattro"] }, "3.2L"]
+              }
+            },
+            { "MK3 (2014+)": ["2.0T", "Quattro", "Coupe"] }
+          ]
+        },
+        "A3": {
+          "Chasis": [
+            {
+              "8P (2005-2013)": {
+                "Engine": [
+                  { "2.0T": { "Drivetrain": ["FWD", "Quattro"] } },
+                  "TDI",
+                  "V6 3.2L"
+                ]
+              }
+            },
+            {
+              "8V (2014)": [
+                {
+                  "Engine": [
+                    { "1.4 e-tron": ["FWD", "Sportback"] },
+                    { "1.8T": ["FWD"] },
+                    {
+                      "2.0T": { "Drivetrain": [{ "FWD": "Sedan" }, "Quattro"] }
+                    }
+                  ]
+                }
+              ]
+            },
+            { "8Y": ["2.0T", { "Drivetrain": ["FWD", "Quattro"] }] }
+          ]
+        },
+        "Q5": {
+          "Chasis": [
+            {
+              "B8 (2009-2017)": {
+                "Engine": ["2.0T", "3.0 TDI", "3.0T", "3.2L"]
+              }
+            },
+            {
+              "B9 2018": {
+                "Engine": [
+                  {
+                    "2.0T": ["Quattro", { "Body Type": ["Sportback", "SUV"] }]
+                  },
+                  { "2.0T e-tron": ["Quattro", "SUV"] }
+                ]
+              }
+            }
+          ]
+        },
+        "S3": {
+          "Chasis": [
+            { "8V": ["2.0T", "Quattro", "Sedan"] },
+            { "8Y (2022+)": ["2.0T", "Quattro"] }
+          ]
+        },
+        "TTRS": {
+          "Chasis": [
+            { "8J (2021-2013)": ["2.5T", "Quattro", "Coupe"] },
+            { "8S (2018+)": ["2.5T", "Quattro", "Coupe"] }
+          ]
+        },
+        "A4": {
+          "Chasis": [
+            {
+              "B5 (1996-2001)": {
+                "Engine": [
+                  { "1.8T": { "Drivetrain": ["FWD", "Quattro"] } },
+                  { "V6 12v": ["FWD", "Quattro"] },
+                  { "V6 30v": { "Drivetrain": ["FWD", "Quattro"] } }
+                ]
+              }
+            },
+            {
+              "B6 (2002-2004)": {
+                "Engine": [
+                  { "1.8T": { "Drivetrain": ["FWD", "Quattro"] } },
+                  { "V6 30V": { "Drivetrain": ["FWD", "Quattro"] } }
+                ]
+              }
+            }
+          ]
+        },
+        "Q7": {
+          "Chasis": [
+            {
+              "4L (2005-2015)": {
+                "Engine": [{ "3.0T": ["Quattro"] }, "3.6L", "TDI", "V8"]
+              }
+            }
+          ]
+        },
+        "S4": {
+          "Chasis": [
+            "B5 (2000-2002)",
+            "B6 (2004-2005)",
+            "B7 (2005-2009)",
+            { "B9 2018+": ["3.0T", "Quattro", "Sedan"] },
+            "C4 (1992-1994)"
+          ]
+        },
+        "TTS": {
+          "Chasis": [
+            { "MK2 (2006-2013)": ["2.0T", "Quattro", "Coupe"] },
+            { "MKIII": ["2.0T", "Quattro", "Coupe"] }
+          ]
+        },
+        "A5": {
+          "Chasis": [
+            { "B8/B8.5 (2008-2017)": { "Engine": ["2.0T", "V6 3.2L"] } },
+            {
+              "B9 (2018+)": [
+                "2.0T",
+                "Quattro",
+                { "Body Type": ["Cabriolet", "Coupe", "Sportback"] }
+              ]
+            }
+          ]
+        },
+        "Q8": ["4M (2019+)", "3.0T", "Quattro", "SUV"],
+        "S5": {
+          "Chasis": [
+            {
+              "B8/B8.5 (2008-2016)": {
+                "Engine": [
+                  {
+                    "3.0T": ["Quattro", { "Body Type": ["Cabriolet", "Coupe"] }]
+                  },
+                  { "4.2L": "Quattro" }
+                ]
+              }
+            },
+            {
+              "B9 (2018+)": [
+                "3.0T",
+                "Quattro",
+                { "Body Type": ["Cabriolet", "Coupe", "Sportback"] }
+              ]
+            }
+          ]
+        },
+        "V8 Quattro": "V8 Quattro",
+        "A6": {
+          "Chasis": [
+            { "C4 (1995-1997)": { "Drivetrain": ["FWD", "Quattro"] } },
+            {
+              "C5 (1998-2004)": {
+                "Engine": [
+                  "2.7T",
+                  "4.2L",
+                  {
+                    "V6 2.8L 30v (1998-2001)": {
+                      "Drivetrain": ["FWD", "Quattro"]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "C6 (2005-2011)": {
+                "Engine": [
+                  "V8 4.2L",
+                  { "V6 3.2L": { "Drivetrain": ["FWD", "Quattro"] } },
+                  "V8 4.2L"
+                ]
+              }
+            }
+          ]
+        },
+        "R8": {
+          "Chasis": [
+            {
+              "MK1 (2007-2015)": {
+                "Engine": [
+                  { "V10 5.2FSI": ["Quattro"] },
+                  { "V8 4.2FSI": ["Quattro"] }
+                ]
+              }
+            },
+            {
+              "MK2 (2016+)": {
+                "Engine": [
+                  {
+                    "V10 5.2L": [
+                      "Quattro",
+                      { "Body Type": ["Coupe", "Spyder"] }
+                    ]
+                  },
+                  { "V10 Plus": ["Quattro", "Coupe"] }
+                ]
+              }
+            }
+          ]
+        },
+        "S6": {
+          "Chasis": [
+            "C4 (1995-1997)",
+            "C5 (2001-2003)",
+            "C6 (2006-2011)",
+            { "C7 (2012+)": ["4.0T", "Quattro", "Sedan"] },
+            { "C8 (2020+)": ["2.9T", "Quattro"] }
+          ]
+        },
+        "e-tron": {
+          "Chasis": [
+            { "GT (2022+)": ["Dual Electric Motors", "Quattro"] },
+            { "RS GT (2022+)": ["Dual Electric Motors", "Quattro"] },
+            { "S Sportback (2022+)": ["Three Electric Motors", "Quattro"] },
+            { "SUV (2019+)": ["Dual Electric Motors", "Quattro"] },
+            { "Sportback(2021+)": ["Dual Electric Motors", "Quattro"] }
+          ]
+        },
+        "A7": {
+          "Chasis": [
+            {
+              "C7 (2011+)": { "Engine": [{ "3.0 TDI": ["Quattro"] }, "3.0T"] }
+            },
+            {
+              "C8 (2019+)": {
+                "Engine": [
+                  { "2.0T e-tron": ["Quattro"] },
+                  { "3.0T": ["Quattro", "Sportback"] }
+                ]
+              }
+            }
+          ]
+        },
+        "RS Q8": ["4M (2020+)", "4.0T", "Quattro"],
+        "S7": {
+          "Chasis": [
+            { "C7 (2021+)": ["4.0T", "Quattro", "Sedan"] },
+            { "C8 (2020+)": ["2.9T", "Quattro"] }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "Volkswagen": {
+      "Model": {
+        ".R Models": {
+          "Generation": [
+            "Golf IV R32 (2004)",
+            "Golf V R32 (2008)",
+            "Golf VI R (2012-2012)",
+            "Golf VII R (2015+)",
+            { "Golf VII R Faceliff (2018)": ["2.0T Gen3", "4Motion"] },
+            { "Golf VIII R (2022+)": ["2.0T", "4Motion"] }
+          ]
+        },
+        "EOS": { "Engine": ["3.2L", "2.0T"] },
+        "Taos": ["2GJ", "1.5T", { "Drivetrain": ["FWD", "4Motion"] }],
+        "337/20th": "337/20th",
+        "Eurovan": {
+          "Engine": [
+            "5 Cylinder",
+            "Diesel",
+            "VR6 12v (1996-2000)",
+            "VR6 24v (200+)"
+          ]
+        },
+        "Tiguan": {
+          "Generation": [
+            {
+              "Tiguan 1 (2009-2011)": { "Drivetrain": ["4Motion", "Quattro"] }
+            },
+            { "Tiguan 2 (2012+)": { "Drivetrain": ["4Motion", "Quattro"] } },
+            {
+              "Tiguan MQB (2018+)": [
+                "2.0T Gen3",
+                { "Drivetrain": ["4Motion", "FWD"] }
+              ]
+            }
+          ]
+        },
+        "Alltrack": ["1.8 Gen3", "4Motion"],
+        "Golf/GTI/Rabbit": {
+          "Generation": [
+            { "MK I (1975-1984)": "8v" },
+            { "MK I Pickup (1975-1984)": { "Engine": ["8v", "Diesel"] } },
+            { "MK I Rabbit (1975-1984)": { "Engine": ["8v", "Diesel"] } },
+            { "MK II (1985-1993)": { "Engine": ["16v", "8v", "Diesel"] } },
+            {
+              "MK III (1994-1998)": { "Engine": ["VR6 12v", "TDI", "VR6 12v"] }
+            },
+            {
+              "MK IV (1999-2005)": {
+                "Engine": ["1.8T", "2.0L", "TDI", "VR6 12v", "VR6 24v (2002+)"]
+              }
+            },
+            { "MK V GTI (2006-2009)": "MK V GTI (2006-2009)" },
+            { "MK V Rabbit (2006-2009)": "MK V Rabbit (2006-2009)" },
+            { "MK VI GTI (2010-2014)": "2.0T" },
+            { "MK VI Golf (2010-2014)": { "Engine": ["2.5L", "TDI"] } },
+            { "MK VII GTI (2015-2017)": "2.0T Gen3" },
+            { "MK VII GTI Facelift": ["2.0T Gen3", "FWD"] },
+            {
+              "MK VII Golf (2015-2017)": { "Engine": ["1.8T", "TDI", "e-Golf"] }
+            },
+            {
+              "MK VII Golf Facelift (2018+)": {
+                "Engine": [{ "1.4T": "FWD" }, { "1.8T Gen3": "FWD" }]
+              }
+            },
+            { "MK VII Golf Sportwagen (15-17)": { "Engine": ["1.8T", "TDI"] } },
+            {
+              "MK VII Golf Sportwagen (2018+)": {
+                "Engine": [
+                  { "1.4T": "FWD" },
+                  { "1.8T Gen3": { "Drivetrain": ["4Motion", "FWD"] } }
+                ]
+              }
+            },
+            { "MK VIII GTI (2012+)": ["2.0T Evo4", "FWD"] }
+          ]
+        },
+        "Touage": {
+          "Generation": [
+            { "Touareg 1 (2004-2007)": { "Engine": ["TDI", "V6", "V8"] } },
+            {
+              "Touareg 2 (2008-2010)": {
+                "Engine": ["V10 TDI", "V6", "V6 TDI", "V8"]
+              }
+            },
+            { "Touareg 3 (2011+)": { "Engine": ["Hybrid", "V6", "V6 TDI"] } }
+          ]
+        },
+        "Arteon": [
+          "2019+",
+          {
+            "Engine": [
+              { "2.0T Evo4 (2022+)": { "Drivetrain": ["4Motion", "FWD"] } },
+              { "2.0T Gen3": { "Drivetrain": ["4Motion", "FWD"] } }
+            ]
+          }
+        ],
+        "ID.4": [
+          "2021+",
+          { "Engine": [{ "Dual-Motor": ["AWD"] }, { "Single-Motor": ["RWD"] }] }
+        ],
+        "Vanagon": {
+          "Generation": [
+            { "Aircooled (1980-1982)": { "Engine": ["1.6D"] } },
+            {
+              "Watercooled (1983-1992)": { "Engine": ["1.6D", "1.91", "2.1L"] }
+            }
+          ]
+        },
+        "Atlas": [
+          "2018+",
+          {
+            "Engine": [
+              { "2.0T Gen3": { "Drivetrain": ["4Motion", "FWD"] } },
+              { "3.6L V6": { "Drivetrain": ["4Motion", "FWD"] } }
+            ]
+          }
+        ],
+        "Jetta": {
+          "Generation": [
+            { "MK I (1980-1981)": { "Engine": ["8v", "Diesel"] } },
+            { "MK II (1985-1993)": { "Engine": ["16v", "8v", "Diesel"] } },
+            { "MK III (1994-1998)": { "Engine": ["2.0L", "TDI", "VR6 12v"] } },
+            {
+              "MK IV (1999-2005)": {
+                "Engine": [
+                  "1.8T",
+                  "2.0L",
+                  "GLI 1.8T",
+                  "TDI",
+                  "VR6 12v",
+                  "VR6 24v (2002+)"
+                ]
+              }
+            },
+            { "MK V (2005-2010)": { "Engine": ["2.0T", "2.5L", "TDI"] } },
+            {
+              "MK VI Sedan (2011-2014)": {
+                "Engine": [
+                  "1.4T Hybrid",
+                  "1.8T Gen3",
+                  "2.0L",
+                  "2.0T GLI (2012-2013)",
+                  "2.0T Gen3 GLI (2014+)",
+                  "2.5L",
+                  "TDI"
+                ]
+              }
+            },
+            {
+              "MK VI Sedan Facelift (2015+)": {
+                "Engine": [
+                  "1.4T",
+                  "1.4T Hybrid",
+                  "1.8T Gen3",
+                  "2.0L",
+                  "2.0T Gen3 GLI",
+                  "TDI"
+                ]
+              }
+            },
+            { "MK VI Sportwagen (2010-2014)": { "Engine": ["2.0L", "TDI"] } },
+            {
+              "MK VII (2019+)": {
+                "Engine": [{ "1.4T": "FWD" }, { "2.0T Gen3 GLI": "FWD" }]
+              }
+            },
+            {
+              "MK VII Facelift (2022+)": {
+                "Engine": [{ "1.5T": "FWD" }, { "2.0T Gen3 GLI": "FWD" }]
+              }
+            }
+          ]
+        },
+        "Atlas Cross Sport": [
+          "3CM",
+          {
+            "Engine": [
+              { "2.0T Gen3": { "Drivetrain": ["4Motion", "FWD"] } },
+              { "3.6L VR6": { "Drivetrain": ["4Motion", "FWD"] } }
+            ]
+          }
+        ],
+        "New Beetle (98-10)": [
+          "New Beetle (1998-2010)",
+          { "Engine": ["1.8T", "2.0L", "2.5L", "TDI"] }
+        ],
+        "Beetle (12+)": {
+          "Engine": ["1.8T Gen3", "2.0T", "2.0T Gen3", "2.5L", "TDI"]
+        },
+        "Passat": {
+          "Generation": [
+            { "B3 (1990-1994)": { "Engine": ["16v", "VR6"] } },
+            { "B4 (1995-1997)": { "Engine": ["2.0L", "TDI", "VR6"] } },
+            {
+              "B5 (1998-2005)": {
+                "Engine": [{ "1.8T": { "Drivetrain": ["FWD", "4Motion"] } }]
+              }
+            },
+            {
+              "B6 (2006-2010)": {
+                "Engine": [
+                  "2.0T",
+                  { "3.6L": { "Drivetrain": ["4Motion", "FWD"] } }
+                ]
+              }
+            },
+            {
+              "B7 (2012+)": {
+                "Engine": [
+                  { "1.8T Gen3": "FWD" },
+                  { "2.0T Gen3": "FWD" },
+                  "2.5",
+                  "TDI",
+                  "V6"
+                ]
+              }
+            },
+            { "B7.5  (2020+)": ["2.0T Gen3", "FWD"] }
+          ]
+        },
+        "CC": {
+          "Engine": [
+            { "2.0T": "FWD" },
+            { "3.6L": { "Drivetrain": ["4Motion", "FWD"] } }
+          ]
+        },
+        "Phaeton": { "Engine": ["V8", "W12"] },
+        "Cabrio III": "Cabrio III",
+        "Routan": {
+          "Engine": ["3.6L (2012-2014)", "3.8L (2009-2011)", "4.0L (2009-2011)"]
+        },
+        "Corrado": { "Engine": ["G60", "VR6"] },
+        "Scirocco": {
+          "Generation": [
+            "MK I (1982-1981)",
+            { "MK II (1982-1988)": { "Engine": ["16v", "8v"] } }
+          ]
+        }
+      }
+    }
+  }
+]

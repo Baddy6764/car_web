@@ -6,8 +6,8 @@ const path = require("path");
 const routes = require("./routes/route");
 const connectDB = require("./db/connect");
 const admin = require("./controller/admin");
-const session = require('express-session');
-const passport = require('passport');
+const session = require("express-session");
+const passport = require("passport");
 const multer = require("multer");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));
@@ -20,17 +20,14 @@ app.use(
   })
 );
 
-
-
 app.use(
   session({
-    secret:'my secret',
-    resave:false,
-    saveUninitialized:false,
-    cookie:{}
+    secret: "my secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {},
   })
-)
-
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,9 +35,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(routes);
-
-
-
 
 connectDB();
 app.use(notFound);
