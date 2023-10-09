@@ -81,7 +81,7 @@ exports.approveCar = async (req, res) => {
 
 exports.deleteCar = async (req, res) => {
   try {
-    const { Id } = req.body;
+    const  Id  = req.body;
     if (!Id) {
       return res.status(400).json({ error: "Invalid car Id" });
     }
@@ -98,7 +98,7 @@ exports.deleteCar = async (req, res) => {
 
 exports.rejectCar = async (req, res) => {
   try {
-    const { Id } = req.body;
+    const  Id  = req.body;
     if (!Id) {
       res.status(400).json({ error: "Invalid carId" });
     }
