@@ -58,7 +58,7 @@ exports.adminDasboard = (req, res) => {};
 
 exports.approveCar = async (req, res) => {
   try {
-    const carId = req.params.carId;
+    const carId = req.body;
     if (!carId) {
       return res.status(400).json({ error: "Invalid carId" });
     }

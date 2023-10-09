@@ -76,7 +76,7 @@ router.post(
 router.post("/admin-dashboard",  adminController.adminDasboard);
 
 //////approvecar route
-router.put("approve/cars/:Id",  adminController.approveCar);
+router.put("approve/cars",  adminController.approveCar);
 
 //////deletecar route
 router.post("delete/cars",  adminController.deleteCar);
