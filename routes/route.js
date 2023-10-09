@@ -73,15 +73,15 @@ router.post(
 );
 
 /////Adminroute
-router.post("/admin-dashboard", isAdmin, adminController.adminDasboard);
+router.post("/admin-dashboard",  adminController.adminDasboard);
 
 //////approvecar route
-router.put("approve/cars/:Id", isAdmin , adminController.approveCar);
+router.put("approve/cars/:Id",  adminController.approveCar);
 
 //////deletecar route
-router.post("delete/cars", isAdmin, adminController.deleteCar);
+router.post("delete/cars",  adminController.deleteCar);
 
 //////rejectcar route
-router.post("/reject/cars",isAdmin, adminController.rejectCar);
+router.post("/reject/cars", adminController.rejectCar);
 
 module.exports = router;
