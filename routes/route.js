@@ -68,7 +68,7 @@ router.post(
   upload.fields([
     { name: "images", maxCount: 2 },
     { name: "videos", maxCount: 1 },
-  ]), isAuth,
+  ]),
   adminController.Registercars
 );
 
