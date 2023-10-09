@@ -30,8 +30,8 @@ const carSchema = new mongoose.Schema({
     require: false,
   },
   status:{
-   type:Boolean,
-   default:false
+   type: String,
+   default: "pending"
   }
 });
 
