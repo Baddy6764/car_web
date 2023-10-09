@@ -14,19 +14,19 @@ exports.datajson = (req, res) => {
 };
 
 exports.Registercars = async (req, res) => {
-  // try {
-    const { Images, video, engine, generation, make, model } = await req.body;
+  try {
+    const { images, video, engine, generation, make, model } =  req.body;
     const tokenUser = await req.header("token");
     const decoded = jwt.verify(tokenUser, "12345");
     if (!decoded) {
       return res.status(401).json({ error: "User not found" });
     }
-    if (!Images || !video || !engine || !generation || !make || !model) {
+    if (!images || !video || !engine || !generation || !make || !model) {
       return res.status(401).json({ error: "Invalid request car Information" });
     }
     let Image = [];
 
-    Images.map((value) => {
+    images.map((value) => {
       return Image.push(value.file.filename);
     });
 
@@ -44,12 +44,12 @@ exports.Registercars = async (req, res) => {
      res
       .status(200)
       .json({ message: "user car created successfully", data: createCars });
-  // } catch (err) {
-  //   console.log(err);
-  //   return res
-  //     .status(400)
-  //     .json({ error: "An error occured in creating user car" });
-  // }
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(400)
+      .json({ error: "An error occured in creating user car" });
+  }
 };
 
 exports.updateCars = asyncHandler(async (req, res) => {});
