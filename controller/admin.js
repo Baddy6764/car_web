@@ -14,7 +14,7 @@ exports.datajson = (req, res) => {
 };
 
 exports.Registercars = async (req, res) => {
-  try {
+  // try {
     const { Images, video, engine, generation, make, model } = await req.body;
     const tokenUser = await req.header("token");
     const decoded = jwt.verify(tokenUser, "12345");
@@ -44,12 +44,12 @@ exports.Registercars = async (req, res) => {
      res
       .status(200)
       .json({ message: "user car created successfully", data: createCars });
-  } catch (err) {
-    console.log(err);
-    return res
-      .status(400)
-      .json({ error: "An error occured in creating user car" });
-  }
+  // } catch (err) {
+  //   console.log(err);
+  //   return res
+  //     .status(400)
+  //     .json({ error: "An error occured in creating user car" });
+  // }
 };
 
 exports.updateCars = asyncHandler(async (req, res) => {});
