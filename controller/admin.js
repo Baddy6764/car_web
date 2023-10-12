@@ -13,7 +13,7 @@ exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
 
-exports.Registercars = async (req, res) => {
+exports.Registercars =  (req, res) => {
   // try {
     const { images, video, engine, generation, make, model } =  req.body;
     // const tokenUser =  req.header("token");
@@ -21,7 +21,7 @@ exports.Registercars = async (req, res) => {
     // if (!decoded) {
     //   return res.status(401).json({ error: "User not found" });
     // }
-    res.status(200).send(req.body)
+    res.status(200).send({message:"cars details"});
   //   if (!images || !video || !engine || !generation || !make || !model) {
   //     return res.status(401).json({ error: "Invalid request car Information" });
   //   }
