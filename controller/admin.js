@@ -14,43 +14,43 @@ exports.datajson = (req, res) => {
 };
 
 exports.Registercars = async (req, res) => {
-  try {
+  // try {
     const { images, video, engine, generation, make, model } =  req.body;
-    const tokenUser =  req.header("token");
-    const decoded = jwt.verify(tokenUser, "12345");
-    if (!decoded) {
-      return res.status(401).json({ error: "User not found" });
-    }
+    // const tokenUser =  req.header("token");
+    // const decoded = jwt.verify(tokenUser, "12345");
+    // if (!decoded) {
+    //   return res.status(401).json({ error: "User not found" });
+    // }
     res.status(200).send(req.body)
-    if (!images || !video || !engine || !generation || !make || !model) {
-      return res.status(401).json({ error: "Invalid request car Information" });
-    }
-    let Image = [];
+  //   if (!images || !video || !engine || !generation || !make || !model) {
+  //     return res.status(401).json({ error: "Invalid request car Information" });
+  //   }
+  //   let Image = [];
 
-    images.map((value) => {
-      return Image.push(value.file.filename);
-    });
+  //   images.map((value) => {
+  //     return Image.push(value.file.filename);
+  //   });
 
-    const createCars = carsDetails.create({
-      Make: make,
-      Model: model,
-      Generation: generation,
-      Engine: engine,
-      images: Image,
-      Video: video,
-    });
-    if (!createCars) {
-      return res.status(400).json({ error: "user car not created" });
-    }
-     res
-      .status(200)
-      .json({ message: "user car created successfully", data: createCars });
-  } catch (err) {
-    console.log(err);
-    return res
-      .status(400)
-      .json({ error: "An error occured in creating user car" });
-  }
+  //   const createCars = carsDetails.create({
+  //     Make: make,
+  //     Model: model,
+  //     Generation: generation,
+  //     Engine: engine,
+  //     images: Image,
+  //     Video: video,
+  //   });
+  //   if (!createCars) {
+  //     return res.status(400).json({ error: "user car not created" });
+  //   }
+  //    res
+  //     .status(200)
+  //     .json({ message: "user car created successfully", data: createCars });
+  // } catch (err) {
+  //   console.log(err);
+  //   return res
+  //     .status(400)
+  //     .json({ error: "An error occured in creating user car" });
+  // }
 };
 
 exports.updateCars = asyncHandler(async (req, res) => {});
