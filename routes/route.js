@@ -65,10 +65,10 @@ router.get(
 ////Register Cars Route
 router.post(
   "/register/car",
-  upload.fields([
-    { name: "images", maxCount: 2 },
-    { name: "videos", maxCount: 1 },
-  ]),
+  // upload.fields([
+  //   { name: "images", maxCount: 2 },
+  //   { name: "videos", maxCount: 1 },
+  // ]),
   adminController.Registercars
 );
 
