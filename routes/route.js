@@ -8,19 +8,19 @@ const isAdmin = require('../middlewares/isAdmin');
 const isAuth = require('../middlewares/isAuth');
 
 /////Using Multer to store Images/Videos
-let Store = multer.diskStorage({
+let storage = multer.diskStorage({
   ///Folder_destination
   destination: (req, file, cb) => {
     cb(null, "./public/images");
   },
   ////Files_name
   filename: (req, files, cb) => {
-    cb(null, Date.now() + "_" + files.name);
+    cb(null, Date.now() + "_" + files.originalname);
   },
 });
 
 /////Multer Storage
-const upload = multer({ storage: Store });
+const upload = multer({ storage: storage });
 
 ////Register Route
 router.post("/register-page", authen.register);
