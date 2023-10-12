@@ -21,6 +21,7 @@ exports.Registercars = async (req, res) => {
     if (!decoded) {
       return res.status(401).json({ error: "User not found" });
     }
+    res.status(200).send(req.body)
     if (!images || !video || !engine || !generation || !make || !model) {
       return res.status(401).json({ error: "Invalid request car Information" });
     }
