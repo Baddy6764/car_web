@@ -18,7 +18,7 @@ exports.Registercars =  (req, res) => {
     const { images, video, engine, generation, make, model } =  req.body;
     // const tokenUser =  req.header("token");
     // const decoded = jwt.verify(tokenUser, "12345");
-    res.status(200).send(JSON.stringify(video));
+    console.log(video)
     // if (!decoded) {
     //   return res.status(401).json({ error: "User not found" });
     // }
