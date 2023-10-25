@@ -16,7 +16,7 @@ exports.datajson = (req, res) => {
 exports.Registercars =  (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
-    res.status(200).send(video.json());
+    res.status(200).json(video);
     // const tokenUser =  req.header("token");
     // const decoded = jwt.verify(tokenUser, "12345");
     // if (!decoded) {
