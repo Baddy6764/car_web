@@ -11,7 +11,7 @@ const isAuth = require('../middlewares/isAuth');
 let storage = multer.diskStorage({
   ///Folder_destination
   destination: (req, file, cb) => {
-    cb(null, "/images");
+    cb(null, "public");
   },
   ////Files_name
   filename: (req, files, cb) => {
