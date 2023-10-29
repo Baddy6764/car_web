@@ -15,10 +15,11 @@ exports.datajson = (req, res) => {
 
 exports.Registercars =  (req, res) => {
   try {
-    // const { images, video, engine, generation, make, model } =  req.body;
+    const { images, video, engine, generation, make, model } =  req.body;
     // const tokenUser =  req.header("token");
     // const decoded = jwt.verify(tokenUser, "12345");
-    res.status(200).send("images");
+    
+    res.status(200).json({message:"successfully"});
 
     // if (!decoded) {
     //   return res.status(401).json({ error: "User not found" });
