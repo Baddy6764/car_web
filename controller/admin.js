@@ -40,7 +40,7 @@ exports.Registercars =  (req, res) => {
       Engine: engine,
       images: Image,
       Video: video,
-      status:"pending"
+      // status:"pending"
     });
     if (!createCars) {
       return res.status(400).json({ error: "user car not created" });
