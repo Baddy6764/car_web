@@ -16,37 +16,38 @@ exports.datajson = (req, res) => {
 exports.Registercars =  (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
-    // const tokenUser =  req.header("token");
-    // const decoded = jwt.verify(tokenUser, "12345");
+    const tokenUser =  req.header("token");
+    const decoded = jwt.verify(tokenUser, "12345");
     
-    res.status(200).json({message:"successfully"});
+   
 
-    // if (!decoded) {
-    //   return res.status(401).json({ error: "User not found" });
-    // }
-    // if (!images || !video || !engine || !generation || !make || !model) {
-    //   return res.status(401).json({ error: "Invalid request car Information" });
-    // }
-    // let Image = [];
+    if (!decoded) {
+      return res.status(401).json({ error: "User not found" });
+    }
+    if (!images || !video || !engine || !generation || !make || !model) {
+      return res.status(401).json({ error: "Invalid request car Information" });
+    }
+    let Image = [];
 
-    // images.map((value) => {
-    //   return Image.push(value.file.filename);
-    // });
+    images.map((value) => {
+      return Image.push(value.file.filename);
+    });
 
-    // const createCars = carsDetails.create({
-    //   Make: make,
-    //   Model: model,
-    //   Generation: generation,
-    //   Engine: engine,
-    //   images: Image,
-    //   Video: video,
-    // });
-    // if (!createCars) {
-    //   return res.status(400).json({ error: "user car not created" });
-    // }
-    //  res
-    //   .status(200)
-    //   .json({ message: "user car created successfully", data: createCars });
+    const createCars = carsDetails.create({
+      Make: make,
+      Model: model,
+      Generation: generation,
+      Engine: engine,
+      images: Image,
+      Video: video,
+      status:"pending"
+    });
+    if (!createCars) {
+      return res.status(400).json({ error: "user car not created" });
+    }
+     res
+      .status(200)
+      .json({ message: "user car created successfully", data: createCars });
   } catch (err) {
     console.log(err);
     return res
