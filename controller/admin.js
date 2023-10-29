@@ -13,17 +13,17 @@ exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
 
-exports.Registercars =  (req, res) => {
+exports.Registercars = async (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
-    const tokenUser =  req.header("token");
-    const decoded = jwt.verify(tokenUser, "12345");
+    // const tokenUser = await req.header("token");
+    // const decoded = jwt.verify(tokenUser, "12345");
     
    
 
-    if (!decoded) {
-      return res.status(401).json({ error: "User not found" });
-    }
+    // if (!decoded) {
+    //   return res.status(401).json({ error: "User not found" });
+    // }
     if (!images || !video || !engine || !generation || !make || !model) {
       return res.status(401).json({ error: "Invalid request car Information" });
     }
@@ -40,7 +40,7 @@ exports.Registercars =  (req, res) => {
       Engine: engine,
       images: Image,
       Video: video,
-      // status:"pending"
+      status:"pending"
     });
     if (!createCars) {
       return res.status(400).json({ error: "user car not created" });
