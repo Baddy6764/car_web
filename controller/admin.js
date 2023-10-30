@@ -23,9 +23,9 @@ exports.Registercars = async (req, res) => {
     // if (!decoded) {
     //   return res.status(401).json({ error: "User not found" });
     // }
-    if (!images || !video || !engine || !generation || !make || !model) {
-      return res.status(400).json({ error: "Invalid request car Information" });
-    }
+    // if (!images || !video || !engine || !generation || !make || !model) {
+    //   return res.status(400).json({ error: "Invalid request car Information" });
+    // }
     let Image = [];
 
     images.map((value) => {
