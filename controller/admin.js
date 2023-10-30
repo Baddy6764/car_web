@@ -21,7 +21,7 @@ exports.Registercars =  (req, res) => {
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      let videoFiles  = req.files.video;
+      let videoFiles  = req.files.video.filename;
       let imagesFiles = req.files.images;
 
       if(!videoFiles || !imagesFiles){
