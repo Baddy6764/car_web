@@ -16,16 +16,23 @@ exports.datajson = (req, res) => {
 
 exports.Registercars =  (req, res) => {
   try {
-    const { images, video, engine, generation, make, model } =  req.body;
+    const { engine, generation, make, model } =  req.body;
 
-    if (  !engine || !generation || !make || !model) {
+    if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-    // let Image = [];
+      const videoFiles  = req.files.video;
+      const imagesFiles = req.files.images;
 
-    // images.map((value) => {
-    //   return Image.push(value.file.filename);
-    // });
+      if(!videoFiles || !imagesFiles){
+        return res.status(400).json({error:"videos and images not uploaded"});
+      }
+      
+    let Image = [];
+
+    imagesFiles.map((value) => {
+      return Image.push(value.file.filename);
+    });
    
 
     const createdCars = carsDetails.create({
@@ -33,8 +40,8 @@ exports.Registercars =  (req, res) => {
       Model: model,
       Generation: generation,
       Engine: engine,
-      // images: Image,
-      // Video: video,
+      images: Image,
+      Video: video,
       
     });
     if (!createdCars) {
