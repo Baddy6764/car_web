@@ -26,19 +26,19 @@ exports.Registercars = async (req, res) => {
     // if (!images || !video || !engine || !generation || !make || !model) {
     //   return res.status(400).json({ error: "Invalid request car Information" });
     // }
-    let Image = [];
+    // let Image = [];
 
-    images.map((value) => {
-      return Image.push(value.file.filename);
-    });
+    // images.map((value) => {
+    //   return Image.push(value.file.filename);
+    // });
 
     const createdCars = carsDetails.create({
       Make: make,
       Model: model,
       Generation: generation,
       Engine: engine,
-      images: Image,
-      Video: video,
+      images: "Image",
+      Video: "video",
       // status:"pending"
     });
     if (!createdCars) {
