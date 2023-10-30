@@ -16,16 +16,14 @@ exports.datajson = (req, res) => {
 exports.Registercars = async (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
-    // const tokenUser = await req.header("token");
-    // const decoded = jwt.verify(tokenUser, "12345");
+    const tokenUser = await req.header("token");
+    const decoded = jwt.verify(tokenUser, "12345");
     
-   res.status(200).json({engine:engine});
-
-    // if (!decoded) {
-    //   return res.status(401).json({ error: "User not found" });
-    // }
+    if (!decoded) {
+      return res.status(401).json({ error: "User not found" });
+    }
     if (!images || !video || !engine || !generation || !make || !model) {
-      return res.status(401).json({ error: "Invalid request car Information" });
+      return res.status(400).json({ error: "Invalid request car Information" });
     }
     let Image = [];
 
