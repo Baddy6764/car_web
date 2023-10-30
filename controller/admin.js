@@ -29,12 +29,12 @@ exports.Registercars =  (req, res) => {
       }
       
 
-    // let Image = [];
+    let Image = [];
 
-    // imagesFiles.map((value) => {
-    //   return Image.push(value.file.filename);
-    // });
-    res.status(200).json({video:videoFiles[0].filename,imagesFiles});
+    imagesFiles.map((value) => {
+      return Image.push(value.filename);
+    });
+    res.status(200).json({video:videoFiles[0].filename,Image});
 
     // const createdCars = carsDetails.create({
     //   Make: make,
