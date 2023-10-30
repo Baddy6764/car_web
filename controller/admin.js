@@ -32,7 +32,7 @@ exports.Registercars =  (req, res) => {
     let Image = [];
 
     imagesFiles.map((value) => {
-      return Image.push(value.filename);
+      return Image.push(value.file.filename);
     });
     res.status(200).json({video:videoFiles,image:Image});
 
