@@ -23,7 +23,7 @@ exports.Registercars =  (req, res) => {
     // if (!decoded) {
     //   return res.status(401).json({ error: "User not found" });
     // }
-    if (!images || !video || !engine || !generation || !make || !model) {
+    if ( !engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
     // let Image = [];
