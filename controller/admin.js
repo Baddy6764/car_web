@@ -41,8 +41,8 @@ exports.Registercars =  (req, res) => {
       Model: model,
       Generation: generation,
       Engine: engine,
-      // images: Image,
-      // Video: videoFiles,
+      images: Image,
+      Video: videoFiles,
       
     });
     if (!createdCars) {
