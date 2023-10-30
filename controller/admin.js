@@ -21,7 +21,7 @@ exports.Registercars =  (req, res) => {
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      let videoFiles  = req.files.video.filename;
+      let videoFiles  = req.files.video;
       let imagesFiles = req.files.images;
 
       if(!videoFiles || !imagesFiles){
@@ -36,18 +36,18 @@ exports.Registercars =  (req, res) => {
     // });
     res.status(200).json({video:videoFiles,image:imagesFiles});
 
-    const createdCars = carsDetails.create({
-      Make: make,
-      Model: model,
-      Generation: generation,
-      Engine: engine,
-      // images: Image,
-      // Video: videoFiles,
+    // const createdCars = carsDetails.create({
+    //   Make: make,
+    //   Model: model,
+    //   Generation: generation,
+    //   Engine: engine,
+    //   images: Image,
+    //   Video: videoFiles,
       
-    });
-    if (!createdCars) {
-      return res.status(400).json({ error: "user car not created" });
-    }
+    // });
+    // if (!createdCars) {
+    //   return res.status(400).json({ error: "user car not created" });
+    // }
      res
       .status(200)
       .json({ message: "user car created successfully", });
