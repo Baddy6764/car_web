@@ -32,7 +32,7 @@ exports.Registercars = async (req, res) => {
     //   return Image.push(value.file.filename);
     // });
 
-    const createdCars = carsDetails.create({
+   carsDetails.create({
       Make: make,
       Model: model,
       Generation: generation,
@@ -41,9 +41,9 @@ exports.Registercars = async (req, res) => {
       Video: "video",
       // status:"pending"
     });
-    if (!createdCars) {
-      return res.status(400).json({ error: "user car not created" });
-    }
+    // if (!createdCars) {
+    //   return res.status(400).json({ error: "user car not created" });
+    // }
      res
       .status(200)
       .json({ message: "user car created successfully", data: createdCars });
