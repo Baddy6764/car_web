@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
 
+
 exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
@@ -16,12 +17,12 @@ exports.datajson = (req, res) => {
 exports.Registercars = async (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
-    const tokenUser = await req.header("token");
-    const decoded = jwt.verify(tokenUser, "12345");
+    // const tokenUser = await req.header("token");
+    // const decoded = jwt.verify(tokenUser, "12345");
     
-    if (!decoded) {
-      return res.status(401).json({ error: "User not found" });
-    }
+    // if (!decoded) {
+    //   return res.status(401).json({ error: "User not found" });
+    // }
     if (!images || !video || !engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
@@ -31,21 +32,21 @@ exports.Registercars = async (req, res) => {
       return Image.push(value.file.filename);
     });
 
-    const createCars = carsDetails.create({
+    const createdCars = carsDetails.create({
       Make: make,
       Model: model,
       Generation: generation,
       Engine: engine,
       images: Image,
       Video: video,
-      status:"pending"
+      // status:"pending"
     });
-    if (!createCars) {
+    if (!createdCars) {
       return res.status(400).json({ error: "user car not created" });
     }
      res
       .status(200)
-      .json({ message: "user car created successfully", data: createCars });
+      .json({ message: "user car created successfully", data: createdCars });
   } catch (err) {
     console.log(err);
     return res
