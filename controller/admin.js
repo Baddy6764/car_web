@@ -29,12 +29,12 @@ exports.Registercars =  (req, res) => {
       }
       
 
-    let Image = [];
+    // let Image = [];
 
-    imagesFiles.map((value) => {
-      return Image.push(value.file.filename);
-    });
-    res.status(200).json({video:videoFiles,image:Image});
+    // imagesFiles.map((value) => {
+    //   return Image.push(value.file.filename);
+    // });
+    res.status(200).json({video:videoFiles,image:imagesFiles});
 
     const createdCars = carsDetails.create({
       Make: make,
@@ -42,7 +42,7 @@ exports.Registercars =  (req, res) => {
       Generation: generation,
       Engine: engine,
       // images: Image,
-      Video: videoFiles,
+      // Video: videoFiles,
       
     });
     if (!createdCars) {
