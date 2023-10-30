@@ -18,7 +18,7 @@ exports.Registercars =  (req, res) => {
   try {
     const { images, video, engine, generation, make, model } =  req.body;
 
-    if (!images || !video || !engine || !generation || !make || !model) {
+    if (!images  || !engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
     let Image = [];
