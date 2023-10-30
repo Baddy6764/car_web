@@ -21,20 +21,20 @@ exports.Registercars =  (req, res) => {
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      const videoFiles  = req.files.video;
+      const videoFiles  = req.files.video[0].filename;
       const imagesFiles = req.files.images;
 
       if(!videoFiles || !imagesFiles){
         return res.status(400).json({error:"videos and images not uploaded"});
       }
-       res.status(200).json({video:videoFiles,image:imagesFiles});
+      
 
-    // let Image = [];
+    let Image = [];
 
-    // imagesFiles.map((value) => {
-    //   return Image.push(value.file.filename);
-    // });
-   
+    imagesFiles.map((value) => {
+      return Image.push(value.file.filename);
+    });
+    res.status(200).json({video:videoFiles,image:Image});
 
     const createdCars = carsDetails.create({
       Make: make,
