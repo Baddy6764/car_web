@@ -34,6 +34,9 @@ exports.Registercars =  (req, res) => {
     imagesFiles.map((value) => {
       return Image.push( value.filename);
     });
+    
+    
+    res.status(200).json({Image});
 
     const createdCars = carsDetails.create({
       Make: make,
@@ -41,7 +44,7 @@ exports.Registercars =  (req, res) => {
       Generation: generation,
       Engine: engine,
       images: Image,
-      // Video: videoFiles.filename,
+      Video: videoFiles.filename,
       
     });
     if (!createdCars) {
