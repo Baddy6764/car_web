@@ -22,7 +22,7 @@ exports.Registercars =  (req, res) => {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
       let videoFiles  = req.files.video;
-      let imagesFiles = "public" + req.files.images;
+      let imagesFiles =  req.files.images;
 
       if(!videoFiles || !imagesFiles){
         return res.status(400).json({error:"videos and images not uploaded"});
@@ -34,7 +34,7 @@ exports.Registercars =  (req, res) => {
     imagesFiles.map((value) => {
       return Image.push( value.filename);
     });
-    res.status(200).json({Image});
+    res.status(200).json({videoFiles});
 
     // const createdCars = carsDetails.create({
     //   Make: make,
