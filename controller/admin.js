@@ -21,7 +21,7 @@ exports.Registercars =  (req, res) => {
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      let videoFiles  = req.files.video.filename;
+      let videoFiles  = req.files.video;
       let imagesFiles =  req.files.images;
 
       if(!videoFiles || !imagesFiles){
@@ -34,7 +34,7 @@ exports.Registercars =  (req, res) => {
     imagesFiles.map((value) => {
       return Image.push( value.filename);
     });
-    res.status(200).json({videoFiles});
+    res.status(200).json({data:videoFiles[0].filename});
 
     // const createdCars = carsDetails.create({
     //   Make: make,
