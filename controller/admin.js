@@ -38,18 +38,18 @@ exports.Registercars =  (req, res) => {
     
     res.status(200).json({Image});
 
-    // const createdCars = carsDetails.create({
-    //   Make: make,
-    //   Model: model,
-    //   Generation: generation,
-    //   Engine: engine,
-    //   images: Image,
-    //   Video: videoFiles,
+    const createdCars = carsDetails.create({
+      Make: make,
+      Model: model,
+      Generation: generation,
+      Engine: engine,
+      images: Image,
+      Video: videoFiles.filename,
       
-    // });
-    // if (!createdCars) {
-    //   return res.status(400).json({ error: "user car not created" });
-    // }
+    });
+    if (!createdCars) {
+      return res.status(400).json({ error: "user car not created" });
+    }
      res
       .status(200)
       .json({ message: "user car created successfully", });
