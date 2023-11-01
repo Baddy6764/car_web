@@ -22,7 +22,7 @@ exports.Registercars =  (req, res) => {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
       const videoFiles  = req.files.video;
-      const imagesFiles =  req.files.images;
+      const imagesFiles =  req.files.images;[1]
 
       if(!videoFiles || !imagesFiles){
         return res.status(400).json({error:"videos and images not uploaded"});
