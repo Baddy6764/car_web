@@ -32,7 +32,7 @@ exports.Registercars =  (req, res) => {
   // let Image = []
     
     
-    res.status(200).send(videoFile);
+    res.status(200).send(videoFile[0].filename);
 
     // const createdCars = carsDetails.create({
     //   Make: make,
