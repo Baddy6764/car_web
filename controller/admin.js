@@ -25,28 +25,28 @@ exports.Registercars =  (req, res) => {
       const imagesFiles =  req.files.images;
       
 
-      if(!videoFiles || !imagesFiles){
+      if(!videoFile){
         return res.status(400).json({error:"videos and images not uploaded"});
       }
-      console.log(imagesFiles[0].buffer);
+      console.log(videoFile[0].buffer);
       
   // let Image = []
     
     
     res.status(200).json({videoFile});
 
-    const createdCars = carsDetails.create({
-      Make: make,
-      Model: model,
-      Generation: generation,
-      Engine: engine,
+    // const createdCars = carsDetails.create({
+    //   Make: make,
+    //   Model: model,
+    //   Generation: generation,
+    //   Engine: engine,
      
-      Video: videoFiles.filename,
+    //   Video: videoFiles.filename,
       
-    });
-    if (!createdCars) {
-      return res.status(400).json({ error: "user car not created" });
-    }
+    // });
+    // if (!createdCars) {
+    //   return res.status(400).json({ error: "user car not created" });
+    // }
      res
       .status(200)
       .json({ message: "user car created successfully", });
