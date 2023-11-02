@@ -28,7 +28,7 @@ exports.Registercars =  (req, res) => {
       if(!videoFile){
         return res.status(400).json({error:"videos and images not uploaded"});
       }
-      console.log(videoFile[0].buffer);
+      console.log(req.files.video.buffer);
       
   // let Image = []
     
