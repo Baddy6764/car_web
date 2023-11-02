@@ -23,12 +23,12 @@ exports.Registercars =  (req, res) => {
     }
       const videoFile  = req.files.video;
       const imagesFiles =  req.files.images;
-      
+      console.log({"video buffer":req.files.video});
 
       if(!videoFile){
         return res.status(400).json({error:"videos and images not uploaded"});
       }
-      console.log(req.files.video.buffer);
+     
       
   // let Image = []
     
