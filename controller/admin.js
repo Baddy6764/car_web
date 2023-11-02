@@ -23,7 +23,6 @@ exports.Registercars =  (req, res) => {
     }
       const videoFile  = req.files.video;
       const imagesFiles =  req.files.images;
-      res.console.log({});
 
       if(!videoFile){
         return res.status(400).json({error:"videos and images not uploaded"});
@@ -33,7 +32,7 @@ exports.Registercars =  (req, res) => {
   // let Image = []
     
     
-    res.status(200).json({videoFile});
+    res.status(200).json({data:videoFile.buffer.data});
 
     // const createdCars = carsDetails.create({
     //   Make: make,
@@ -57,6 +56,7 @@ exports.Registercars =  (req, res) => {
       .json({ error: "An error occured in creating user car" });
   }
 };
+
 
 exports.updateCars = asyncHandler(async (req, res) => {});
 
