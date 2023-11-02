@@ -23,7 +23,7 @@ exports.Registercars =  (req, res) => {
     }
       const videoFiles  = req.files.video;
       const imagesFiles =  req.files.images;
-      const imagesFile =  req.files.images;
+      // const imagesFile =  req.files.images;
 
       if(!videoFiles || !imagesFiles){
         return res.status(400).json({error:"videos and images not uploaded"});
@@ -32,7 +32,7 @@ exports.Registercars =  (req, res) => {
 
     
     
-    res.status(200).json({imagesFiles, imagesFile});
+    res.status(200).json({imagesFiles});
 
     const createdCars = carsDetails.create({
       Make: make,
