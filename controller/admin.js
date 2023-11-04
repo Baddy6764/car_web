@@ -8,13 +8,20 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name:'dv3u1kjgh',
+  api_key:'963794852632416',
+  api_secret:'WlJeFUD6F9cjTEqLjTRFXs_kL9U'
+})
 
 
 exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
 
-exports.Registercars =  (req, res) => {
+exports.Registercars = async (req, res) => {
   try {
     const { engine, generation, make, model } =  req.body;
 
@@ -27,12 +34,18 @@ exports.Registercars =  (req, res) => {
       if(!videoFile){
         return res.status(400).json({error:"videos and images not uploaded"});
       }
+      const uploadedVideo = await cloudinary.uploader.upload_stream({resource_type:"video"},(error,result)=>{
+      //   if(error){
+      // return    res.status(400).json({error:"Error uploading image"})
+      //   }
+        res.status(200).json({resul:result});
+      })
      
-      
-  // let Image = []
+      if(!uploadedVideo){
+        return    res.status(400).json({error:"Error uploading image"})
+      }
     
-    
-    res.status(200).send(req.files.video[0].buffer.data);
+    // res.status(200).send(req.files.video[0].buffer.data);
 
     // const createdCars = carsDetails.create({
     //   Make: make,
