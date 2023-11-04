@@ -40,7 +40,7 @@ exports.Registercars = async (req, res) => {
         }
         res.status(200).json({resul:result});
       }).end(req.file.buffer)
-     
+     res.status(200).json(imagesFiles);
     
     
     // res.status(200).send(req.files.video[0].buffer.data);
