@@ -57,10 +57,11 @@ router.get(
 router.post(
   "/register/car",
   // isAuth,
-  upload.fields([
-    { name: "images", maxCount: 2 },
-    { name: "video", maxCount: 1 },
-  ]),
+  // upload.fields([
+  //   { name: "images", maxCount: 2 },
+  //   { name: "video", maxCount: 1 },
+  // ]),
+  upload.single('video'),
   adminController.Registercars
 );
 
