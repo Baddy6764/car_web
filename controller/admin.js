@@ -37,9 +37,8 @@ exports.Registercars = async (req, res) => {
        cloudinary.uploader.upload_stream({resource_type:'video'},(error,result)=>{
         if(error){
       return res.status(400).json({error:"Error uploading image"})
-        }else{ 
-          res.status(200).json({resul:result});
         }
+        res.status(200).json({resul:result});
       }).end(req.file.buffer)
      
     
