@@ -44,6 +44,8 @@ exports.Registercars = async (req, res) => {
       if(!uploadedVideo){
         return    res.status(400).json({error:"Error uploading image"})
       }
+
+      res.status(200).json({resul:result});
     
     // res.status(200).send(req.files.video[0].buffer.data);
 
@@ -59,9 +61,9 @@ exports.Registercars = async (req, res) => {
     // if (!createdCars) {
     //   return res.status(400).json({ error: "user car not created" });
     // }
-     res
-      .status(200)
-      .json({ message: "user car created successfully", });
+    //  res
+    //   .status(200)
+    //   .json({ message: "user car created successfully", });
   } catch (err) {
     console.log(err);
     return res
