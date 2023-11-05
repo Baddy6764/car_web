@@ -44,10 +44,8 @@ exports.Registercars = async (req, res) => {
     //  if(!result){
     //   res.status(400).json({error:"no result"});
     //  }
-    for(const imageFile of req.files.images){
-      res.status(200).json(imageFile.buffer);
-      res.status(200).json(imageFile.buffer);
-    }
+    res.status(200).json(imagesFiles[0]);
+    res.status(200).json(imagesFiles[1]);
     
     
 
