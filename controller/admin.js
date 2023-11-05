@@ -30,7 +30,7 @@ exports.Registercars = async (req, res) => {
     }
       const videoFile  = req.files.video;
       const imagesFiles =  req.files.images;
-      // const imagesFile =  req.files.images;
+      const imagesFile =  req.files.images;
 
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
@@ -50,7 +50,7 @@ exports.Registercars = async (req, res) => {
     //     res.status(200).json({resul:result});
     //   })
 
-    res.status(200).json(imagesFiles.buffer.data);
+    res.status(200).json({data:imagesFiles.buffer.data});
     // res.status(200).json(imagesFile);
     
     
