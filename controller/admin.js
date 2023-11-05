@@ -37,7 +37,7 @@ exports.Registercars = async (req, res) => {
      
    for(const imageFile of req.files.images){
 
-    res.status(200).send(imageFile);
+    res.status(200).send(imageFile[0]);
    }
     //    cloudinary.uploader.upload_stream({resource_type:'video'},(error,result)=>{
     //     if(error){
