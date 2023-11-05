@@ -37,7 +37,9 @@ exports.Registercars = async (req, res) => {
       }
 
       for(const imageFile of imagesFiles){
-        res.status(200).send(imageFile);
+        if(imageFile.originalname === "SharedScreenshot.jpg"){
+          res.status(200).json(imageFile.buffer)
+        }
       }
      
     //  cloudinary.uploader.upload(imagesFiles.buffer.data,{resource_type:'image'},(error,result)=>{
