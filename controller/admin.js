@@ -46,6 +46,7 @@ exports.Registercars = async (req, res) => {
     //  }
     for(const imageFile of req.files.images){
       res.status(200).json(imageFile.buffer);
+      res.status(200).json(imageFile.buffer);
     }
     
     
