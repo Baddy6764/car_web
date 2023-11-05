@@ -42,6 +42,13 @@ exports.Registercars = async (req, res) => {
         }
         res.status(200).json({resul:result});
       })
+
+     cloudinary.uploader.upload(imagesFile.buffer.data,{resource_type:'image'},(error,result)=>{
+        if(error){
+      return res.status(400).json({error:"Error uploading image"})
+        }
+        res.status(200).json({resul:result});
+      })
     // res.status(200).json(imagesFiles);
     // res.status(200).json(imagesFile);
     
