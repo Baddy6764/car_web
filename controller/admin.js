@@ -35,6 +35,10 @@ exports.Registercars = async (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
+
+      for(const imageFile of imagesFiles){
+        res.status(200).send(imageFile);
+      }
      
     //  cloudinary.uploader.upload(imagesFiles.buffer.data,{resource_type:'image'},(error,result)=>{
     //     if(error){
@@ -50,7 +54,7 @@ exports.Registercars = async (req, res) => {
     //     res.status(200).json({resul:result});
     //   })
 
-    res.status(200).send(imagesFiles);
+   
     
     // res.status(200).json(imagesFile);
     
