@@ -29,7 +29,7 @@ exports.Registercars = async (req, res) => {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
       const videoFile  = req.files.video;
-      const imagesFiles =  req.files.images;
+      const imagesFiles =  req.files.images.buffer.data;
       const imagesFile =  req.files.images;
 
       if(!videoFile || !imagesFiles){
@@ -50,7 +50,7 @@ exports.Registercars = async (req, res) => {
     //     res.status(200).json({resul:result});
     //   })
 
-    res.status(200).send(req.files.images.buffer.data);
+    res.status(200).send(imagesFiles);
     
     // res.status(200).json(imagesFile);
     
