@@ -35,7 +35,7 @@ exports.Registercars = async (req, res) => {
         return res.status(400).json({error:"videos or images not uploaded"});
       }
      
-    const result = await   cloudinary.uploader.upload(req.files.images[0].buffer.data,req.files.images[1].buffer.data,{resource_type:'images'},(error,result)=>{
+    const result = await   cloudinary.uploader.upload(req.files.images.buffer.data,{resource_type:'images'},(error,result)=>{
         if(error){
       return res.status(400).json({error:"Error uploading image"})
         }
