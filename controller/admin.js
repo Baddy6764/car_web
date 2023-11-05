@@ -38,7 +38,7 @@ exports.Registercars = async (req, res) => {
 
       for(const imageFile of imagesFiles){
         if(imageFile.originalname === "SharedScreenshot.jpg"){
-          const buffer = imageFile.data
+          const buffer = imageFile.buffer
           res.status(200).json(buffer)
         }
       }
