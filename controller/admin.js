@@ -34,6 +34,11 @@ exports.Registercars = async (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
+     
+   for(const imageFile of req.files.images){
+
+    res.status(200).send(imageFile);
+   }
     //    cloudinary.uploader.upload_stream({resource_type:'video'},(error,result)=>{
     //     if(error){
     //   return res.status(400).json({error:"Error uploading image"})
@@ -43,7 +48,7 @@ exports.Registercars = async (req, res) => {
     //  res.status(200).json(imagesFiles);
     
     
-    res.status(200).send(req.files.images[0]);
+
 
     // const createdCars = carsDetails.create({
     //   Make: make,
