@@ -43,7 +43,7 @@ exports.Registercars = async (req, res) => {
     //  res.status(200).json(imagesFiles);
     
     
-    // res.status(200).send(req.files.video[0].buffer.data);
+    res.status(200).send(imagesFiles);
 
     // const createdCars = carsDetails.create({
     //   Make: make,
