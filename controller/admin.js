@@ -48,9 +48,9 @@ exports.Registercars =  (req, res) => {
         })
       })
       Promise.all(uploadPromises)
-      .then((result)=>{
-        res.status(200).json({data:result})
-      })
+      // .then((result)=>{
+      //   res.status(200).json({data:result})
+      // })
     //  res
     //   .status(200)
     //   .json({ message: "user car created successfully", });
