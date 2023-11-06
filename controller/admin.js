@@ -58,7 +58,7 @@ exports.Registercars =  (req, res) => {
 
       // cloudinary.uploader.upload_stream(videoFile.buffer)
 
-      res.status(200).json(videoFile.originalname);
+      res.send(videoFile);
     //  res
     //   .status(200)
     //   .json({ message: "user car created successfully", });
