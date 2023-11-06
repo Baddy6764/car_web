@@ -37,7 +37,7 @@ exports.Registercars =  (req, res) => {
       }
       const uploadPromises = imagesFiles.map((imageFile)=>{
         return new Promise((resolve, reject)=>{
-          cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
+          cloudinary.uploader.upload(imageFile.buffer.data,{resource_type:'images'},(error,result)=>{
             if(error){
           reject(error)
             }else{
@@ -48,9 +48,9 @@ exports.Registercars =  (req, res) => {
         })
       })
       Promise.all(uploadPromises)
-      // .then((result)=>{
-      //   res.status(200).json({data:result})
-      // })
+      .then((results)=>{
+        res.status(200).json({data : results})
+      })
     //  res
     //   .status(200)
     //   .json({ message: "user car created successfully", });
