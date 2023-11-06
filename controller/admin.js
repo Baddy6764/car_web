@@ -29,34 +29,34 @@ exports.Registercars =  (req, res) => {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
       let videosFile  = req.files.video;
-      const imagesFiles =  req.files.images;
+      let imagesFiles =  req.files.images;
      
 
       if(!videosFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
-      // const uploadPromises = imagesFiles.map((imageFile)=>{
-      //   return new Promise((resolve, reject)=>{
-      //    if(imageFile.buffer){
-      //     cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
-      //       if(error){
-      //     reject(error)
-      //       }else{
-      //         resolve(result);
-      //       }
+      const uploadPromises = imagesFiles.map((imageFile)=>{
+        return new Promise((resolve, reject)=>{
+         if(imageFile.buffer.data){
+          cloudinary.uploader.upload(imageFile.buffer.data,{resource_type:'images'},(error,result)=>{
+            if(error){
+          reject(error)
+            }else{
+              resolve(result);
+            }
            
-      //     })
-      //    }else{
-      //     res.status(400).json("no buffer");
-      //    }
-      //   })
-      // })
-      // Promise.all(uploadPromises)
-      // .then((results)=>{
-      //   res.status(200).json({data : results})
-      // })
+          })
+         }else{
+          res.status(400).json("no buffer");
+         }
+        })
+      })
+      Promise.all(uploadPromises)
+      .then((results)=>{
+        res.status(200).json({data : results})
+      })
 
-      // cloudinary.uploader.upload_stream(videoFile.buffer)
+    
 
    const videoPromises =   videosFile.map((videoFile)=>{
         return  new Promise((resolve,reject)=>{
