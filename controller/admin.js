@@ -35,28 +35,30 @@ exports.Registercars =  (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
-      const uploadPromises = imagesFiles.map((imageFile)=>{
-        return new Promise((resolve, reject)=>{
-         if(imageFile.buffer){
-          cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
-            if(error){
-          reject(error)
-          res.status(400).json(error)
-            }else{
-              resolve(result);
-              res.status(200).json(result)
-            }
+      // const uploadPromises = imagesFiles.map((imageFile)=>{
+      //   return new Promise((resolve, reject)=>{
+      //    if(imageFile.buffer){
+      //     cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
+      //       if(error){
+      //     reject(error)
+      //       }else{
+      //         resolve(result);
+      //       }
            
-          })
-         }else{
-          res.status(400).json("no buffer");
-         }
-        })
-      })
-      Promise.all(uploadPromises)
-      .then((results)=>{
-        res.status(200).json({data : results})
-      })
+      //     })
+      //    }else{
+      //     res.status(400).json("no buffer");
+      //    }
+      //   })
+      // })
+      // Promise.all(uploadPromises)
+      // .then((results)=>{
+      //   res.status(200).json({data : results})
+      // })
+
+      // cloudinary.uploader.upload_stream(videoFile.buffer)
+
+      res.status(200).json(videoFile);
     //  res
     //   .status(200)
     //   .json({ message: "user car created successfully", });
