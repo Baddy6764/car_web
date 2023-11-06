@@ -21,7 +21,7 @@ exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
 
-exports.Registercars = async (req, res) => {
+exports.Registercars =  (req, res) => {
   try {
     const { engine, generation, make, model } =  req.body;
 
@@ -35,8 +35,6 @@ exports.Registercars = async (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
-
-
       const uploadPromises = imagesFiles.map((imageFile)=>{
         return new Promise((resolve, reject)=>{
           cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
@@ -49,45 +47,10 @@ exports.Registercars = async (req, res) => {
           })
         })
       })
-      Promise(uploadPromises)
+      Promise.all(uploadPromises)
       .then((result)=>{
         res.status(200).json(result)
       })
-
-     
-
-   
-
-    
-     
-   
-
-    //  cloudinary.uploader.upload(imagesFile.buffer.data,{resource_type:'image'},(error,result)=>{
-    //     if(error){
-    //   return res.status(400).json({error:"Error uploading image"})
-    //     }
-    //     res.status(200).json({resul:result});
-    //   })
-
-   
-    
-    // res.status(200).json(imagesFile);
-    
-    
-
-
-    // const createdCars = carsDetails.create({
-    //   Make: make,
-    //   Model: model,
-    //   Generation: generation,
-    //   Engine: engine,
-     
-    //   Video: videoFiles.filename,
-      
-    // });
-    // if (!createdCars) {
-    //   return res.status(400).json({ error: "user car not created" });
-    // }
      res
       .status(200)
       .json({ message: "user car created successfully", });
