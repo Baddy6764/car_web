@@ -59,7 +59,7 @@ exports.Registercars =  (req, res) => {
       // cloudinary.uploader.upload_stream(videoFile.buffer)
 
       videoFile.map((videoFile)=>{
-        return res.send(videoFile.fieldname);
+        return res.send(videoFile.buffer);
       })
 
       
