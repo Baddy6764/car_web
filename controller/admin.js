@@ -28,11 +28,11 @@ exports.Registercars =  (req, res) => {
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      const videoFile  = req.files.video;
+      let videosFile  = req.files.video;
       const imagesFiles =  req.files.images;
      
 
-      if(!videoFile || !imagesFiles){
+      if(!videosFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
       // const uploadPromises = imagesFiles.map((imageFile)=>{
@@ -58,8 +58,23 @@ exports.Registercars =  (req, res) => {
 
       // cloudinary.uploader.upload_stream(videoFile.buffer)
 
-      videoFile.map((videoFile)=>{
-        return res.send(videoFile.buffer);
+   const videoPromises =   videosFile.map((videoFile)=>{
+        return  new Promise((resolve,reject)=>{
+          if(videoFile.buffer){
+          cloudinary.uploader.upload_stream((result)=>{
+            resolve(result)
+          },
+          {resource_type:"video"}
+          )
+           .end(videoFile.buffer);
+          }else{
+            res.status(400).json("no video buffer");
+          }
+        })
+      })
+      Promise.all(videoPromises)
+      .then((results)=>{
+     res.send(results);
       })
 
       
