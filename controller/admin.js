@@ -45,6 +45,7 @@ exports.Registercars =  async(req, res) => {
                   reject(error)
                 }else{
                   resolve(result)
+                  res.status(400).json({imageResult:result})
                 }
               })
             }else{
@@ -59,15 +60,14 @@ exports.Registercars =  async(req, res) => {
         res.status(400).json({error:"No video File"})
       }
 
-      cloudinary.uploader.upload_stream(
+      cloudinary.uploader.upload_stream(videoFile.buffer,
         {resource_type:"video"},
         (result)=>{
           res.status(200).json({videoResult:result})
         }
       ).end(videoFile.buffer)
 
-      // const imageResult = await Promise.all(imagePromises)
-      // res.status(200).json({imageresul:imageResult});
+
 
   } catch (err) {
     console.log(err);
