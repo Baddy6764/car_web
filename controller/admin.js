@@ -37,6 +37,7 @@ exports.Registercars =  (req, res) => {
       }
       const uploadPromises = imagesFiles.map((imageFile)=>{
         return new Promise((resolve, reject)=>{
+         if(imageFile.buffer.data){
           cloudinary.uploader.upload(imageFile.buffer.data,{resource_type:'images'},(error,result)=>{
             if(error){
           reject(error)
@@ -45,6 +46,9 @@ exports.Registercars =  (req, res) => {
             }
            
           })
+         }else{
+          res.status(400).json("no buffer data");
+         }
         })
       })
       Promise.all(uploadPromises)
