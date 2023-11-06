@@ -66,8 +66,8 @@ exports.Registercars =  async(req, res) => {
         }
       ).end(videoFile.buffer)
 
-      const imageResult = await Promise.all(imagePromises)
-      res.status(200).json({imageresul:imageResult});
+      // const imageResult = await Promise.all(imagePromises)
+      // res.status(200).json({imageresul:imageResult});
 
   } catch (err) {
     console.log(err);
