@@ -51,9 +51,9 @@ exports.Registercars =  (req, res) => {
       .then((result)=>{
         res.status(200).json(result)
       })
-     res
-      .status(200)
-      .json({ message: "user car created successfully", });
+    //  res
+    //   .status(200)
+    //   .json({ message: "user car created successfully", });
   } catch (err) {
     console.log(err);
     return res
