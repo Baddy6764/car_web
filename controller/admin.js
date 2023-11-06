@@ -41,8 +41,10 @@ exports.Registercars =  (req, res) => {
           cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
             if(error){
           reject(error)
+          res.status(400).json(error)
             }else{
               resolve(result);
+              res.status(200).json(result)
             }
            
           })
