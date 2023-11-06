@@ -38,10 +38,10 @@ exports.Registercars = async (req, res) => {
        let arrayImage = []
 
       for(const imageFile of imagesFiles){
-        arrayImage.push(imageFile);
+        res.status(200).json(imageFile.buffer);
       }
-      let imageOne = arrayImage[0].buffer.data
-      res.status(200).json(imageOne);
+      
+    
      
     //  cloudinary.uploader.upload(imagesFiles.buffer.data,{resource_type:'image'},(error,result)=>{
     //     if(error){
