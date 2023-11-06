@@ -35,23 +35,20 @@ exports.Registercars = async (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
-       let arrayImage = []
+      //  let arrayImage = []
 
       for(const imageFile of imagesFiles){
-        arrayImage.push(imageFile);
+        cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
+          if(error){
+        return res.status(400).json({error:"Error uploading image"})
+          }
+          res.status(200).json({resul:result});
+        })
       }
-      let imageOne = arrayImage[0]
-      let imageTwo = arrayImage[1]
-      res.status(200).json({data:imageOne,imageTwo})
 
     
      
-    //  cloudinary.uploader.upload(imagesFiles.buffer.data,{resource_type:'image'},(error,result)=>{
-    //     if(error){
-    //   return res.status(400).json({error:"Error uploading image"})
-    //     }
-    //     res.status(200).json({resul:result});
-    //   })
+   
 
     //  cloudinary.uploader.upload(imagesFile.buffer.data,{resource_type:'image'},(error,result)=>{
     //     if(error){
