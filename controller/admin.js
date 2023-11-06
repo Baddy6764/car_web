@@ -35,13 +35,12 @@ exports.Registercars = async (req, res) => {
       if(!videoFile || !imagesFiles){
         return res.status(400).json({error:"videos or images not uploaded"});
       }
+       let arrayImage = []
 
       for(const imageFile of imagesFiles){
-        if(imageFile.originalname === "SharedScreenshot.jpg"){
-          const buffer = imageFile.buffer.type;
-          res.status(200).json(buffer)
-        }
+        arrayImage.push(imageFile);
       }
+      res.status(200).json(arrayImage);
      
     //  cloudinary.uploader.upload(imagesFiles.buffer.data,{resource_type:'image'},(error,result)=>{
     //     if(error){
