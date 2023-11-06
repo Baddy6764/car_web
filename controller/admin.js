@@ -8,6 +8,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
+const { json } = require("body-parser");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
@@ -21,66 +22,53 @@ exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
 
-exports.Registercars =  (req, res) => {
+exports.Registercars =  async(req, res) => {
   try {
     const { engine, generation, make, model } =  req.body;
 
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
-      let videosFile  = req.files.video;
-      let imagesFiles =  req.files.images;
-     
+
+      const videosFile  = req.files.video;
+      const imagesFiles =  req.files.images;
 
       if(!videosFile || !imagesFiles){
-        return res.status(400).json({error:"videos or images not uploaded"});
+        return res.status(400).json({error:"Videos or Images not uploaded"});
       }
-      const uploadPromises = imagesFiles.map((imageFile)=>{
-        return new Promise((resolve, reject)=>{
-         if(imageFile.buffer){
-          cloudinary.uploader.upload(imageFile.buffer,{resource_type:'images'},(error,result)=>{
-            if(error){
-          reject(error)
+
+      const imagePromises  =   imagesFiles.map((imageFile)=>{
+          return new Promise((resolve,reject)=>{
+            if(imageFile.buffer){
+              cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
+                if(error){
+                  reject(error)
+                }else{
+                  resolve(result)
+                }
+              })
             }else{
-              resolve(result);
+              resolve("No image buffer")
             }
-           
           })
-         }else{
-          res.status(400).json("no buffer");
-         }
-        })
-      })
-      Promise.all(uploadPromises)
-      .then((results)=>{
-        res.status(200).json({data : results})
       })
 
-    
+      const videoFile = videosFile[0];
 
-   const videoPromises =   videosFile.map((videoFile)=>{
-        return  new Promise((resolve,reject)=>{
-          if(videoFile.buffer){
-          cloudinary.uploader.upload_stream((result)=>{
-            resolve(result)
-          },
-          {resource_type:"video"}
-          )
-           .end(videoFile.buffer);
-          }else{
-            res.status(400).json("no video buffer");
-          }
-        })
-      })
-      Promise.all(videoPromises)
-      .then((results)=>{
-     res.send(results);
-      })
+      if(!videoFile){
+        res.status(400).json({error:"No video File"})
+      }
 
-      
-    //  res
-    //   .status(200)
-    //   .json({ message: "user car created successfully", });
+      cloudinary.uploader.upload_stream(
+        {resource_type:"video"},
+        (result)=>{
+          res.status(200).json({videoResult:result})
+        }
+      ).end(videoFile.buffer)
+
+      const imageResult = await Promise.all(imagePromises)
+      res.status(200).json({imageresul:imageResult});
+
   } catch (err) {
     console.log(err);
     return res
