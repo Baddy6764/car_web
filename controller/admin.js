@@ -37,34 +37,19 @@ exports.Registercars =  async(req, res) => {
         return res.status(400).json({error:"Videos or Images not uploaded"});
       }
 
-      const imagePromises  =   imagesFiles.map((imageFile)=>{
-          return new Promise((resolve,reject)=>{
-            if(imageFile.buffer){
-              cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
-                if(error){
-                  reject(error)
-                }else{
-                  resolve(result)
-                  res.status(400).json({imageResult:result})
-                }
-              })
-              cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
-                if(error){
-                  reject(error)
-                }else{
-                  resolve(result)
-                  res.status(400).json({imageResult:result})
-                }
-              })
-            }else{
-              resolve("No image buffer")
-            }
-          })
-      })
-      Promise.all(imagePromises)
-      .then((results)=>{
-        res.status(200).json({imageResul:results});
-      })
+      const imageFile = imagesFiles[0];
+      res.status(200).json({imagefile:imageFile});
+
+
+
+      // cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
+      //   if(error){
+      //     reject(error)
+      //   }else{
+      //     resolve(result)
+      //     res.status(400).json({imageResult:result})
+      //   }
+      // })
 
 
 
