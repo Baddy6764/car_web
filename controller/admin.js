@@ -40,7 +40,15 @@ exports.Registercars =  async(req, res) => {
       const imagePromises  =   imagesFiles.map((imageFile)=>{
           return new Promise((resolve,reject)=>{
             if(imageFile.buffer){
-              cloudinary.uploader.upload(imageFile[0].buffer,imageFile[1].buffer, {resource_type:"images"},(error,result)=>{
+              cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
+                if(error){
+                  reject(error)
+                }else{
+                  resolve(result)
+                  res.status(400).json({imageResult:result})
+                }
+              })
+              cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
                 if(error){
                   reject(error)
                 }else{
@@ -60,9 +68,8 @@ exports.Registercars =  async(req, res) => {
 
 
 
-
-
       
+
       // const videoFile = videosFile[0];
 
       // if(!videoFile){
