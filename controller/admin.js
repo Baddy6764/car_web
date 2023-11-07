@@ -53,6 +53,10 @@ exports.Registercars =  async(req, res) => {
             }
           })
       })
+      Promise.all(imagePromises)
+      .then((results)=>{
+        res.status(200).json({imageResul:results});
+      })
 
       const videoFile = videosFile[0];
 
