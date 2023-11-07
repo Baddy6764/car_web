@@ -39,11 +39,11 @@ exports.Registercars =  async(req, res) => {
 
       const imageFile = imagesFiles[0];
 
-      if(!imageFile.buffer){
+      if(!imageFile){
         return res.status(400).json({error:"Image buffer not found"})
       }
 
-      cloudinary.uploader.upload(imageFile,{resource_type:"images"},(error,result)=>{
+   const imagesUploaded =  await   cloudinary.uploader.upload(imageFile,{resource_type:"images"},(error,result)=>{
         if(error){
         return  res.status(400).json({error})
         }else{
@@ -65,6 +65,7 @@ exports.Registercars =  async(req, res) => {
           res.status(200).json({result})
         }
       })
+      res.status(200).json({imagesUploaded})
 
 
 
