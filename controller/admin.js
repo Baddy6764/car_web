@@ -37,7 +37,7 @@ exports.Registercars =  async(req, res) => {
         return res.status(400).json({error:"Videos or Images not uploaded"});
       }
 
-      const imageFile = imagesFiles[0];
+      const imageFile = imagesFiles[1];
       res.status(200).json({imagefile:imageFile});
 
 
