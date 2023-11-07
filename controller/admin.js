@@ -37,19 +37,19 @@ exports.Registercars =  async(req, res) => {
         return res.status(400).json({error:"Videos or Images not uploaded"});
       }
 
-      const imageFile = imagesFiles[1];
-      res.status(200).json({imagefile:imageFile});
+      const imageFile = imagesFiles[0];
 
+      if(!imageFile.buffer){
+        return res.status(400).json({error:"Image buffer not found"})
+      }
 
-
-      // cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
-      //   if(error){
-      //     reject(error)
-      //   }else{
-      //     resolve(result)
-      //     res.status(400).json({imageResult:result})
-      //   }
-      // })
+      cloudinary.uploader.upload(imageFile.buffer, {resource_type:"images"},(error,result)=>{
+        if(error){
+          res.status(400).json({err:error})
+        }else{
+          res.status(400).json({imageResult:result})
+        }
+      })
 
 
 
