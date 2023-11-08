@@ -23,7 +23,7 @@ exports.datajson = (req, res) => {
 };
 
 exports.Registercars =  async(req, res) => {
-  // try {
+  try {
     const { engine, generation, make, model } =  req.body;
 
     if (!engine || !generation || !make || !model) {
@@ -31,6 +31,7 @@ exports.Registercars =  async(req, res) => {
     }
 
       const videosFile  = req.files.video;
+
       const imagesFiles =  req.files.images;
 
       if(!videosFile || !imagesFiles){
@@ -50,25 +51,25 @@ exports.Registercars =  async(req, res) => {
       return res.status(400).json({error:"No ImageTwo"});
      }
 
-    //  res.status(200).json({imageFile, imageFileTwo});
        
-   const imageFileUploaded = await cloudinary.uploader.upload(imageFile,)
+   const imageFileUploaded = await cloudinary.uploader.upload(imageFile,{upload_preset:"ml_default"})
 
    if(imageFileUploaded.error){
     return res.status(400).json({error:imageFileUploaded.error.message});
    }
+   res.status(200).json({imageFileUploaded});
 
-   if(imageFileTwo){
-    const resultTwo = await cloudinary.uploader.upload(imageFileTwo,);
+  //  if(imageFileTwo){
+  //   const resultTwo = await cloudinary.uploader.upload(imageFileTwo,{upload_preset:"ml_default"});
 
-    if(resultTwo.error){
-      return res.status(400).json({error:resultTwo.error.message});
-    }
-    return res.status(200).json({imageFile, imageFileTwo, imageFileUploaded, resultTwo});
+  //   if(resultTwo.error){
+  //     return res.status(400).json({error:resultTwo.error.message});
+  //   }
+  //   return res.status(200).json({imageFile, imageFileTwo, imageFileUploaded, resultTwo});
 
-   } else{
-    return res.status(200).json({imageFile,imageFileUploaded});
-   }
+  //  } else{
+  //   return res.status(200).json({imageFile,imageFileUploaded});
+  //  }
 
 
 
@@ -90,12 +91,12 @@ exports.Registercars =  async(req, res) => {
 
 
 
-  // } catch (err) {
-  //   console.log(err);
-  //   return res
-  //     .status(400)
-  //     .json({ error: "An error occured in creating user car" });
-  // }
+  } catch (err) {
+    console.log(err);
+    return res
+      .status(400)
+      .json({ error: "An error occured in creating user car" });
+  }
 };
 
 
