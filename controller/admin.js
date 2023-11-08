@@ -51,10 +51,10 @@ exports.Registercars =  async(req, res) => {
       return res.status(400).json({error:"No ImageTwo"});
      }
 
-     res.status(200).json({data:imagesFiles[0]});
+     
 
        
-   const imageFileUploaded = await cloudinary.uploader.upload(imageFile,{upload_preset:"ml_default"})
+   const imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{upload_preset:"ml_default"})
 
    if(imageFileUploaded.error){
     return res.status(400).json({error:imageFileUploaded.error.message});
@@ -62,7 +62,7 @@ exports.Registercars =  async(req, res) => {
    res.status(200).json({imageFileUploaded});
 
    if(imageFileTwo){
-    const resultTwo = await cloudinary.uploader.upload(imageFileTwo,{upload_preset:"ml_default"});
+    const resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{upload_preset:"ml_default"});
 
     if(resultTwo.error){
       return res.status(400).json({error:resultTwo.error.message});
