@@ -52,7 +52,7 @@ exports.Registercars =  async(req, res) => {
      }
 
        
-   const imageFileUploaded = await cloudinary.uploader.upload(req.files.images[0],{upload_preset:"ml_default"})
+   const imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{upload_preset:"ml_default"})
 
    if(imageFileUploaded.error){
     return res.status(400).json({error:imageFileUploaded.error.message});
