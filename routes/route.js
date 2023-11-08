@@ -64,15 +64,9 @@ router.post(
   adminController.Registercars
 );
 
-// router.get("/register/cars",(req,res)=>{
-//   res.send(`
-//   <form action="/register/car" method="post" enctype="multipart/form-data">
-//   <input type="file" name="images" multiple accept=".jpg"><br>
-//   <button type="submit">submit</button>
-// </form>
-//   `)
-  
-// })
+
+
+
 
 /////Adminroute
 router.post("/admin-dashboard",  adminController.adminDasboard);

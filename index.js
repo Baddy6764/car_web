@@ -8,6 +8,7 @@ const connectDB = require("./db/connect");
 const admin = require("./controller/admin");
 const session = require("express-session");
 const passport = require("passport");
+app.set('view engine','ejs')
 const multer = require("multer");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));

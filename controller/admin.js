@@ -42,47 +42,33 @@ exports.Registercars =  async(req, res) => {
 
       const imageFileTwo = imagesFiles[1]
 
+let imageFileUploaded, resultTwo;
 
-      if(!imageFile){
-        return res.status(400).json({error:"No Image"})
-      }
-
-     if(!imageFileTwo){
-      return res.status(400).json({error:"No ImageTwo"});
-     }
-
-     
-
-       
-   const imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{upload_preset:"ml_default"})
-
-   if(imageFileUploaded.error){
+if(imageFile){
+  imageFileUploaded = await cloudinary.uploader.upload(imageFile,{upload_preset:"ml_default"})
+  if(imageFileUploaded.error){
     return res.status(400).json({error:imageFileUploaded.error.message});
    }
-   res.status(200).json({imageFileUploaded});
+}
+
 
    if(imageFileTwo){
-    const resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{upload_preset:"ml_default"});
-
+     resultTwo = await cloudinary.uploader.upload(imageFileTwo,{upload_preset:"ml_default"});
     if(resultTwo.error){
       return res.status(400).json({error:resultTwo.error.message});
     }
-     res.status(200).json({imageFile, imageFileTwo, imageFileUploaded, resultTwo});
-
-   } else{
-     res.status(200).json({imageFile,imageFileUploaded});
    }
 
 
       const videoFile = videosFile[0];
       if(!videoFile){
-     return   res.status(400).json({error:"No video File"})
+     return  res.status(400).json({error:"No video File"})
       }
 
       cloudinary.uploader.upload_stream(
         {resource_type:"video"},
         (result)=>{
-          res.status(200).json({result})
+          res.status(200).json({video:result,imageFileUploaded,resultTwo});
         }
       ).end(videoFile.buffer)
 
