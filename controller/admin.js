@@ -52,42 +52,37 @@ exports.Registercars =  async(req, res) => {
      }
 
        
-   const imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{upload_preset:"ml_default"})
+   const imageFileUploaded = await cloudinary.uploader.upload(imageFile,{upload_preset:"ml_default"})
 
    if(imageFileUploaded.error){
     return res.status(400).json({error:imageFileUploaded.error.message});
    }
    res.status(200).json({imageFileUploaded});
 
-  //  if(imageFileTwo){
-  //   const resultTwo = await cloudinary.uploader.upload(imageFileTwo,{upload_preset:"ml_default"});
+   if(imageFileTwo){
+    const resultTwo = await cloudinary.uploader.upload(imageFileTwo,{upload_preset:"ml_default"});
 
-  //   if(resultTwo.error){
-  //     return res.status(400).json({error:resultTwo.error.message});
-  //   }
-  //   return res.status(200).json({imageFile, imageFileTwo, imageFileUploaded, resultTwo});
+    if(resultTwo.error){
+      return res.status(400).json({error:resultTwo.error.message});
+    }
+     res.status(200).json({imageFile, imageFileTwo, imageFileUploaded, resultTwo});
 
-  //  } else{
-  //   return res.status(200).json({imageFile,imageFileUploaded});
-  //  }
-
-
+   } else{
+     res.status(200).json({imageFile,imageFileUploaded});
+   }
 
 
-      
+      const videoFile = videosFile[0];
+      if(!videoFile){
+     return   res.status(400).json({error:"No video File"})
+      }
 
-    //   const videoFile = videosFile[0];
-
-    //   if(!videoFile){
-    //  return   res.status(400).json({error:"No video File"})
-    //   }
-
-    //   cloudinary.uploader.upload_stream(
-    //     {resource_type:"video"},
-    //     (result)=>{
-    //       res.status(200).json({result})
-    //     }
-    //   ).end(videoFile.buffer)
+      cloudinary.uploader.upload_stream(
+        {resource_type:"video"},
+        (result)=>{
+          res.status(200).json({result})
+        }
+      ).end(videoFile.buffer)
 
 
 
