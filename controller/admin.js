@@ -23,7 +23,7 @@ exports.datajson = (req, res) => {
 };
 
 exports.Registercars =  async(req, res) => {
-  try {
+  // try {
     const { engine, generation, make, model } =  req.body;
 
     if (!engine || !generation || !make || !model) {
@@ -90,12 +90,12 @@ exports.Registercars =  async(req, res) => {
 
 
 
-  } catch (err) {
-    console.log(err);
-    return res
-      .status(400)
-      .json({ error: "An error occured in creating user car" });
-  }
+  // } catch (err) {
+  //   console.log(err);
+  //   return res
+  //     .status(400)
+  //     .json({ error: "An error occured in creating user car" });
+  // }
 };
 
 
