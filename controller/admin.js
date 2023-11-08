@@ -60,17 +60,17 @@ if(imageFile){
    }
 
 
-      const videoFile = videosFile[0];
-      if(!videoFile){
-     return  res.status(400).json({error:"No video File"})
-      }
+    //   const videoFile = videosFile[0];
+    //   if(!videoFile){
+    //  return  res.status(400).json({error:"No video File"})
+    //   }
 
-      cloudinary.uploader.upload_stream(
-        {resource_type:"video"},
-        (result)=>{
-          res.status(200).json({ imageFileUploaded, resultTwo, video:result,});
-        }
-      ).end(videoFile.buffer)
+    //   cloudinary.uploader.upload_stream(
+    //     {resource_type:"video"},
+    //     (result)=>{
+    //       res.status(200).json({ imageFileUploaded, resultTwo, video:result,});
+    //     }
+    //   ).end(videoFile.buffer)
 
 
 
