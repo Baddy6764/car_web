@@ -45,18 +45,20 @@ exports.Registercars =  async(req, res) => {
 let imageFileUploaded, resultTwo;
 
 if(imageFile){
-  imageFileUploaded = await cloudinary.uploader.upload({resource_type:"images"}).end(imageFile.buffer)
+  imageFileUploaded = await cloudinary.v2.uploader.upload(imageFile.buffer)
   if(imageFileUploaded.error){
     return res.status(400).json({err:imageFileUploaded.error.message});
    }
+   res.status(200).json({img:imageFileUploaded.result})
 }
 
 
    if(imageFileTwo){
-     resultTwo = await cloudinary.uploader.upload({resource_type:"image"}).end(imageFileTwo.buffer);
+     resultTwo = await cloudinary.v2.uploader.upload(imageFileTwo.buffer)
     if(resultTwo.error){
       return res.status(400).json({err:resultTwo.error.message});
     }
+    res.status(200).json({image:resultTwo.result});
    }
 
 
