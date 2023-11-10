@@ -42,7 +42,7 @@ exports.Registercars =  async(req, res) => {
 
       const imageFile = imagesFiles[0];
 
-      const imageFileTwo = imagesFiles[1]
+      const imageFileTwo = imagesFiles[1];
 
       const b64 = Buffer.from(imageFile.buffer).toString("base64");
       let dataUrl = "data:" + imageFile.mimetype + ";base64" + b64;
