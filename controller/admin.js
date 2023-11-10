@@ -44,10 +44,16 @@ exports.Registercars =  async(req, res) => {
 
       const imageFileTwo = imagesFiles[1]
 
+      const b64 = Buffer.from(imageFile.buffer).toString("base64");
+      let dataUrl = "data:" + imageFile.mimetype + ";base64" + b64;
+
+      const b64ImgTwo = Buffer.from(imageFileTwo.buffer).toString("base64");
+      let dataUl = "data;" + imageFileTwo.mimetype + ";base64" + b64ImgTwo;
+
 let imageFileUploaded, resultTwo;
 
 if(imageFile){
-  imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
+  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
   if(imageFileUploaded.error){
     return res.status(400).json({err:imageFileUploaded.error.message});
    }
@@ -55,7 +61,7 @@ if(imageFile){
 
 
    if(imageFileTwo){
-     resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
+     resultTwo = await cloudinary.uploader.upload(dataUl,{resource_type:"image"})
     if(resultTwo.error){
       return res.status(400).json({err:resultTwo.error.message});
     }
