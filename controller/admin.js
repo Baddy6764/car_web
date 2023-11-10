@@ -38,6 +38,8 @@ exports.Registercars =  async(req, res) => {
         return res.status(400).json({error:"Videos or Images not uploaded correctly"});
       }
 
+      res.status(200).json({imagesFiles});
+
       const imageFile = imagesFiles[0];
 
       const imageFileTwo = imagesFiles[1]
