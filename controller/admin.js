@@ -41,7 +41,7 @@ exports.Registercars =  async(req, res) => {
       
 
       let imageFile = imagesFiles[0];
-      imageFile.buffer.type
+      
 
       const imageFileTwo = imagesFiles[1];
 
@@ -49,7 +49,7 @@ exports.Registercars =  async(req, res) => {
       //   res.status(200).json({data});
       // }
 
-         res.status(200).json({imageFile});
+         res.status(200).json({data:imageFile.buffer.type});
 
       
 
