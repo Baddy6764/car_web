@@ -32,7 +32,7 @@ exports.Registercars =  async(req, res) => {
 
       const videosFile  = req.files.video;
 
-      let imagesFiles =  req.files.images;
+      const imagesFiles =  req.files.images;
 
       if(!videosFile || !imagesFiles || imagesFiles.length !== 2){
         return res.status(400).json({error:"Videos or Images not uploaded correctly"});
@@ -40,25 +40,13 @@ exports.Registercars =  async(req, res) => {
 
       
 
-      let imageFile = imagesFiles[0];
+//       const imageFile = imagesFiles[0];
       
 
-      const imageFileTwo = imagesFiles[1];
-
-      // for(let ){
-      //   res.status(200).json({data});
-      // }
-
-         res.status(200).json({data:req.files});
-
+//       const imageFileTwo = imagesFiles[1];
       
 
-
-
-      
-
-
-// let imageFileUploaded, resultTwo;
+let imageFileUploaded;
 
 // if(imageFile){
 //   imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
@@ -68,25 +56,32 @@ exports.Registercars =  async(req, res) => {
 // }
 
 
-  //  if(imageFileTwo){
-  //    resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
-  //   if(resultTwo.error){
-  //     return res.status(400).json({err:resultTwo.error.message});
-  //   }
-  //  }
+//    if(imageFileTwo){
+//      resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
+//     if(resultTwo.error){
+//       return res.status(400).json({err:resultTwo.error.message});
+//     }
+//    }
+
+const promises = imagesFiles.map(async (imagesFiles)=>{
+ imageFileUploaded = await cloudinary.uploader.upload(imagesFiles.buffer,{resource_type:"image"})
+ return imageFileUploaded;
+})
+
+const results = new Promise.all(promises)
 
 
-    //   const videoFile = videosFile[0];
-    //   if(!videoFile){
-    //  return  res.status(400).json({error:"No video File"})
-    //   }
+      const videoFile = videosFile[0];
+      if(!videoFile){
+     return  res.status(400).json({error:"No video File"})
+      }
 
-      // cloudinary.uploader.upload_stream(
-      //   {resource_type:"video"},
-      //   (result)=>{
-      //     res.status(200).json({ imageFileUploaded, resultTwo, video:result,});
-      //   }
-      // ).end(videoFile.buffer)
+      cloudinary.uploader.upload_stream(
+        {resource_type:"video"},
+        (result)=>{
+          res.status(200).json({ results, video:result,});
+        }
+      ).end(videoFile.buffer)
 
 
 
