@@ -76,7 +76,7 @@ if(!ImagesResults || !videoResult){
   return res.status(400).json({error:"No video result or image result"});
 }
 
-res.status(200).json({image:ImagesResults, video:videoResult});
+
 
 
 
