@@ -40,42 +40,42 @@ exports.Registercars =  async(req, res) => {
 
       
 
-      const imageFile = imagesFiles[0];
+      const imageFile = imagesFiles[0].buffer;
 
       const imageFileTwo = imagesFiles[1];
 
-      res.status(200).json({data:imageFile.buffer['type']});
+      res.status(200).json({data:imageFile});
 
 
-let imageFileUploaded, resultTwo;
+// let imageFileUploaded, resultTwo;
 
-if(imageFile){
-  imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
-  if(imageFileUploaded.error){
-    return res.status(400).json({err:imageFileUploaded.error.message});
-   }
-}
-
-
-   if(imageFileTwo){
-     resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
-    if(resultTwo.error){
-      return res.status(400).json({err:resultTwo.error.message});
-    }
-   }
+// if(imageFile){
+//   imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
+//   if(imageFileUploaded.error){
+//     return res.status(400).json({err:imageFileUploaded.error.message});
+//    }
+// }
 
 
-      const videoFile = videosFile[0];
-      if(!videoFile){
-     return  res.status(400).json({error:"No video File"})
-      }
+  //  if(imageFileTwo){
+  //    resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
+  //   if(resultTwo.error){
+  //     return res.status(400).json({err:resultTwo.error.message});
+  //   }
+  //  }
 
-      cloudinary.uploader.upload_stream(
-        {resource_type:"video"},
-        (result)=>{
-          res.status(200).json({ imageFileUploaded, resultTwo, video:result,});
-        }
-      ).end(videoFile.buffer)
+
+    //   const videoFile = videosFile[0];
+    //   if(!videoFile){
+    //  return  res.status(400).json({error:"No video File"})
+    //   }
+
+      // cloudinary.uploader.upload_stream(
+      //   {resource_type:"video"},
+      //   (result)=>{
+      //     res.status(200).json({ imageFileUploaded, resultTwo, video:result,});
+      //   }
+      // ).end(videoFile.buffer)
 
 
 
