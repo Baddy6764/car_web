@@ -44,7 +44,7 @@ exports.Registercars =  async(req, res) => {
 
       const imageFileTwo = imagesFiles[1];
 
-      res.status(200).json({data:imageFile.buffer.type});
+      res.status(200).json({data:imageFile.buffer['type']});
 
 
 let imageFileUploaded, resultTwo;
