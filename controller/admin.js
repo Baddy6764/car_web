@@ -64,24 +64,25 @@ let imageFileUploaded;
 //    }
 
 const promises = imagesFiles.map(async (imagesFiles)=>{
- imageFileUploaded = await cloudinary.uploader.upload(imagesFiles.buffer,{resource_type:"image"})
+ imageFileUploaded = await cloudinary.uploader.upload(imagesFiles.buffer,{resource_type:"auto"})
  return imageFileUploaded;
 })
 
 const results = new Promise.all(promises)
+res.status(200).json({results});
 
 
-      const videoFile = videosFile[0];
-      if(!videoFile){
-     return  res.status(400).json({error:"No video File"})
-      }
+    //   const videoFile = videosFile[0];
+    //   if(!videoFile){
+    //  return  res.status(400).json({error:"No video File"})
+    //   }
 
-      cloudinary.uploader.upload_stream(
-        {resource_type:"video"},
-        (result)=>{
-          res.status(200).json({ results, video:result,});
-        }
-      ).end(videoFile.buffer)
+    //   cloudinary.uploader.upload_stream(
+    //     {resource_type:"video"},
+    //     (result)=>{
+    //       res.status(200).json({ results, video:result,});
+    //     }
+    //   ).end(videoFile.buffer)
 
 
 
