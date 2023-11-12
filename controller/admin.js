@@ -30,11 +30,11 @@ exports.Registercars =  async(req, res) => {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
 
-      const videosFile  = req.files.video;
+      const videoFile  = req.files.video;
 
       const imagesFiles =  req.files.images;
 
-      if(!videosFile || !imagesFiles || imagesFiles.length !== 2){
+      if(!videoFile || !imagesFiles || imagesFiles.length !== 2){
         return res.status(400).json({error:"Videos or Images not uploaded correctly"});
       }
 
@@ -46,7 +46,7 @@ exports.Registercars =  async(req, res) => {
 //       const imageFileTwo = imagesFiles[1];
       
 
-let imageFileUploaded;
+// let imageFileUploaded;
 
 // if(imageFile){
 //   imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
@@ -63,12 +63,20 @@ let imageFileUploaded;
 //     }
 //    }
 
-const promises = imagesFiles.map(async (imagesFiles)=>{
- imageFileUploaded = await cloudinary.uploader.upload(imagesFiles.buffer,{resource_type:"auto"})
- return res.status(200).json({imageFileUploaded});;
+const Imagespromises = imagesFiles.map(async (file)=>{
+ const result = await cloudinary.uploader.upload(file.buffer,{resource_type:"auto"})
+ return result;
 })
 
-const results = new Promise.all(promises)
+const ImagesResults = new Promise.all(Imagespromises);
+
+const videoResult = await cloudinary.uploader.upload(videoFile[0].buffer,{resource_type:"video"})
+
+if(!ImagesResults || !videoResult){
+  return res.status(400).json({error:"No video result or image result"});
+}
+
+res.status(200).json({image:ImagesResults, video:videoResult});
 
 
 
