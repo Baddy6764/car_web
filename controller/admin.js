@@ -64,17 +64,19 @@ exports.Registercars =  async(req, res) => {
 //    }
 
 const Imagespromises = imagesFiles.map(async (file)=>{
- const result = await cloudinary.uploader.upload(file.buffer,{resource_type:"auto"})
- return result;
+//  const result = await cloudinary.uploader.upload(file.buffer,{resource_type:"image"})
+ return file;
 })
 
-const ImagesResults = new Promise.all(Imagespromises);
+res.status(200).json({Imagespromises});
 
-const videoResult = await cloudinary.uploader.upload(videoFile[0].buffer,{resource_type:"video"})
+// const ImagesResults = new Promise.all(Imagespromises);
 
-if(!ImagesResults || !videoResult){
-  return res.status(400).json({error:"No video result or image result"});
-}
+// const videoResult = await cloudinary.uploader.upload(videoFile[0].buffer,{resource_type:"video"})
+
+// if(!ImagesResults || !videoResult){
+//   return res.status(400).json({error:"No video result or image result"});
+// }
 
 
 
