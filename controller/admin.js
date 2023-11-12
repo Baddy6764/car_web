@@ -65,11 +65,11 @@ let imageFileUploaded;
 
 const promises = imagesFiles.map(async (imagesFiles)=>{
  imageFileUploaded = await cloudinary.uploader.upload(imagesFiles.buffer,{resource_type:"auto"})
- return imageFileUploaded;
+ return res.status(200).json({imageFileUploaded});;
 })
 
 const results = new Promise.all(promises)
-res.status(200).json({results});
+
 
 
     //   const videoFile = videosFile[0];
