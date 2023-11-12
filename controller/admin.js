@@ -49,7 +49,7 @@ exports.Registercars =  async(req, res) => {
       //   res.status(200).json({data});
       // }
 
-         res.status(200).json({data:imageFile.buffer.type});
+         res.status(200).json({data:req.files});
 
       
 
