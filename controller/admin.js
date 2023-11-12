@@ -32,7 +32,7 @@ exports.Registercars =  async(req, res) => {
 
       const videosFile  = req.files.video;
 
-      const imagesFiles =  req.files.images;
+      let imagesFiles =  req.files.images;
 
       if(!videosFile || !imagesFiles || imagesFiles.length !== 2){
         return res.status(400).json({error:"Videos or Images not uploaded correctly"});
@@ -41,6 +41,7 @@ exports.Registercars =  async(req, res) => {
       
 
       let imageFile = imagesFiles[0];
+      imageFile.buffer.type
 
       const imageFileTwo = imagesFiles[1];
 
