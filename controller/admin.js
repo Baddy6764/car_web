@@ -83,17 +83,17 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
 
       let videoResult;
 
-  const vdb64 = Buffer.from(vdFile.buffer).toString("base64");
+//   const vdb64 = Buffer.from(vdFile.buffer).toString("base64");
 
-let vdataUrl = "data:" + vdFile.mimetype + ";base64," + vdb64;
+// let vdataUrl = "data:" + vdFile.mimetype + ";base64," + vdb64;
 
-if(vdataUrl){
+if(vdFile){
 
   videoResult = await cloudinary.uploader.upload_stream({resource_type:"video"},(error)=>{
     if(error){
       return res.status(400).json({error})
     }
-  }).end(vdataUrl)
+  }).end(vdFile.buffer)
 }
 
 res.status(200).json({videoResult});
