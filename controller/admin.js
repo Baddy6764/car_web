@@ -93,10 +93,10 @@ if(vdataUrl){
     if(error){
       return res.status(400).json({error})
     }
-  })
+  }).end(vdataUrl)
 }
 
-res.status(200).json({imageFileUploaded,resultTwo,videoResult});
+res.status(200).json({videoResult});
 
   } catch (err) {
     console.log(err);
