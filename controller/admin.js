@@ -10,6 +10,7 @@ const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
 const { json } = require("body-parser");
 const cloudinary = require("cloudinary").v2;
+const streamifier = require("streamifier");
 
 cloudinary.config({
   cloud_name:'dv3u1kjgh',
@@ -79,15 +80,18 @@ exports.Registercars =  async(req, res) => {
 
 
       const vdFile = videoFile[0];
+
       if(!vdFile){
      return  res.status(400).json({error:"No video File"})
       }
+
+      const videoStream = streamifier.createReadStream(vdFile.buffer);
 
   cloudinary.uploader.upload_stream(
         {resource_type:"video"},
         (result)=>{
           res.status(200).json({result})
-        }).end(vdFile.buffer)
+        }).end(videoStream)
 
 
 
