@@ -83,7 +83,7 @@ exports.Registercars =  async(req, res) => {
      return  res.status(400).json({error:"No video File"})
       }
 
- const videoResult  =  cloudinary.uploader.upload_stream(
+ const videoResult  = await  cloudinary.uploader.upload_stream(
         {resource_type:"video"},
         (result)=>{
           res.status(200).json({result})
