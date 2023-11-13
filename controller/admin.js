@@ -58,13 +58,14 @@ let imageFileUploaded, resultTwo;
 
 
 if(dataUrl){
-  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"auto"},(error,result)=>{
+  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"auto"},(error)=>{
     if(error){
       return res.status(200).json({error});
     }
-    res.status(200).json({result});
   })
 }
+
+res.status(200).json({imageFileUploaded});
 
 
 //    if(imageFileTwo){
