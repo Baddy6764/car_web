@@ -72,7 +72,7 @@ exports.Registercars =  async(req, res) => {
 
 // const ImagesResults = new Promise.all(Imagespromises);
 
-const videoResult = await cloudinary.uploader.upload(videoFile[0].buffer,{resource_type:"video"})
+const videoResult = await cloudinary.uploader.upload_stream(videoFile[0].buffer,{resource_type:"video"})
 
 res.status(200).json({videoResult});
 
