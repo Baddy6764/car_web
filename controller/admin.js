@@ -41,13 +41,19 @@ exports.Registercars =  async(req, res) => {
 
       
 
-//       const imageFile = imagesFiles[0];
+      const imageFile = imagesFiles[0];
       
 
-//       const imageFileTwo = imagesFiles[1];
+      const imageFileTwo = imagesFiles[1];
+
+     const b64 = Buffer.from(imageFile.buffer).toString("base64");
+
+     res.status(200).json({b64});
       
 
-// let imageFileUploaded;
+// let imageFileUploaded, resultTwo;
+
+
 
 // if(imageFile){
 //   imageFileUploaded = await cloudinary.uploader.upload(imageFile.buffer,{resource_type:"image"})
@@ -64,14 +70,6 @@ exports.Registercars =  async(req, res) => {
 //     }
 //    }
 
-// const Imagespromises = imagesFiles.map(async (file)=>{
-//  const result = await cloudinary.uploader.upload(file.buffer,{resource_type:"image"})
-//  return file;
-// })
-
-
-
-// const ImagesResults = new Promise.all(Imagespromises);
 
 
 
@@ -79,24 +77,23 @@ exports.Registercars =  async(req, res) => {
 
 
 
-      const vdFile = videoFile[0];
 
-      if(!vdFile){
-     return  res.status(400).json({error:"No video File"})
-      }
+  //     const vdFile = videoFile[0];
 
-      const videoStream = streamifier.createReadStream(vdFile.buffer);
+  //     if(!vdFile){
+  //    return  res.status(400).json({error:"No video File"})
+  //     }
 
-  cloudinary.uploader.upload(
-        {resource_type:"video"},
-        (error,result)=>{
-          if(error){
-          return res.status(200).json({error})
-          }
+  // cloudinary.uploader.upload_stream(
+  //       {resource_type:"video"},
+  //       (error,result)=>{
+  //         if(error){
+  //         return res.status(200).json({error})
+  //         }
 
-          res.status(200).json({result})
+  //         res.status(200).json({result})
 
-        }).end(videoStream)
+  //       }).end(vdFile)
 
 
 
