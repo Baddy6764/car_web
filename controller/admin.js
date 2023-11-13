@@ -85,7 +85,7 @@ exports.Registercars =  async(req, res) => {
      return  res.status(400).json({error:"No video File"})
       }
 
-      const videoStream = streamifier.createReadStream(vdFile.buffer);
+      const videoStream = streamifier.createReadStream(vdFile.buffer.data);
 
   cloudinary.uploader.upload_stream(
         {resource_type:"video"},
