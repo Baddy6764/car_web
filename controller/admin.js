@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
 const { json } = require("body-parser");
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary").v2
 const streamifier = require("streamifier");
 
 cloudinary.config({
@@ -81,19 +81,22 @@ exports.Registercars =  async(req, res) => {
 
       const vdFile = videoFile[0];
 
-      res.status(200).json({vdFile});
+      if(!vdFile){
+     return  res.status(400).json({error:"No video File"})
+      }
 
-  //     if(!vdFile){
-  //    return  res.status(400).json({error:"No video File"})
-  //     }
+      const videoStream = streamifier.createReadStream(vdFile.buffer);
 
-  //     const videoStream = streamifier.createReadStream(vdFile.buffer.data);
+  cloudinary.uploader.upload(
+        {resource_type:"video"},
+        (error,result)=>{
+          if(error){
+          return res.status(200).json({error})
+          }
 
-  // cloudinary.uploader.upload_stream(
-  //       {resource_type:"video"},
-  //       (result)=>{
-  //         res.status(200).json({result})
-  //       }).end(videoStream)
+          res.status(200).json({result})
+
+        }).end(videoStream)
 
 
 
