@@ -81,17 +81,19 @@ exports.Registercars =  async(req, res) => {
 
       const vdFile = videoFile[0];
 
-      if(!vdFile){
-     return  res.status(400).json({error:"No video File"})
-      }
+      res.status(200).json({vdFile});
 
-      const videoStream = streamifier.createReadStream(vdFile.buffer.data);
+  //     if(!vdFile){
+  //    return  res.status(400).json({error:"No video File"})
+  //     }
 
-  cloudinary.uploader.upload_stream(
-        {resource_type:"video"},
-        (result)=>{
-          res.status(200).json({result})
-        }).end(videoStream)
+  //     const videoStream = streamifier.createReadStream(vdFile.buffer.data);
+
+  // cloudinary.uploader.upload_stream(
+  //       {resource_type:"video"},
+  //       (result)=>{
+  //         res.status(200).json({result})
+  //       }).end(videoStream)
 
 
 
