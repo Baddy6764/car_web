@@ -79,9 +79,6 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
      })
    }
 
-res.status(200).json({imageFileUploaded, resultTwo});
-
-
       const vdFile = videoFile[0];
 
       if(!vdFile){
