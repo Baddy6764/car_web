@@ -84,7 +84,7 @@ exports.Registercars =  async(req, res) => {
       }
 
  const videoResult  =  cloudinary.uploader.upload_stream(
-       vdFile.buffer, {resource_type:"video"},
+        {resource_type:"video"},
         (result)=>{
           res.status(200).json({result})
         }).end(vdFile.buffer)
