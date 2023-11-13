@@ -65,22 +65,20 @@ if(dataUrl){
   })
 }
 
-res.status(200).json({imageFileUploaded});
+const ImageTwob64 = Buffer.from(imageFileTwo.buffer).toString("base64");
 
-
-//    if(imageFileTwo){
-//      resultTwo = await cloudinary.uploader.upload(imageFileTwo.buffer,{resource_type:"image"})
-//     if(resultTwo.error){
-//       return res.status(400).json({err:resultTwo.error.message});
-//     }
-//    }
+let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64;
 
 
 
+   if(imageFileTwo){
+     resultTwo = await cloudinary.uploader.upload(ImageTwodataUrl,{resource_type:"image"})
+    if(resultTwo.error){
+      return res.status(400).json({err:resultTwo.error.message});
+    }
+   }
 
-
-
-
+res.status(200).json({imageFileUploaded, resultTwo});
 
 
   //     const vdFile = videoFile[0];
