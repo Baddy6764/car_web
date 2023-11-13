@@ -89,7 +89,7 @@ let vdataUrl = "data:" + vdFile.mimetype + ";base64," + vdb64;
 
 if(vdataUrl){
 
-  videoResult = await cloudinary.uploader.upload_stream(vdataUrl,{resource_type:"video"},(error)=>{
+  videoResult = await cloudinary.uploader.upload_stream({resource_type:"video"},(error)=>{
     if(error){
       return res.status(400).json({error})
     }
