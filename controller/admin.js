@@ -81,10 +81,12 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
      return  res.status(400).json({error:"No video File"})
       }
 
-      res.status(200).json({vdFile});
+     
 
    const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
-   let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
+   const videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
+
+   res.status(200).json({videoDataUrl});
 
   } catch (err) {
     console.log(err);
