@@ -217,17 +217,17 @@ exports.deleteCar = async (req, res) => {
 
 exports.rejectCar = async (req, res) => {
   try {
-    const  Id  = req.body;
-    if (!Id) {
+    const  {carId}  = req.body;
+    if (!carId) {
       res.status(400).json({ error: "Invalid carId" });
     }
-    const rejectedCar = await carsDetails.findByIdAndRemove(Id);
-    if (!rejectedCar) {
-      return res.status(400).json({ error: "Failed to reject car" });
-    }
+    // const rejectedCar = await carsDetails.findByIdAndRemove(carId);
+    // if (!rejectedCar) {
+    //   return res.status(400).json({ error: "Failed to reject car" });
+    // }
     return res
       .status(200)
-      .json({ Id });
+      .json({ carId });
   } catch (err) {
     console.log(err);
     return res
