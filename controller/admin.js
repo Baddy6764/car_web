@@ -201,14 +201,14 @@ exports.approveCar = async (req, res) => {
 exports.deleteCar = async (req, res) => {
   try {
     const  Id  = req.body;
-    if (!Id) {
-      return res.status(400).json({ error: "Invalid car Id" });
-    }
-    const deletedCar = await carsDetails.findByIdAndDelete(Id);
-    if (!deletedCar) {
-      return res.status(400).json({ error: "Failed to delete car" });
-    }
-    return res.status(200).json({ message: "car deleted successfully" });
+    // if (!Id) {
+    //   return res.status(400).json({ error: "Invalid car Id" });
+    // }
+    // const deletedCar = await carsDetails.findByIdAndDelete(Id);
+    // if (!deletedCar) {
+    //   return res.status(400).json({ error: "Failed to delete car" });
+    // }
+    return res.status(200).json({ Id });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "An error occure when deleting car" });
