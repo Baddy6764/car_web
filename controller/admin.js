@@ -116,32 +116,32 @@ const uploadImageToCloudinary = async(dataUrl) =>{
   imageFileUploaded = await uploadImageToCloudinary(dataUrl)
 
   videoUploaded = await uploadVideoToCloudinary(videoDataUrl)
-  
+
 
   if(!resultTwo || imageFileUploaded || videoUploaded){
     return res.status(400).json({error:"No resultTwo data & imageFileUploaded data && videoUploaded data"})
   }
 
 
-const createdUserCar = await carsDetails.create({
-  Make:make,
-  Model:model,
-  Generation:generation,
-  Engine:engine,
-  secure_url_cloudinary_images:imageFileUploaded.secure_url && resultTwo.secure_url,
-  public_Id_cloudinary_images:imageFileUploaded.public_id && resultTwo.public_id,
-  secure_url_cloudinary_Video:videoUploaded.secure_url,
-  public_Id_cloudinary_Video:videoUploaded.public_id
+// const createdUserCar = await carsDetails.create({
+//   Make:make,
+//   Model:model,
+//   Generation:generation,
+//   Engine:engine,
+//   secure_url_cloudinary_images:imageFileUploaded.secure_url && resultTwo.secure_url,
+//   public_Id_cloudinary_images:imageFileUploaded.public_id && resultTwo.public_id,
+//   secure_url_cloudinary_Video:videoUploaded.secure_url,
+//   public_Id_cloudinary_Video:videoUploaded.public_id
 
-})
-
-
-if(!createdUserCar){
-  return res.status(400).json({error:"user car not created"})
-}
+// })
 
 
-   res.status(200).json({createdUserCar});
+// if(!createdUserCar){
+//   return res.status(400).json({error:"user car not created"})
+// }
+
+
+   res.status(200).json({videoUploaded});
 
 
 
