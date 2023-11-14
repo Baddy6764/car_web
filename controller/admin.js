@@ -142,7 +142,7 @@ const createdUserCar = await carsDetails.create({
   public_Id_cloudinary_imageTwo:resultTwo.public_id,
 
   secure_url_cloudinary_Video:videoUploaded.secure_url,
-  
+
   public_Id_cloudinary_Video:videoUploaded.public_id
 
 })
@@ -153,7 +153,12 @@ if(!createdUserCar){
 }
 
 
-   res.status(200).json({createdUserCar});
+   res.status(200).json({
+    message:'car details added successfully',
+    videoUrl:videoUploaded.secure_url,
+    ImageOneUrl:imageFileUploaded.secure_url,
+    ImageTwoUrl:resultTwo.secure_url
+   });
 
 
 
