@@ -20,12 +20,22 @@ const carSchema = new mongoose.Schema({
     require: false,
   },
 
-  secure_url_cloudinary_images: {
+  secure_url_cloudinary_image: {
     type: String,
     require: false,
   },
 
-  public_Id_cloudinary_images: {
+  public_Id_cloudinary_image: {
+    type: String,
+    require: false,
+  },
+
+  secure_url_cloudinary_imageTwo: {
+    type: String,
+    require: false,
+  },
+
+  public_Id_cloudinary_imageTwo: {
     type: String,
     require: false,
   },

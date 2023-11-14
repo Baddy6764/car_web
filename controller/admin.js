@@ -122,26 +122,27 @@ const uploadImageToCloudinary = async(dataUrl) =>{
     return res.status(400).json({error:"No resultTwo data & imageFileUploaded data && videoUploaded data"})
   }
 
-  let ImagesUrl = [];
-
-  let Images_PublicId = [];
-
-  if(resultTwo && imageFileUploaded){
-    ImagesUrl.push(resultTwo.secure_url,imageFileUploaded.secure_url);
-    Images_PublicId.push(resultTwo.public_id,imageFileUploaded.public_id);
-  }
-
-
 
 
 const createdUserCar = await carsDetails.create({
   Make:make,
+
   Model:model,
+
   Generation:generation,
+
   Engine:engine,
-  secure_url_cloudinary_images:ImagesUrl,
-  public_Id_cloudinary_images:Images_PublicId,
+
+  secure_url_cloudinary_image:imageFileUploaded.secure_url,
+
+  public_Id_cloudinary_image:imageFileUploaded.public_id,
+
+  secure_url_cloudinary_imageTwo:resultTwo.secure_url,
+
+  public_Id_cloudinary_imageTwo:resultTwo.public_id,
+
   secure_url_cloudinary_Video:videoUploaded.secure_url,
+  
   public_Id_cloudinary_Video:videoUploaded.public_id
 
 })
