@@ -47,19 +47,19 @@ exports.Registercars =  async(req, res) => {
       const imageFileTwo = imagesFiles[1];
 
 
-let imageFileUploaded, resultTwo;
+
+let imageFileUploaded;
 
 const b64 = Buffer.from(imageFile.buffer).toString("base64");
 
 let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
 
 if(dataUrl){
-  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"auto"},(error)=>{
-    if(error){
-      return res.status(400).json({error});
-    }
-  })
+  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
 }
+
+
+let resultTwo;
 
 const ImageTwob64 = Buffer.from(imageFileTwo.buffer).toString("base64");
 
@@ -68,12 +68,9 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
 
 
    if(ImageTwodataUrl){
-     resultTwo = await cloudinary.uploader.upload(ImageTwodataUrl,{resource_type:"image"},(error)=>{
-      if(error){
-      return  res.status(400).json({error})
-      }
-     })
+     resultTwo = await cloudinary.uploader.upload(ImageTwodataUrl,{resource_type:"image"})
    }
+
 
       const vdFile = videoFile[0];
 
@@ -81,16 +78,16 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
      return  res.status(400).json({error:"No video File"})
       }
 
-     
-
+      let videoUploaded; 
+    
    const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
    let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
 
-   const videoUploaded = await cloudinary.uploader.upload(videoDataUrl,{resource_type:"video"},(error)=>{
-    if(error){
-      return res.status(400).json({error})
-    }
-   })
+  
+
+   if(videoDataUrl){
+     videoUploaded = await cloudinary.uploader.upload(videoDataUrl,{resource_type:"video"})
+   }
 
    res.status(200).json({videoUploaded,imageFileUploaded, resultTwo});
 
