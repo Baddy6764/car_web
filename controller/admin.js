@@ -131,7 +131,7 @@ const uploadImageToCloudinary = async(dataUrl) =>{
     Images_PublicId.push(resultTwo.public_id,imageFileUploaded.public_id);
   }
 
-  res.status(200).json({ImagesUrl, Images_PublicId});
+
 
 
 const createdUserCar = await carsDetails.create({
@@ -140,7 +140,7 @@ const createdUserCar = await carsDetails.create({
   Generation:generation,
   Engine:engine,
   secure_url_cloudinary_images:ImagesUrl,
-  public_Id_cloudinary_images:imageFileUploaded.public_id && resultTwo.public_id,
+  public_Id_cloudinary_images:Images_PublicId,
   secure_url_cloudinary_Video:videoUploaded.secure_url,
   public_Id_cloudinary_Video:videoUploaded.public_id
 
