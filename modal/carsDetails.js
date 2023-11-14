@@ -20,15 +20,26 @@ const carSchema = new mongoose.Schema({
     require: false,
   },
 
-  images: {
+  secure_url_cloudinary_images: {
     type: String,
     require: false,
   },
 
-  Video: {
+  public_Id_cloudinary_images: {
     type: String,
     require: false,
   },
+
+  secure_url_cloudinary_Video: {
+    type: String,
+    require: false,
+  },
+
+  public_Id_cloudinary_Video: {
+    type: String,
+    require: false,
+  },
+
   status:{
    type: String,
    default: "pending"

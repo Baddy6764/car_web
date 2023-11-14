@@ -55,9 +55,6 @@ exports.Registercars =  async(req, res) => {
       let videoUploaded, resultTwo, imageFileUploaded;
 
 
-     const b64 = Buffer.from(imageFile.buffer).toString("base64");
-
-     let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
 
 const uploadImageToCloudinary = async(dataUrl) =>{
   try{
@@ -69,10 +66,6 @@ const uploadImageToCloudinary = async(dataUrl) =>{
 }
 
 
-
-const ImageTwob64 = Buffer.from(imageFileTwo.buffer).toString("base64");
-
-let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64;
 
    const uploadImageTwoToCloudinary = async(ImageTwodataUrl) =>{
     try{
@@ -90,10 +83,6 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
     if(!vdFile){
      return  res.status(400).json({error:"No video File"})
       }
-  
-   const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
-
-   let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
 
    const uploadVideoToCloudinary = async(videoDataUrl) =>{
     try{
@@ -105,24 +94,62 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
   }
 
 
+     const b64 = Buffer.from(imageFile.buffer).toString("base64");
+
+     let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
+
+
+
+     const ImageTwob64 = Buffer.from(imageFileTwo.buffer).toString("base64");
+
+    let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64;
+
+
+    const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
+
+    let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
+
+
 
   resultTwo = await uploadImageTwoToCloudinary(ImageTwodataUrl)
 
   imageFileUploaded = await uploadImageToCloudinary(dataUrl)
 
   videoUploaded = await uploadVideoToCloudinary(videoDataUrl)
+  
+
+  if(!resultTwo || imageFileUploaded || videoUploaded){
+    return res.status(400).json({error:"No resultTwo data & imageFileUploaded data && videoUploaded data"})
+  }
 
 
+const createdUserCar = await carsDetails.create({
+  Make:make,
+  Model:model,
+  Generation:generation,
+  Engine:engine,
+  secure_url_cloudinary_images:imageFileUploaded.secure_url && resultTwo.secure_url,
+  public_Id_cloudinary_images:imageFileUploaded.public_id && resultTwo.public_id,
+  secure_url_cloudinary_Video:videoUploaded.secure_url,
+  public_Id_cloudinary_Video:videoUploaded.public_id
 
-   res.status(200).json({videoUploaded,imageFileUploaded, resultTwo});
+})
+
+
+if(!createdUserCar){
+  return res.status(400).json({error:"user car not created"})
+}
+
+
+   res.status(200).json({createdUserCar});
 
 
 
   } catch (err) {
     console.log(err);
     return res
-      .status(400)
-      .json({ error: "An error occured in creating user car" });
+      .status(500)
+      .json({ error: "Internal sever error" });
   }
 };
 
