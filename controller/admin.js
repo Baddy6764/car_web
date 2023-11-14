@@ -51,6 +51,8 @@ exports.Registercars =  async(req, res) => {
 
       const imageFileTwo = imagesFiles[1];
 
+      
+      let videoUploaded, resultTwo, imageFileUploaded;
 
 
      const b64 = Buffer.from(imageFile.buffer).toString("base64");
@@ -98,13 +100,11 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
       return await cloudinary.uploader.upload(videoDataUrl,{resource_type:"video"})
   
     } catch(error){
-      throw new Error('Error occur uploading image two')
+      throw new Error('Error occur uploading video')
     }
   }
 
 
-
-  let videoUploaded, resultTwo, imageFileUploaded; 
 
   resultTwo = await uploadImageTwoToCloudinary(ImageTwodataUrl)
 
@@ -116,7 +116,7 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
 
    res.status(200).json({videoUploaded,imageFileUploaded, resultTwo});
 
-   
+
 
   } catch (err) {
     console.log(err);
