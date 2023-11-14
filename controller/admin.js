@@ -89,7 +89,7 @@ const videoStream = cloudinary.uploader.upload_stream({resource_type:"video"},(e
 })
 
 const bufferStream = new stream.PassThrough();
-bufferStream.end(vdFile.buffer)
+bufferStream.end(Buffer.from(vdFile.buffer))
 
 
 bufferStream.pipe(videoStream);
