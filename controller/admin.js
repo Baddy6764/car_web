@@ -124,14 +124,14 @@ const uploadImageToCloudinary = async(dataUrl) =>{
 
   let ImagesUrl = [];
 
-  let Images_PubliCId = [];
+  let Images_PublicId = [];
 
   if(resultTwo && imageFileUploaded){
     ImagesUrl.push(resultTwo.secure_url,imageFileUploaded.secure_url);
-    Images_PubliCId.push(resultTwo.public_id,imageFileUploaded.public_id);
+    Images_PublicId.push(resultTwo.public_id,imageFileUploaded.public_id);
   }
 
-  res.status(200).json({ImagesUrl, Images_PubliCId});
+  res.status(200).json({ImagesUrl, Images_PublicId});
 
 
 const createdUserCar = await carsDetails.create({
