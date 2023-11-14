@@ -78,6 +78,6 @@ router.post("/approve/cars",  adminController.approveCar);
 router.post("delete/cars",  adminController.deleteCar);
 
 //////rejectcar route
-router.delete("/reject/cars", adminController.rejectCar);
+router.post("/reject/cars", adminController.rejectCar);
 
 module.exports = router;
