@@ -200,7 +200,7 @@ exports.approveCar = async (req, res) => {
 
 exports.deleteCar = async (req, res) => {
   try {
-    const  Id  = req.params.Id;
+    const  Id  = req.params.carId;
     if (!Id) {
       return res.status(400).json({ error: "Invalid car Id" });
     }
