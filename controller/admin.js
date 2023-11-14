@@ -221,9 +221,9 @@ exports.rejectCar = async (req, res) => {
     if (!carId) {
       res.status(400).json({ error: "Invalid carId" });
     }
-    const rejectedCar = await carsDetails.findByIdAndRemove(carId);
+    const rejectedCar = await carsDetails.findByIdAndDelete(carId,{status:"rejected"});
     if (!rejectedCar) {
-      return res.status(400).json({ error: "Failed to reject car" });
+      return res.status(400).json({ error: "car not found" });
     }
     return res
       .status(200)
