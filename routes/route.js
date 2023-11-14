@@ -72,10 +72,10 @@ router.post(
 router.post("/admin-dashboard",  adminController.adminDasboard);
 
 //////approvecar route
-router.post("approve/cars",  adminController.approveCar);
+router.post("/approve/cars",  adminController.approveCar);
 
 //////deletecar route
-router.post("/delete/cars",  adminController.deleteCar);
+router.delete("/delete/cars",  adminController.deleteCar);
 
 //////rejectcar route
 router.post("/reject/cars", adminController.rejectCar);
