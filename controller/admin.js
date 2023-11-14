@@ -227,7 +227,7 @@ exports.rejectCar = async (req, res) => {
     }
     return res
       .status(200)
-      .json({ carId });
+      .json({ rejectedCar });
   } catch (err) {
     console.log(err);
     return res
