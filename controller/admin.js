@@ -25,61 +25,62 @@ exports.datajson = (req, res) => {
 
 exports.Registercars =  async(req, res) => {
   try {
+
+
     const { engine, generation, make, model } =  req.body;
+
+
 
     if (!engine || !generation || !make || !model) {
       return res.status(400).json({ error: "Invalid request car Information" });
     }
 
+
       const videoFile  = req.files.video;
 
       const imagesFiles =  req.files.images;
+
+
 
       if(!videoFile || !imagesFiles || imagesFiles.length !== 2){
         return res.status(400).json({error:"Videos or Images not uploaded correctly"});
       }
 
-      
 
       const imageFile = imagesFiles[0];
-      
 
       const imageFileTwo = imagesFiles[1];
 
 
 
-let imageFileUploaded;
+     const b64 = Buffer.from(imageFile.buffer).toString("base64");
 
-const b64 = Buffer.from(imageFile.buffer).toString("base64");
-
-let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
-
-// if(dataUrl){
-//   imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
-// }
+     let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
 
 const uploadImageToCloudinary = async(dataUrl) =>{
   try{
     return await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
 
-  }  catch(error){
+  } catch(error){
     throw new Error('Error occur uploading image')
   }
 }
 
-imageFileUploaded = await uploadImageToCloudinary(dataUrl)
 
-let resultTwo;
 
 const ImageTwob64 = Buffer.from(imageFileTwo.buffer).toString("base64");
 
 let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64;
 
+   const uploadImageTwoToCloudinary = async(ImageTwodataUrl) =>{
+    try{
+      return await cloudinary.uploader.upload(ImageTwodataUrl,{resource_type:"image"})
+  
+    } catch(error){
+      throw new Error('Error occur uploading image two')
+    }
+  }
 
-
-   if(ImageTwodataUrl){
-     resultTwo = await cloudinary.uploader.upload(ImageTwodataUrl,{resource_type:"image"})
-   }
 
 
       const vdFile = videoFile[0];
@@ -87,19 +88,35 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
     if(!vdFile){
      return  res.status(400).json({error:"No video File"})
       }
-
-      let videoUploaded; 
-    
+  
    const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
+
    let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
 
+   const uploadVideoToCloudinary = async(videoDataUrl) =>{
+    try{
+      return await cloudinary.uploader.upload(videoDataUrl,{resource_type:"video"})
   
+    } catch(error){
+      throw new Error('Error occur uploading image two')
+    }
+  }
 
-   if(videoDataUrl){
-     videoUploaded = await cloudinary.uploader.upload(videoDataUrl,{resource_type:"video"})
-   }
+
+
+  let videoUploaded, resultTwo, imageFileUploaded; 
+
+  resultTwo = await uploadImageTwoToCloudinary(ImageTwodataUrl)
+
+  imageFileUploaded = await uploadImageToCloudinary(dataUrl)
+
+  videoUploaded = await uploadVideoToCloudinary(videoDataUrl)
+
+
 
    res.status(200).json({videoUploaded,imageFileUploaded, resultTwo});
+
+   
 
   } catch (err) {
     console.log(err);
