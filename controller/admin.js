@@ -92,7 +92,7 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
     }
    })
 
-   res.status(200).json({videoUploaded});
+   res.status(200).json({videoUploaded,imageFileUploaded, resultTwo});
 
   } catch (err) {
     console.log(err);
