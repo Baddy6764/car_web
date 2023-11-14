@@ -219,19 +219,19 @@ exports.rejectCar = async (req, res) => {
   try {
     const  {carId}  = req.body;
     if (!carId) {
-      res.status(400).json({ error: "Invalid carId" });
+    return  res.status(400).json({ error: "Invalid carId" });
     }
-    const rejectedCar = await carsDetails.findByIdAndDelete(carId,{status:"rejected"});
+    const rejectedCar = await carsDetails.findByIdAndRemove(carId);
     if (!rejectedCar) {
       return res.status(400).json({ error: "car not found" });
     }
-    return res
+     res
       .status(200)
       .json({ rejectedCar });
   } catch (err) {
     console.log(err);
     return res
       .status(500)
-      .json({ error: "An error occure when rejecting car" });
+      .json({ error: "An error occur" });
   }
 };
