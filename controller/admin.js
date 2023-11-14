@@ -54,10 +54,20 @@ const b64 = Buffer.from(imageFile.buffer).toString("base64");
 
 let dataUrl = "data:" + imageFile.mimetype + ";base64," + b64;
 
-if(dataUrl){
-  imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
+// if(dataUrl){
+//   imageFileUploaded = await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
+// }
+
+const uploadImageToCloudinary = async(dataUrl) =>{
+  try{
+    return await cloudinary.uploader.upload(dataUrl,{resource_type:"image"})
+
+  }  catch(error){
+    throw new Error('Error occur uploading image')
+  }
 }
 
+imageFileUploaded = await uploadImageToCloudinary(dataUrl)
 
 let resultTwo;
 
