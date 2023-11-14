@@ -128,8 +128,8 @@ const createdUserCar = await carsDetails.create({
   Model:model,
   Generation:generation,
   Engine:engine,
-  secure_url_cloudinary_images:imageFileUploaded.secure_url && resultTwo.secure_url,
-  public_Id_cloudinary_images:imageFileUploaded.public_id && resultTwo.public_id,
+  secure_url_cloudinary_images:[imageFileUploaded.secure_url, resultTwo.secure_url],
+  public_Id_cloudinary_images:[imageFileUploaded.public_id, resultTwo.public_id],
   secure_url_cloudinary_Video:videoUploaded.secure_url,
   public_Id_cloudinary_Video:videoUploaded.public_id
 
