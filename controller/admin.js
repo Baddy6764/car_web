@@ -221,13 +221,13 @@ exports.rejectCar = async (req, res) => {
     if (!Id) {
       res.status(400).json({ error: "Invalid carId" });
     }
-    // const rejectedCar = await carsDetails.findByIdAndRemove(Id);
-    // if (!rejectedCar) {
-    //   return res.status(400).json({ error: "Failed to reject car" });
-    // }
+    const rejectedCar = await carsDetails.findByIdAndRemove(Id);
+    if (!rejectedCar) {
+      return res.status(400).json({ error: "Failed to reject car" });
+    }
     return res
       .status(200)
-      .json({ Id});
+      .json({ Id });
   } catch (err) {
     console.log(err);
     return res
