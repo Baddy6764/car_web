@@ -218,16 +218,16 @@ exports.deleteCar = async (req, res) => {
 exports.rejectCar = async (req, res) => {
   try {
     const  Id  = req.body;
-    if (!Id) {
-      res.status(400).json({ error: "Invalid carId" });
-    }
-    const rejectedCar = await carsDetails.findByIdAndRemove(Id);
-    if (!rejectedCar) {
-      return res.status(400).json({ error: "Failed to reject car" });
-    }
+    // if (!Id) {
+    //   res.status(400).json({ error: "Invalid carId" });
+    // }
+    // const rejectedCar = await carsDetails.findByIdAndRemove(Id);
+    // if (!rejectedCar) {
+    //   return res.status(400).json({ error: "Failed to reject car" });
+    // }
     return res
       .status(200)
-      .json({ message: "car has successfully been rejected" });
+      .json({ Id});
   } catch (err) {
     console.log(err);
     return res
