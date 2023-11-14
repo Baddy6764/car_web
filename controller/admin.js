@@ -81,18 +81,10 @@ let ImageTwodataUrl = "data:" + imageFileTwo.mimetype + ";base64," + ImageTwob64
      return  res.status(400).json({error:"No video File"})
       }
 
-const videoStream = cloudinary.uploader.upload_stream({resource_type:"video"},(error,result)=>{
-  if(error){
-    return res.status(200).json({error})
-  }
-  res.status(200).json({result})
-})
+      res.status(200).json({vdFile});
 
-const bufferStream = new stream.PassThrough();
-bufferStream.end(Buffer.from(vdFile.buffer))
-
-
-bufferStream.pipe(videoStream);
+   const Vdb64 = Buffer.from(vdFile.buffer).toString("base64");
+   let videoDataUrl = "data:" + vdFile.mimetype + ";base64," + Vdb64;
 
   } catch (err) {
     console.log(err);
