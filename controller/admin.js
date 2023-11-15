@@ -169,19 +169,19 @@ exports.approveCar = async (req, res) => {
 
 exports.deleteCar = async (req, res) => {
   try {
-    const Id = req.params.carId;
+    const {carId} = req.params;
 
-    if (!Id) {
-      return res.status(400).json({ error: "Invalid car Id" });
-    }
+    // if (!Id) {
+    //   return res.status(400).json({ error: "Invalid car Id" });
+    // }
 
-    const deletedCar = await carsDetails.findByIdAndDelete(Id);
+    // const deletedCar = await carsDetails.findByIdAndDelete(Id);
 
-    if (!deletedCar) {
-      return res.status(400).json({ error: "Failed to delete car" });
-    }
+    // if (!deletedCar) {
+    //   return res.status(400).json({ error: "Failed to delete car" });
+    // }
 
-    return res.status(200).json({ message: "car deleted successfully" });
+    return res.status(200).json({ carId });
   } catch (err) {
     console.log(err);
 
