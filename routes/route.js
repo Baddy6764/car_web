@@ -29,7 +29,7 @@ router.post("/update-cars", isAuth, adminController.updateCars);
 router.post("/update-password", isAuth, authen.updatePassword);
 
 ///car_data Route
-router.post("/cars/data", isAuth, isAdmin, adminController.datajson);
+router.post("/cars/data", isAuth, adminController.datajson);
 
 ////Authentication wuith google
 router.get(
