@@ -6,7 +6,6 @@ const sendMail = require("../../utils/sendMail");
 const { baseurl } = require("../../baseurl");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const passport = require("passport");
-require("dotenv").config();
 
 ////Register Route
 exports.register = asyncHandler(async (req, res) => {
@@ -21,10 +20,12 @@ exports.register = asyncHandler(async (req, res) => {
 
   let token = await jwt.sign(
     { email, lastName, firstName, password },
-    "112345",
+    process.env.JWT_TOKEN_PASSWORD,
     { expiresIn: "15m" }
   );
+
   const url = `${baseurl}/activation/${token}`;
+
   const message = `
   <h4>Hello</h4>
    <h2>${firstName + " " + lastName}</h2>
@@ -38,6 +39,7 @@ exports.register = asyncHandler(async (req, res) => {
     subject: "Gart account activation",
     message: message,
   });
+
   res.send({
     success: true,
     message: "verification message have been send to your email",
@@ -47,15 +49,20 @@ exports.register = asyncHandler(async (req, res) => {
 /////Activate Register Route
 exports.activation = asyncHandler(async (req, res) => {
   const { payload } = req.body;
-  const user = await jwt.verify(payload, "112345");
+
+  const user = await jwt.verify(payload, process.env.JWT_TOKEN_PASSWORD);
+
   const validEmail = await Users.findOne({
     email: user.email,
   });
+
   if (validEmail) {
     res.status(400);
-    throw new Error("Email already exist");
+    throw new Error("Email already exist!");
   }
+
   const enPassword = await bcrypt.hash(user.password, 10);
+
   const createUser = await Users.create({
     firstname: user.firstName,
     lastname: user.lastName,
@@ -63,10 +70,12 @@ exports.activation = asyncHandler(async (req, res) => {
     role: false,
     password: enPassword,
   });
+
   if (!createUser) {
     res.status(400);
     throw new Error("Internal server error");
   }
+
   res.status(201).json({
     success: true,
     message: user,
@@ -76,25 +85,30 @@ exports.activation = asyncHandler(async (req, res) => {
 /////Login Route
 exports.login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  // res.status(200).send(req.body);
+
   const user = await Users.findOne({
     email: email,
   });
+
   if (!user) {
     res.status(400);
     throw new Error("Invalid email or password");
   }
+
   const isPassword = await bcrypt.compare(password, user.password);
   if (!isPassword) {
     res.status(400);
     throw new Error("Invalid email or password");
   }
-  const token = jwt.sign({ user }, "112345");
+
+  const token = jwt.sign({ user }, process.env.JWT_TOKEN_PASSWORD);
+
   return res
     .cookie("access", token, {
       httpOnly: true,
       secure: false,
     })
+
     .status(200)
     .json({
       message: "success",
@@ -108,26 +122,35 @@ exports.login = asyncHandler(async (req, res) => {
 /////Forgot Password Route
 exports.forgetPassword = asyncHandler(async (req, res) => {
   const { email, firstName } = req.body;
+
   const user = Users.findOne({
     email: email,
   });
+
   if (!user) {
     res.status(400).json({ error: "Invalid email" });
   }
-  const token = await jwt.sign({ email }, "12345", { expiresIn: "10m" });
+
+  const token = await jwt.sign({ email }, process.env.JWT_TOKEN_PASSWORD, {
+    expiresIn: "10m",
+  });
+
   const url = `${baseurl}/retrive-password/${token}`;
+
   const message = `
 <h2 style="color:green;">Hello,</h2>
 <p>Click on the link below to reset your password; <a style="color:brown;" href="${url}">reset</a> password.</p>
 <h3>Please if you didn't request for this contact our support immediately.</h3>
 <p>Thank you.</p>
   `;
+
   sendMail({
     email: email,
     from: "usman@gmail.com",
     subject: `Reset Password`,
     message: message,
   });
+
   res.send({
     success: true,
     message: "reset password has been sent to your email",
@@ -137,15 +160,18 @@ exports.forgetPassword = asyncHandler(async (req, res) => {
 //////Retrieve Password Route
 exports.retrivePassword = asyncHandler(async (req, res) => {
   const { token, newPassword, confirmPassword } = req.body;
-  const decoded = await jwt.verify(token, "12345");
+
+  const decoded = await jwt.verify(token, process.env.JWT_TOKEN_PASSWORD);
 
   if (!decoded) {
     res.status(400);
     throw new Error("Invalid Token");
   }
+
   const user = await Users.findOne({
     email: decoded.email,
   });
+
   if (!user) {
     res.status(400);
     throw new Error("Email is not valid");
@@ -155,6 +181,7 @@ exports.retrivePassword = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Password do not match");
   }
+
   const hashedPassword = await bcrypt.hash(newPassword, 13);
 
   user.password = hashedPassword;
@@ -171,45 +198,56 @@ exports.retrivePassword = asyncHandler(async (req, res) => {
 //////Update Password Route
 exports.updatePassword = asyncHandler(async (req, res) => {
   const { oldPassword, newPassword, conNewPassword } = req.body;
+
   const tokenUser = await req.header.token;
-  const decoded = await jwt.verify(tokenUser, "12345");
+
+  const decoded = await jwt.verify(tokenUser, process.env.JWT_TOKEN_PASSWORD);
+
   if (!decoded) {
     res.status(400).json({ error: "Invalid token user" });
   }
+
   const userOne = await Users.findOne({ email: decoded.email }).select(
     "+password"
   );
+
   if (!userOne) {
     res.status(400).json({ error: "User not found || Invalid Email" });
   }
+
   if (oldPassword === newPassword) {
     res.status(401).json({ error: "Password must not match the new password" });
   }
+
   if (newPassword !== conNewPassword) {
     res.status(401).json({ error: "password not match" });
   }
+
   const hashnewPass = await bcrypt.hash(newPassword, 13);
+
   userOne.password = hashnewPass;
+
   await userOne.save();
+
   res.status(401).json({
     success: true,
     message: "password updated successfully",
   });
 });
 
-const GOOGLE_CLIENT_SECRET = "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";
-const GOOGLE_CLIENT_ID =
-  "829754950475-dtkr2j0bf0sn1htrcmjs4arhmbo9jnfn.apps.googleusercontent.com";
+const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
+const google_client_Id = process.env.GOOGLE_CLIENT_ID;
 
 ///Google Authentication
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://gart-api.onrender.com/google/callback",
+      clientID: google_client_Id,
+      clientSecret: google_client_secret,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
       passReqToCallback: true,
     },
+
     async (request, accessToken, refreshToken, profile, done) => {
       try {
         const Email = await profile.emails[0].value;
@@ -232,6 +270,7 @@ passport.use(
         if (newUsers) {
           console.log("user created");
         }
+
         done(null, newUsers);
       } catch (err) {
         console.log(err);
@@ -244,10 +283,11 @@ passport.use(
 passport.serializeUser(async (user, done) => {
   try {
     const users = await user;
-    // console.log("serializeUser",users);
+
     done(null, users);
   } catch (err) {
     console.log(err);
+
     done(err);
   }
 });
@@ -258,6 +298,7 @@ passport.deserializeUser((id, done) => {
   if (!userId) {
     return done(null, "not found");
   }
+
   return done(null, userId);
 });
 
@@ -268,23 +309,29 @@ exports.googleAuth = async (req, res) => {};
 exports.googleCallback = (req, res) => {
   try {
     const user = req.user;
+
     console.log(`User: ${user}`);
+
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
-    const token = jwt.sign({ user }, "12345");
+
+    const token = jwt.sign({ user }, process.env.JWT_TOKEN_PASSWORD);
 
     if (!token) {
       return res.status(400).json({ error: "Invalid Token" });
     }
+
     if (token) {
       res.redirect("https://gart-racing.netlify.app/dashboard");
     }
+
     res
       .cookie("access", token, {
         httpOnly: true,
         secure: false,
       })
+
       .status(200)
       .send({
         success: true,

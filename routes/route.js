@@ -3,15 +3,9 @@ const adminController = require("../controller/admin");
 const authen = require("../controller/auth/authen");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
-const multer = require("multer");
-const isAdmin = require('../middlewares/isAdmin');
-const isAuth = require('../middlewares/isAuth');
-
-/////Using Multer to store Images/Videos
-const storage = multer.memoryStorage()
-
-/////Multer Storage
-const upload = multer({ storage: storage });
+const isAdmin = require("../middlewares/isAdmin");
+const isAuth = require("../middlewares/isAuth");
+const upload = require("../utils/multer");
 
 ////Register Route
 router.post("/register-page", authen.register);
@@ -23,19 +17,19 @@ router.post("/activation", authen.activation);
 router.post("/login-page", authen.login);
 
 ////Forgot Password Route
-router.post("/forget-password", authen.forgetPassword);
+router.post("/forget-password", isAuth, authen.forgetPassword);
 
 ////Retrive Password Route
-router.post("/retrive-password", authen.retrivePassword);
+router.post("/retrive-password", isAuth, authen.retrivePassword);
 
 ///Update Cars Route
-router.post("/update-cars", adminController.updateCars);
+router.post("/update-cars", isAuth, adminController.updateCars);
 
 ////Update Password Route
-router.post("/update-password", authen.updatePassword);
+router.post("/update-password", isAuth, authen.updatePassword);
 
 ///car_data Route
-router.post("/cars/data", adminController.datajson);
+router.post("/cars/data", isAuth, isAdmin, adminController.datajson);
 
 ////Authentication wuith google
 router.get(
@@ -56,7 +50,7 @@ router.get(
 ////Register Cars Route
 router.post(
   "/register/car",
-  // isAuth,
+  isAuth,
   upload.fields([
     { name: "images", maxCount: 2 },
     { name: "video", maxCount: 1 },
@@ -64,20 +58,16 @@ router.post(
   adminController.Registercars
 );
 
-
-
-
-
 /////Adminroute
-router.post("/admin-dashboard",  adminController.adminDasboard);
+router.post("/admin-dashboard", isAuth, isAdmin, adminController.adminDasboard);
 
 //////approvecar route
-router.post("/approve/cars",  adminController.approveCar);
+router.post("/approve/cars", isAuth, isAdmin, adminController.approveCar);
 
 //////deletecar route
-router.post("delete/cars",  adminController.deleteCar);
+router.post("delete/cars", isAuth, isAdmin, adminController.deleteCar);
 
 //////rejectcar route
-router.post("/reject/cars", adminController.rejectCar);
+router.post("/reject/cars", isAuth, isAdmin, adminController.rejectCar);
 
 module.exports = router;

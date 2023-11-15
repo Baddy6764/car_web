@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -13,7 +15,6 @@ const multer = require("multer");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));
 const Users = require("./modal/users");
-require("dotenv").config();
 app.use(
   cors({
     origin: "*",
@@ -40,6 +41,6 @@ app.use(routes);
 connectDB();
 app.use(notFound);
 app.use(errorHandler);
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   console.log("server starts on port 5000");
 });

@@ -50,10 +50,10 @@ const carSchema = new mongoose.Schema({
     require: false,
   },
 
-  status:{
-   type: String,
-   default: "pending"
-  }
+  status: {
+    type: String,
+    default: "pending",
+  },
 });
 
 module.exports = mongoose.model("Cars", carSchema);
