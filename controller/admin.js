@@ -123,12 +123,12 @@ exports.Registercars = async (req, res) => {
       return res.status(400).json({ error: "user car not created" });
     }
 
-    res.status(200).json({
-      message: "car details added successfully",
-      videoUrl: videoUploaded.secure_url,
-      ImageOneUrl: imageFileUploaded.secure_url,
-      ImageTwoUrl: resultTwo.secure_url,
-    });
+    // res.status(200).json({
+    //   message: "car details added successfully",
+    //   videoUrl: videoUploaded.secure_url,
+    //   ImageOneUrl: imageFileUploaded.secure_url,
+    //   ImageTwoUrl: resultTwo.secure_url,
+    // });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Internal sever error" });
