@@ -9,7 +9,7 @@ const path = require("path");
 const routes = require("./routes/route");
 const connectDB = require("./db/connect");
 const admin = require("./controller/admin");
-const session = require("express-session");
+// const session = require("express-session");
 const passport = require("passport");
 app.set('view engine','ejs')
 const multer = require("multer");
@@ -29,14 +29,14 @@ app.use(
   })
 );
 
-app.use(
-  session({
-    secret:process.env.MY_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {},
-  })
-);
+// app.use(
+//   session({
+//     secret:process.env.MY_SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {},
+//   })
+// );
 
 app.use(passport.initialize());
 app.use(passport.session());
