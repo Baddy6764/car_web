@@ -24,7 +24,7 @@ app.use(
 
 app.use(
   session({
-    secret: "my secret",
+    secret:process.env.MY_SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {},
