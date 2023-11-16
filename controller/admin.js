@@ -3,11 +3,18 @@ const carsDetails = require("../modal/carsDetails");
 const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
-const cloudinary = require("../utils/cloudinary");
+// const cloudinary = require("../utils/cloudinary");
+const cloudinary = require("cloudinary").v2;
 
 exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
 };
+
+cloudinary.config({
+  cloud_name:process.env.CLOUD_NAME,
+  api_key:process.env.API_KEY,
+  api_secret:process.env.API_SECRET
+})
 
 exports.Registercars = async (req, res) => {
   try {
@@ -98,7 +105,6 @@ exports.Registercars = async (req, res) => {
         });
     }
 
-    res.status(200).json({videoFile})
 
     const createdUserCar = await carsDetails.create({
       Make: make,
