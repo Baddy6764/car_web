@@ -8,7 +8,7 @@ const isAuth = require("../middlewares/isAuth");
 const upload = require("../utils/multer");
 
 ////Register Route
-router.post("/register-page",isAuth, authen.register);
+router.post("/register-page", authen.register);
 
 /////Register-Activation Route
 router.post("/activation", authen.activation);
@@ -50,7 +50,7 @@ router.get(
 ////Register Cars Route
 router.post(
   "/register/car",
-  isAuth,
+  // isAuth,
   upload.fields([
     { name: "images", maxCount: 2 },
     { name: "video", maxCount: 1 },
