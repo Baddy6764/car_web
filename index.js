@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const app = express();
+const RateLimit = require("express-rate-limit");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -15,6 +16,12 @@ const multer = require("multer");
 const { notFound, errorHandler } = require("./utils/errorHandler");
 app.use(express.static(path.join(__dirname, "public")));
 const Users = require("./modal/users");
+
+let limiter = RateLimit({
+  windowMs: 15 * 60 * 1000,
+  max:100,
+})
+
 app.use(
   cors({
     origin: "*",
@@ -35,7 +42,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(limiter)
 app.use(routes);
 
 connectDB();
