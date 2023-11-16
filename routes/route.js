@@ -8,7 +8,7 @@ const isAuth = require("../middlewares/isAuth");
 const upload = require("../utils/multer");
 
 ////Register Route
-router.post("/register-page", authen.register);
+router.post("/register-page",isAuth, authen.register);
 
 /////Register-Activation Route
 router.post("/activation", authen.activation);
@@ -70,9 +70,6 @@ router.post("delete/cars", isAuth, isAdmin, adminController.deleteCar);
 //////rejectcar route
 router.post("/reject/cars", isAuth, isAdmin, adminController.rejectCar);
 
-router.post("/car-registration",(req,res)=>{
-  const Body = req.body;
-  res.send({Body})
-});
+
 
 module.exports = router;
