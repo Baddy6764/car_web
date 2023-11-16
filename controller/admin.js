@@ -147,10 +147,14 @@ exports.approveCar = async (req, res) => {
       return res.status(400).json({ error: "Invalid carId" });
     }
 
+    if(typeof carId !== "string"){
+      return res.status(400).json({error:"please provide invalid car"})
+    }
+
     const updatedCar = await carsDetails.findByIdAndUpdate(
       carId,
-      { status: true }
-      // { new: true }
+      { status: true },
+      { new: true }
     );
 
     if (!updatedCar) {
@@ -195,6 +199,10 @@ exports.rejectCar = async (req, res) => {
 
     if (!carId) {
       return res.status(400).json({ error: "Invalid carId" });
+    }
+
+    if(typeof carId !== "string"){
+      return res.status(400).json({error:"please provide invalid car"})
     }
 
     const rejectedCar = await carsDetails.findByIdAndRemove(carId);
