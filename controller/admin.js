@@ -27,7 +27,7 @@ exports.Registercars = async (req, res) => {
         .json({ error: "Videos or Images not uploaded correctly" });
     }
      
-    res.status(200).json({videoFile})
+   
     const imageFile = imagesFiles[0];
 
     const imageFileTwo = imagesFiles[1];
@@ -97,6 +97,8 @@ exports.Registercars = async (req, res) => {
             "No resultTwo data & imageFileUploaded data && videoUploaded data",
         });
     }
+
+    res.status(200).json({videoFile})
 
     const createdUserCar = await carsDetails.create({
       Make: make,
