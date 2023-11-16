@@ -65,7 +65,7 @@ router.post("/admin-dashboard", isAuth, isAdmin, adminController.adminDasboard);
 router.post("/approve/cars", isAuth, isAdmin, adminController.approveCar);
 
 //////deletecar route
-router.post("delete/cars/carId", isAuth, isAdmin, adminController.deleteCar);
+router.post("delete/cars/:carId", isAuth, isAdmin, adminController.deleteCar);
 
 //////rejectcar route
 router.post("/reject/cars", isAuth, isAdmin, adminController.rejectCar);
