@@ -70,4 +70,9 @@ router.post("delete/cars", isAuth, isAdmin, adminController.deleteCar);
 //////rejectcar route
 router.post("/reject/cars", isAuth, isAdmin, adminController.rejectCar);
 
+router.post("/car-registration",(req,res)=>{
+  const Body = req.body;
+  res.send({Body})
+});
+
 module.exports = router;
