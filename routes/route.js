@@ -50,7 +50,7 @@ router.get(
 ////Register Cars Route
 router.post(
   "/register/car",
-  // isAuth,
+  isAuth,
   upload.fields([
     { name: "images", maxCount: 2 },
     { name: "video", maxCount: 1 },
