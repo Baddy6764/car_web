@@ -3,14 +3,7 @@ const carsDetails = require("../modal/carsDetails");
 const jwt = require("jsonwebtoken");
 const dataJson = require("../Data/data.json");
 const asyncHandler = require("express-async-handler");
-// const cloudinary = require("../utils/cloudinary");
-const cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-  cloud_name:process.env.CLOUD_NAME,
-  api_key:process.env.API_KEY,
-  api_secret:process.env.API_SECRET
-})
+const cloudinary = require("../utils/cloudinary");
 
 exports.datajson = (req, res) => {
   res.status(200).json({ data: dataJson });
@@ -33,7 +26,8 @@ exports.Registercars = async (req, res) => {
         .status(400)
         .json({ error: "Videos or Images not uploaded correctly" });
     }
-
+     
+    res.status(200).json({videoFile})
     const imageFile = imagesFiles[0];
 
     const imageFileTwo = imagesFiles[1];
