@@ -180,7 +180,12 @@ exports.approveCar = async (req, res) => {
 
 
 exports.getRegisterCars = async (req,res)=>{
-   console.log(req.body);
+  try{
+   await console.log(req.body);
+
+  } catch(err){
+    res.status(500).json({error:err.name})
+  }
 }
 
 
