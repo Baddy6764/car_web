@@ -178,6 +178,12 @@ exports.approveCar = async (req, res) => {
   }
 };
 
+
+exports.getRegisterCars = async (req,res)=>{
+   console.log(req.body);
+}
+
+
 exports.deleteCar = async (req, res) => {
   try {
     const {carId} = req.params;

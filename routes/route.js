@@ -58,6 +58,8 @@ router.post(
   adminController.Registercars
 );
 
+router.get("/register/car",adminController.getRegisterCars)
+
 /////Adminroute
 router.post("/admin-dashboard", isAuth, isAdmin, adminController.adminDasboard);
 
