@@ -181,7 +181,13 @@ exports.approveCar = async (req, res) => {
 
 exports.getRegisterCars = async (req,res)=>{
   try{
-   await console.log(req.body);
+   const userCarDetails = await carsDetails.find()
+    
+   if(!userCarDetails){
+   return res.status(400).json({error:"no user car"});
+   }
+
+    res.status(200).json({userCarDetails});
 
   } catch(err){
     res.status(500).json({error:err.name})
