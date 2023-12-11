@@ -185,10 +185,7 @@ exports.getRegisterCars = async (req,res)=>{
    if(!userCarDetails){
    return res.status(400).json({error:"no user car"});
    }
-   console.log(userCarDetails)
-
     res.status(200).json({data:userCarDetails});
-
   } catch(err){
     res.status(500).json({error:err.name})
   }
