@@ -178,22 +178,21 @@ exports.approveCar = async (req, res) => {
   }
 };
 
-
 exports.getRegisterCars = async (req,res)=>{
   try{
-   const userCarDetails = await carsDetails.find()
+  const  userCarDetails = await carsDetails.find();
     
    if(!userCarDetails){
    return res.status(400).json({error:"no user car"});
    }
+   console.log(userCarDetails)
 
-    res.status(200).json({userCarDetails});
+    res.status(200).json({data:userCarDetails});
 
   } catch(err){
     res.status(500).json({error:err.name})
   }
-}
-
+};
 
 exports.deleteCar = async (req, res) => {
   try {
@@ -236,7 +235,7 @@ exports.rejectCar = async (req, res) => {
 
     res.status(200).json({ rejectedCar });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
 
     return res.status(500).json({ error: "An error occur" });
   }
